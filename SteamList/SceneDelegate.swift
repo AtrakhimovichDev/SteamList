@@ -69,5 +69,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navigationController.navigationBar.barTintColor = Colors.navBarColor.getUIColor()
         navigationController.navigationBar.titleTextAttributes = [.foregroundColor: Colors.textColor.getUIColor()]
         return navigationController
+
     }
 }

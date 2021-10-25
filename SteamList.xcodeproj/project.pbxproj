@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,6 +17,10 @@
 		B02EB8BD2726BB1500F5DE4B /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8BC2726BB1400F5DE4B /* NewsViewController.swift */; };
 		B02EB8C02726C14D00F5DE4B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8BF2726C14D00F5DE4B /* Colors.swift */; };
 		B02EB8C32726C3D600F5DE4B /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8C22726C3D600F5DE4B /* UIColor+hex.swift */; };
+		B02EB8C82726DF0400F5DE4B /* GamesListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8C62726DF0400F5DE4B /* GamesListTableViewCell.swift */; };
+		B02EB8CD2726EB6000F5DE4B /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8CC2726EB6000F5DE4B /* Games.swift */; };
+		B02EB8D02726ECF100F5DE4B /* GamesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8CF2726ECF100F5DE4B /* GamesListView.swift */; };
+		B02EB8D22726F2DD00F5DE4B /* UIView+gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8D12726F2DD00F5DE4B /* UIView+gradient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		B02EB8BC2726BB1400F5DE4B /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		B02EB8BF2726C14D00F5DE4B /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		B02EB8C22726C3D600F5DE4B /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
+		B02EB8C62726DF0400F5DE4B /* GamesListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListTableViewCell.swift; sourceTree = "<group>"; };
+		B02EB8CC2726EB6000F5DE4B /* Games.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Games.swift; sourceTree = "<group>"; };
+		B02EB8CF2726ECF100F5DE4B /* GamesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListView.swift; sourceTree = "<group>"; };
+		B02EB8D12726F2DD00F5DE4B /* UIView+gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+gradient.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +94,9 @@
 		B02EB8A22726B05B00F5DE4B /* SteamList */ = {
 			isa = PBXGroup;
 			children = (
+				B02EB8CE2726ECDB00F5DE4B /* Views */,
+				B02EB8CB2726EB5000F5DE4B /* Models */,
+				B02EB8C52726DEDB00F5DE4B /* Cells */,
 				B02EB8C12726C3B500F5DE4B /* Extensions */,
 				B02EB8BE2726C13800F5DE4B /* Enums */,
 				B02EB8B72726B27600F5DE4B /* ViewControllers */,
@@ -120,8 +131,33 @@
 			isa = PBXGroup;
 			children = (
 				B02EB8C22726C3D600F5DE4B /* UIColor+hex.swift */,
+				B02EB8D12726F2DD00F5DE4B /* UIView+gradient.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B02EB8C52726DEDB00F5DE4B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B02EB8C62726DF0400F5DE4B /* GamesListTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		B02EB8CB2726EB5000F5DE4B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B02EB8CC2726EB6000F5DE4B /* Games.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B02EB8CE2726ECDB00F5DE4B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B02EB8CF2726ECF100F5DE4B /* GamesListView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +172,7 @@
 				B02EB8C42726D0E400F5DE4B /* SwiftLint */,
 				B02EB89D2726B05A00F5DE4B /* Frameworks */,
 				B02EB89E2726B05A00F5DE4B /* Resources */,
+				6D3CD2B9982ED4E68B0F6750 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -213,6 +250,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6D3CD2B9982ED4E68B0F6750 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SteamList/Pods-SteamList-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SteamList/Pods-SteamList-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SteamList/Pods-SteamList-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B02EB8C42726D0E400F5DE4B /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -240,10 +294,14 @@
 			files = (
 				B02EB8C32726C3D600F5DE4B /* UIColor+hex.swift in Sources */,
 				B02EB8BB2726BADF00F5DE4B /* FavoritesViewController.swift in Sources */,
+				B02EB8D02726ECF100F5DE4B /* GamesListView.swift in Sources */,
 				B02EB8C02726C14D00F5DE4B /* Colors.swift in Sources */,
+				B02EB8CD2726EB6000F5DE4B /* Games.swift in Sources */,
+				B02EB8C82726DF0400F5DE4B /* GamesListTableViewCell.swift in Sources */,
 				B02EB8B92726B2B800F5DE4B /* GamesListViewController.swift in Sources */,
 				B02EB8A42726B05B00F5DE4B /* AppDelegate.swift in Sources */,
 				B02EB8BD2726BB1500F5DE4B /* NewsViewController.swift in Sources */,
+				B02EB8D22726F2DD00F5DE4B /* UIView+gradient.swift in Sources */,
 				B02EB8A62726B05B00F5DE4B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

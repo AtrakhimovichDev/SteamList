@@ -9,7 +9,8 @@ import UIKit
 
 enum Colors: String {
     case navBarColor = "#3E6382"
-    case backgroundColor = "#223C53"
+    case firstBackgroundColor = "#223C53"
+    case secondBackgroundColor = "#1E293A"
     case textColor = "#ffffff"
 
     func getUIColor() -> UIColor {
