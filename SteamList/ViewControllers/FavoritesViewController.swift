@@ -15,6 +15,14 @@ class FavoritesViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    func setupSettings() {
+        view.backgroundColor = Colors.backgroundColor.getUIColor()
+        title = "Favorites"
+        let item = UITabBarItem()
+        item.title = "Fav"
+        item.image = UIImage(systemName: "star.fill")
+        tabBarItem = item
+    }
 
     /*
     // MARK: - Navigation
