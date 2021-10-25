@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		119F25CB9A6188CE3E56DDF2 /* Pods_SteamList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447CF8B4656A34A4FB6FE2A3 /* Pods_SteamList.framework */; };
 		B02EB8A42726B05B00F5DE4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8A32726B05B00F5DE4B /* AppDelegate.swift */; };
 		B02EB8A62726B05B00F5DE4B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8A52726B05B00F5DE4B /* SceneDelegate.swift */; };
 		B02EB8AD2726B05C00F5DE4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B02EB8AC2726B05C00F5DE4B /* Assets.xcassets */; };
@@ -19,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15A788FBC90A0607C5F19007 /* Pods-SteamList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteamList.debug.xcconfig"; path = "Target Support Files/Pods-SteamList/Pods-SteamList.debug.xcconfig"; sourceTree = "<group>"; };
+		447CF8B4656A34A4FB6FE2A3 /* Pods_SteamList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SteamList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		491ED9F30B58DBBAB5FBD618 /* Pods-SteamList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteamList.release.xcconfig"; path = "Target Support Files/Pods-SteamList/Pods-SteamList.release.xcconfig"; sourceTree = "<group>"; };
 		B02EB8A02726B05B00F5DE4B /* SteamList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SteamList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B02EB8A32726B05B00F5DE4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B02EB8A52726B05B00F5DE4B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,17 +41,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				119F25CB9A6188CE3E56DDF2 /* Pods_SteamList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A70EFB5E44F25BBBC40267C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				447CF8B4656A34A4FB6FE2A3 /* Pods_SteamList.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		42BB8D7F871E31AC978E6FD6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				15A788FBC90A0607C5F19007 /* Pods-SteamList.debug.xcconfig */,
+				491ED9F30B58DBBAB5FBD618 /* Pods-SteamList.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B02EB8972726B05A00F5DE4B = {
 			isa = PBXGroup;
 			children = (
 				B02EB8A22726B05B00F5DE4B /* SteamList */,
 				B02EB8A12726B05B00F5DE4B /* Products */,
+				42BB8D7F871E31AC978E6FD6 /* Pods */,
+				1A70EFB5E44F25BBBC40267C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,7 +131,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B02EB8B42726B05C00F5DE4B /* Build configuration list for PBXNativeTarget "SteamList" */;
 			buildPhases = (
+				121C5AE8761E762037F90149 /* [CP] Check Pods Manifest.lock */,
 				B02EB89C2726B05A00F5DE4B /* Sources */,
+				B02EB8C42726D0E400F5DE4B /* SwiftLint */,
 				B02EB89D2726B05A00F5DE4B /* Frameworks */,
 				B02EB89E2726B05A00F5DE4B /* Resources */,
 			);
@@ -163,6 +189,49 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		121C5AE8761E762037F90149 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SteamList-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B02EB8C42726D0E400F5DE4B /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B02EB89C2726B05A00F5DE4B /* Sources */ = {
@@ -311,6 +380,7 @@
 		};
 		B02EB8B52726B05C00F5DE4B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15A788FBC90A0607C5F19007 /* Pods-SteamList.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -330,6 +400,7 @@
 		};
 		B02EB8B62726B05C00F5DE4B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 491ED9F30B58DBBAB5FBD618 /* Pods-SteamList.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

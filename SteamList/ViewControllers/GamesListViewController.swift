@@ -8,11 +8,11 @@
 import UIKit
 
 class GamesListViewController: UIViewController {
- 
+
     var textLabel: UILabel!
-    
+
     var view1: UIView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         textLabel = UILabel()
@@ -22,10 +22,10 @@ class GamesListViewController: UIViewController {
         textLabel.text = "dfgdfgdfg"
         textLabel.center = view.center
         view.addSubview(textLabel)
-        //view.addSubview(view1)
+        // view.addSubview(view1)
         // Do any additional setup after loading the view.
     }
-    
+
     func setupSettings() {
         view.backgroundColor = Colors.backgroundColor.getUIColor()
         title = "Games"
@@ -34,15 +34,5 @@ class GamesListViewController: UIViewController {
         item.image = UIImage(systemName: "list.star")
         tabBarItem = item
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

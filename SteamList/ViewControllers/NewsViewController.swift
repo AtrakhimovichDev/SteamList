@@ -14,7 +14,7 @@ class NewsViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-    
+
     func setupSettings() {
         view.backgroundColor = Colors.backgroundColor.getUIColor()
         title = "News"
