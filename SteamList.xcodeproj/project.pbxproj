@@ -9,21 +9,27 @@
 /* Begin PBXBuildFile section */
 		B02EB8A42726B05B00F5DE4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8A32726B05B00F5DE4B /* AppDelegate.swift */; };
 		B02EB8A62726B05B00F5DE4B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8A52726B05B00F5DE4B /* SceneDelegate.swift */; };
-		B02EB8A82726B05B00F5DE4B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8A72726B05B00F5DE4B /* ViewController.swift */; };
-		B02EB8AB2726B05B00F5DE4B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B02EB8A92726B05B00F5DE4B /* Main.storyboard */; };
 		B02EB8AD2726B05C00F5DE4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B02EB8AC2726B05C00F5DE4B /* Assets.xcassets */; };
 		B02EB8B02726B05C00F5DE4B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B02EB8AE2726B05C00F5DE4B /* LaunchScreen.storyboard */; };
+		B02EB8B92726B2B800F5DE4B /* GamesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8B82726B2B800F5DE4B /* GamesListViewController.swift */; };
+		B02EB8BB2726BADF00F5DE4B /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8BA2726BADF00F5DE4B /* FavoritesViewController.swift */; };
+		B02EB8BD2726BB1500F5DE4B /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8BC2726BB1400F5DE4B /* NewsViewController.swift */; };
+		B02EB8C02726C14D00F5DE4B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8BF2726C14D00F5DE4B /* Colors.swift */; };
+		B02EB8C32726C3D600F5DE4B /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8C22726C3D600F5DE4B /* UIColor+hex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B02EB8A02726B05B00F5DE4B /* SteamList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SteamList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B02EB8A32726B05B00F5DE4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B02EB8A52726B05B00F5DE4B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B02EB8A72726B05B00F5DE4B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B02EB8AA2726B05B00F5DE4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B02EB8AC2726B05C00F5DE4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B02EB8AF2726B05C00F5DE4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B02EB8B12726B05C00F5DE4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B02EB8B82726B2B800F5DE4B /* GamesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListViewController.swift; sourceTree = "<group>"; };
+		B02EB8BA2726BADF00F5DE4B /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		B02EB8BC2726BB1400F5DE4B /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		B02EB8BF2726C14D00F5DE4B /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		B02EB8C22726C3D600F5DE4B /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,42 @@
 		B02EB8A22726B05B00F5DE4B /* SteamList */ = {
 			isa = PBXGroup;
 			children = (
+				B02EB8C12726C3B500F5DE4B /* Extensions */,
+				B02EB8BE2726C13800F5DE4B /* Enums */,
+				B02EB8B72726B27600F5DE4B /* ViewControllers */,
 				B02EB8A32726B05B00F5DE4B /* AppDelegate.swift */,
 				B02EB8A52726B05B00F5DE4B /* SceneDelegate.swift */,
-				B02EB8A72726B05B00F5DE4B /* ViewController.swift */,
-				B02EB8A92726B05B00F5DE4B /* Main.storyboard */,
 				B02EB8AC2726B05C00F5DE4B /* Assets.xcassets */,
 				B02EB8AE2726B05C00F5DE4B /* LaunchScreen.storyboard */,
 				B02EB8B12726B05C00F5DE4B /* Info.plist */,
 			);
 			path = SteamList;
+			sourceTree = "<group>";
+		};
+		B02EB8B72726B27600F5DE4B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B02EB8B82726B2B800F5DE4B /* GamesListViewController.swift */,
+				B02EB8BA2726BADF00F5DE4B /* FavoritesViewController.swift */,
+				B02EB8BC2726BB1400F5DE4B /* NewsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B02EB8BE2726C13800F5DE4B /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				B02EB8BF2726C14D00F5DE4B /* Colors.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		B02EB8C12726C3B500F5DE4B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B02EB8C22726C3D600F5DE4B /* UIColor+hex.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +159,6 @@
 			files = (
 				B02EB8B02726B05C00F5DE4B /* LaunchScreen.storyboard in Resources */,
 				B02EB8AD2726B05C00F5DE4B /* Assets.xcassets in Resources */,
-				B02EB8AB2726B05B00F5DE4B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +169,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B02EB8A82726B05B00F5DE4B /* ViewController.swift in Sources */,
+				B02EB8C32726C3D600F5DE4B /* UIColor+hex.swift in Sources */,
+				B02EB8BB2726BADF00F5DE4B /* FavoritesViewController.swift in Sources */,
+				B02EB8C02726C14D00F5DE4B /* Colors.swift in Sources */,
+				B02EB8B92726B2B800F5DE4B /* GamesListViewController.swift in Sources */,
 				B02EB8A42726B05B00F5DE4B /* AppDelegate.swift in Sources */,
+				B02EB8BD2726BB1500F5DE4B /* NewsViewController.swift in Sources */,
 				B02EB8A62726B05B00F5DE4B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,14 +182,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B02EB8A92726B05B00F5DE4B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B02EB8AA2726B05B00F5DE4B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B02EB8AE2726B05C00F5DE4B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
