@@ -39,43 +39,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func createRootController() -> UIViewController {
         
-        // Create games list controller
+        // MARK: Create games list controller
         let gamesListVC = GamesListViewController()
-        gamesListVC.view.backgroundColor = Colors.backgroundColor.getUIColor()
-        gamesListVC.title = "Games"
-        let item = UITabBarItem()
-        item.title = "Games"
-        item.image = UIImage(systemName: "list.star")
-        gamesListVC.tabBarItem = item
-        let gamesListNavigationController = UINavigationController(rootViewController: gamesListVC)
-        gamesListNavigationController.navigationBar.barTintColor = Colors.navBarColor.getUIColor()
-        gamesListNavigationController.navigationBar.titleTextAttributes = [.foregroundColor: Colors.textColor.getUIColor()]
+        gamesListVC.setupSettings()
+        let gamesListNavigationController = createNavigationController(rootViewController: gamesListVC)
         
+        // MARK: Create games favorites controller
         let favoritesVC = FavoritesViewController()
-        favoritesVC.view.backgroundColor = Colors.backgroundColor.getUIColor()
-        favoritesVC.title = "Favorites"
-        let item1 = UITabBarItem()
-        item1.title = "Favs"
-        item1.image = UIImage(systemName: "star.fill")
-        favoritesVC.tabBarItem = item1
-        let favoritesNavigationController = UINavigationController(rootViewController: favoritesVC)
-        favoritesNavigationController.navigationBar.barTintColor = Colors.navBarColor.getUIColor()
-        favoritesNavigationController.navigationBar.titleTextAttributes = [.foregroundColor: Colors.textColor.getUIColor()]
-        
+        favoritesVC.setupSettings()
+        let favoritesNavigationController = createNavigationController(rootViewController: favoritesVC)
+       
+        // MARK: Create games news controller
         let newsVC = NewsViewController()
-        newsVC.view.backgroundColor = Colors.backgroundColor.getUIColor()
-        newsVC.title = "News"
-        let item2 = UITabBarItem()
-        item2.title = "News"
-        item2.image = UIImage(systemName: "book.fill")
-        newsVC.tabBarItem = item2
-        let newsNavigationController = UINavigationController(rootViewController: newsVC)
-        newsNavigationController.navigationBar.barTintColor = Colors.navBarColor.getUIColor()
-        newsNavigationController.navigationBar.titleTextAttributes = [.foregroundColor: Colors.textColor.getUIColor()]
+        newsVC.setupSettings()
+        let newsNavigationController = createNavigationController(rootViewController: newsVC)
         
         let tapBarController = UITabBarController()
         tapBarController.viewControllers = [gamesListNavigationController, favoritesNavigationController, newsNavigationController]
         
         return tapBarController
+    }
+    
+    private func createNavigationController(rootViewController: UIViewController) -> UINavigationController {
+        
+        let navigationController = UINavigationController(rootViewController: rootViewController)
+        navigationController.navigationBar.barTintColor = Colors.navBarColor.getUIColor()
+        navigationController.navigationBar.titleTextAttributes = [.foregroundColor: Colors.textColor.getUIColor()]
+        return navigationController
     }
 }

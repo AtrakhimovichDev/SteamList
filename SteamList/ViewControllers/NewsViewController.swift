@@ -15,6 +15,14 @@ class NewsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    func setupSettings() {
+        view.backgroundColor = Colors.backgroundColor.getUIColor()
+        title = "News"
+        let item = UITabBarItem()
+        item.title = "News"
+        item.image = UIImage(systemName: "book.fill")
+        tabBarItem = item
+    }
 
     /*
     // MARK: - Navigation

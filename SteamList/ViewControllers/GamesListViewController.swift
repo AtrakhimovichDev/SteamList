@@ -26,7 +26,15 @@ class GamesListViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    func setupSettings() {
+        view.backgroundColor = Colors.backgroundColor.getUIColor()
+        title = "Games"
+        let item = UITabBarItem()
+        item.title = "Games"
+        item.image = UIImage(systemName: "list.star")
+        tabBarItem = item
+    }
+    
     /*
     // MARK: - Navigation
 
