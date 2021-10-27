@@ -18,9 +18,14 @@
 		B02EB8C02726C14D00F5DE4B /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8BF2726C14D00F5DE4B /* Colors.swift */; };
 		B02EB8C32726C3D600F5DE4B /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8C22726C3D600F5DE4B /* UIColor+hex.swift */; };
 		B02EB8C82726DF0400F5DE4B /* GamesListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8C62726DF0400F5DE4B /* GamesListTableViewCell.swift */; };
-		B02EB8CD2726EB6000F5DE4B /* Games.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8CC2726EB6000F5DE4B /* Games.swift */; };
+		B02EB8CD2726EB6000F5DE4B /* GamesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8CC2726EB6000F5DE4B /* GamesList.swift */; };
 		B02EB8D02726ECF100F5DE4B /* GamesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8CF2726ECF100F5DE4B /* GamesListView.swift */; };
 		B02EB8D22726F2DD00F5DE4B /* UIView+gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8D12726F2DD00F5DE4B /* UIView+gradient.swift */; };
+		B02EB8D42727062F00F5DE4B /* NetworkManagerImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8D32727062F00F5DE4B /* NetworkManagerImplementation.swift */; };
+		B02EB8D827274A1000F5DE4B /* GameDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8D727274A1000F5DE4B /* GameDetailsViewController.swift */; };
+		B02EB8E027274E1E00F5DE4B /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8DF27274E1E00F5DE4B /* Game.swift */; };
+		B02EB8E22727553F00F5DE4B /* GameDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8E12727553F00F5DE4B /* GameDetailsView.swift */; };
+		B02EB8E527281C3100F5DE4B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8E427281C3100F5DE4B /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,9 +44,14 @@
 		B02EB8BF2726C14D00F5DE4B /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		B02EB8C22726C3D600F5DE4B /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
 		B02EB8C62726DF0400F5DE4B /* GamesListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListTableViewCell.swift; sourceTree = "<group>"; };
-		B02EB8CC2726EB6000F5DE4B /* Games.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Games.swift; sourceTree = "<group>"; };
+		B02EB8CC2726EB6000F5DE4B /* GamesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesList.swift; sourceTree = "<group>"; };
 		B02EB8CF2726ECF100F5DE4B /* GamesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListView.swift; sourceTree = "<group>"; };
 		B02EB8D12726F2DD00F5DE4B /* UIView+gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+gradient.swift"; sourceTree = "<group>"; };
+		B02EB8D32727062F00F5DE4B /* NetworkManagerImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerImplementation.swift; sourceTree = "<group>"; };
+		B02EB8D727274A1000F5DE4B /* GameDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailsViewController.swift; sourceTree = "<group>"; };
+		B02EB8DF27274E1E00F5DE4B /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		B02EB8E12727553F00F5DE4B /* GameDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailsView.swift; sourceTree = "<group>"; };
+		B02EB8E427281C3100F5DE4B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,17 +104,16 @@
 		B02EB8A22726B05B00F5DE4B /* SteamList */ = {
 			isa = PBXGroup;
 			children = (
-				B02EB8CE2726ECDB00F5DE4B /* Views */,
-				B02EB8CB2726EB5000F5DE4B /* Models */,
+				B02EB8DC27274A4E00F5DE4B /* Application */,
 				B02EB8C52726DEDB00F5DE4B /* Cells */,
-				B02EB8C12726C3B500F5DE4B /* Extensions */,
 				B02EB8BE2726C13800F5DE4B /* Enums */,
+				B02EB8C12726C3B500F5DE4B /* Extensions */,
+				B02EB8DD27274A6B00F5DE4B /* Helpers */,
+				B02EB8CB2726EB5000F5DE4B /* JSONModels */,
+				B02EB8DE27274A7B00F5DE4B /* Resourses */,
 				B02EB8B72726B27600F5DE4B /* ViewControllers */,
-				B02EB8A32726B05B00F5DE4B /* AppDelegate.swift */,
-				B02EB8A52726B05B00F5DE4B /* SceneDelegate.swift */,
-				B02EB8AC2726B05C00F5DE4B /* Assets.xcassets */,
+				B02EB8CE2726ECDB00F5DE4B /* Views */,
 				B02EB8AE2726B05C00F5DE4B /* LaunchScreen.storyboard */,
-				B02EB8B12726B05C00F5DE4B /* Info.plist */,
 			);
 			path = SteamList;
 			sourceTree = "<group>";
@@ -112,9 +121,9 @@
 		B02EB8B72726B27600F5DE4B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				B02EB8B82726B2B800F5DE4B /* GamesListViewController.swift */,
-				B02EB8BA2726BADF00F5DE4B /* FavoritesViewController.swift */,
-				B02EB8BC2726BB1400F5DE4B /* NewsViewController.swift */,
+				B02EB8D927274A1900F5DE4B /* GamesViewControllers */,
+				B02EB8DA27274A2500F5DE4B /* FavoritesViewControllers */,
+				B02EB8DB27274A2F00F5DE4B /* NewsViewControllers */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -144,20 +153,82 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		B02EB8CB2726EB5000F5DE4B /* Models */ = {
+		B02EB8CB2726EB5000F5DE4B /* JSONModels */ = {
 			isa = PBXGroup;
 			children = (
-				B02EB8CC2726EB6000F5DE4B /* Games.swift */,
+				B02EB8CC2726EB6000F5DE4B /* GamesList.swift */,
+				B02EB8DF27274E1E00F5DE4B /* Game.swift */,
 			);
-			path = Models;
+			path = JSONModels;
 			sourceTree = "<group>";
 		};
 		B02EB8CE2726ECDB00F5DE4B /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				B02EB8CF2726ECF100F5DE4B /* GamesListView.swift */,
+				B02EB8E12727553F00F5DE4B /* GameDetailsView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		B02EB8D927274A1900F5DE4B /* GamesViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B02EB8B82726B2B800F5DE4B /* GamesListViewController.swift */,
+				B02EB8D727274A1000F5DE4B /* GameDetailsViewController.swift */,
+			);
+			path = GamesViewControllers;
+			sourceTree = "<group>";
+		};
+		B02EB8DA27274A2500F5DE4B /* FavoritesViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B02EB8BA2726BADF00F5DE4B /* FavoritesViewController.swift */,
+			);
+			path = FavoritesViewControllers;
+			sourceTree = "<group>";
+		};
+		B02EB8DB27274A2F00F5DE4B /* NewsViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B02EB8BC2726BB1400F5DE4B /* NewsViewController.swift */,
+			);
+			path = NewsViewControllers;
+			sourceTree = "<group>";
+		};
+		B02EB8DC27274A4E00F5DE4B /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				B02EB8A32726B05B00F5DE4B /* AppDelegate.swift */,
+				B02EB8A52726B05B00F5DE4B /* SceneDelegate.swift */,
+				B02EB8B12726B05C00F5DE4B /* Info.plist */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		B02EB8DD27274A6B00F5DE4B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B02EB8E327281BEC00F5DE4B /* Network */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		B02EB8DE27274A7B00F5DE4B /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				B02EB8AC2726B05C00F5DE4B /* Assets.xcassets */,
+			);
+			path = Resourses;
+			sourceTree = "<group>";
+		};
+		B02EB8E327281BEC00F5DE4B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				B02EB8D32727062F00F5DE4B /* NetworkManagerImplementation.swift */,
+				B02EB8E427281C3100F5DE4B /* NetworkManager.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,17 +363,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B02EB8E22727553F00F5DE4B /* GameDetailsView.swift in Sources */,
+				B02EB8D42727062F00F5DE4B /* NetworkManagerImplementation.swift in Sources */,
 				B02EB8C32726C3D600F5DE4B /* UIColor+hex.swift in Sources */,
 				B02EB8BB2726BADF00F5DE4B /* FavoritesViewController.swift in Sources */,
+				B02EB8E527281C3100F5DE4B /* NetworkManager.swift in Sources */,
 				B02EB8D02726ECF100F5DE4B /* GamesListView.swift in Sources */,
 				B02EB8C02726C14D00F5DE4B /* Colors.swift in Sources */,
-				B02EB8CD2726EB6000F5DE4B /* Games.swift in Sources */,
+				B02EB8CD2726EB6000F5DE4B /* GamesList.swift in Sources */,
 				B02EB8C82726DF0400F5DE4B /* GamesListTableViewCell.swift in Sources */,
 				B02EB8B92726B2B800F5DE4B /* GamesListViewController.swift in Sources */,
 				B02EB8A42726B05B00F5DE4B /* AppDelegate.swift in Sources */,
+				B02EB8E027274E1E00F5DE4B /* Game.swift in Sources */,
 				B02EB8BD2726BB1500F5DE4B /* NewsViewController.swift in Sources */,
 				B02EB8D22726F2DD00F5DE4B /* UIView+gradient.swift in Sources */,
 				B02EB8A62726B05B00F5DE4B /* SceneDelegate.swift in Sources */,
+				B02EB8D827274A1000F5DE4B /* GameDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,7 +520,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SSDHB2CNTR;
-				INFOPLIST_FILE = SteamList/Info.plist;
+				INFOPLIST_FILE = SteamList/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -464,7 +540,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SSDHB2CNTR;
-				INFOPLIST_FILE = SteamList/Info.plist;
+				INFOPLIST_FILE = SteamList/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

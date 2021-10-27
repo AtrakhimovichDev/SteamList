@@ -14,16 +14,17 @@ class GamesListTableViewCell: UITableViewCell {
 
     var titleLabel: UILabel!
     var favButton: UIButton!
+    var isFavotite = false
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .clear
-        backgroundView?.backgroundColor = .clear
         contentView.backgroundColor = .clear
         titleLabel = UILabel()
         titleLabel.textColor = .white
+        titleLabel.numberOfLines = 0
+        titleLabel.setContentHuggingPriority(UILayoutPriority.defaultLow, for: .horizontal)
         favButton = UIButton()
-        // favButton.setTitle("tap", for: .normal)
         favButton.setImage(UIImage(systemName: "star"), for: .normal)
         favButton.tintColor = .orange
         favButton.addTarget(self, action: #selector(favButtonTapped(handler:)), for: .touchUpInside)
@@ -38,12 +39,18 @@ class GamesListTableViewCell: UITableViewCell {
         favButton.snp.makeConstraints { (constraints) in
             constraints.centerY.equalTo(contentView)
             constraints.trailing.equalTo(contentView).offset(-15)
-            constraints.leading.equalTo(titleLabel.snp.trailing).offset(10)
+            constraints.leading.greaterThanOrEqualTo(titleLabel.snp.trailing).offset(10)
+            constraints.width.greaterThanOrEqualTo(20)
         }
     }
 
     @objc private func favButtonTapped(handler: UIButton) {
-        favButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        isFavotite = !isFavotite
+        if isFavotite {
+            favButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        } else {
+            favButton.setImage(UIImage(systemName: "star"), for: .normal)
+        }
     }
 
     required init?(coder: NSCoder) {

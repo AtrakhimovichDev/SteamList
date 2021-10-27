@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct Games: Decodable {
-    let applist: [Applications]
+struct GamesList: Decodable {
+    let applist: Applications
 }
 
 struct Applications: Decodable {
-    let apps: [Game]
+    let apps: [GameShortInfo]
 }
 
-struct Game: Decodable {
-    let appid: String
+struct GameShortInfo: Decodable {
+    let appid: Int
     let name: String
 }
