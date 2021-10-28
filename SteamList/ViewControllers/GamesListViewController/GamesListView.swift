@@ -17,6 +17,11 @@ class GamesListView: UIView {
         createSubViews()
     }
 
+    convenience init() {
+        self.init(frame: UIScreen.main.bounds)
+        createSubViews()
+    }
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         createSubViews()

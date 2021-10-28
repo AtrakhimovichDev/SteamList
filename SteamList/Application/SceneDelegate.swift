@@ -42,7 +42,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // MARK: Create games list controller
         let gamesListVC = GamesListViewController()
-        gamesListVC.setupSettings()
+        // gamesListVC.setupSettings()
         let gamesListNavigationController = createNavigationController(rootViewController: gamesListVC)
 
         // MARK: Create games favorites controller

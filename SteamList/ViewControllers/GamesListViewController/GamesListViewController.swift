@@ -9,14 +9,21 @@ import UIKit
 import SnapKit
 
 class GamesListViewController: UIViewController {
-    
-    var networkManager: NetworkManager!
-    var customView: GamesListView!
-    var games = [GameShortInfo]()
-    var filteredGames = [GameShortInfo]()
+
+    private var customView: GamesListView {
+        return view as? GamesListView ?? GamesListView()
+    }
+    private var networkManager: NetworkManager!
+    private var games = [GameShortInfo]()
+    private var filteredGames = [GameShortInfo]()
+
+    override func loadView() {
+        self.view = GamesListView()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupSettings()
         setupNetworkManager()
         setupCustomView()
         view.addGestureRecognizer(createOutOfSerchTap())
@@ -34,24 +41,15 @@ class GamesListViewController: UIViewController {
     }
 
     private func setupCustomView() {
-        let customView = GamesListView(frame: view.frame)
-        view.addSubview(customView)
-        customView.snp.makeConstraints { (constarints) in
-            constarints.top.equalTo(view.safeAreaLayoutGuide.snp.topMargin)
-            constarints.leading.equalToSuperview()
-            constarints.trailing.equalToSuperview()
-            constarints.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottomMargin)
-        }
         customView.gamesTableView.delegate = self
         customView.gamesTableView.dataSource = self
         customView.searchBar.delegate = self
-        self.customView = customView
     }
 
     func setupSettings() {
-//        self.view.setGradientBackground(firstColor: Colors.firstBackgroundColor.getUIColor(),
-//                                   secondColor: Colors.secondBackgroundColor.getUIColor())
-        setGradientBackground()
+        self.customView.setGradientBackground(firstColor: Colors.firstBackgroundColor.getUIColor(),
+                                   secondColor: Colors.secondBackgroundColor.getUIColor())
+        // setGradientBackground()
         title = "Games"
         tabBarItem = UITabBarItem(title: "Games", image: UIImage(systemName: "list.star"), tag: 0)
     }
@@ -92,7 +90,7 @@ extension GamesListViewController: UITableViewDataSource {
                 for: indexPath) as? GamesListTableViewCell else {
             return UITableViewCell()
         }
-        cell.selectionStyle = .none;
+        cell.selectionStyle = .none
         cell.titleLabel.text = filteredGames[indexPath.row].name
         return cell
     }
