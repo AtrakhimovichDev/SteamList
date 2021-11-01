@@ -16,6 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
+        // guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let window = UIWindow(windowScene: windowScene)
         let rootViewController = createRootController()
         window.rootViewController = rootViewController
@@ -42,18 +43,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // MARK: Create games list controller
         let gamesListVC = GamesListViewController()
-        // gamesListVC.setupSettings()
-        let gamesListNavigationController = createNavigationController(rootViewController: gamesListVC)
+        gamesListVC.title = "Games"
+        let gamesListNavigationController = createNavigationController(
+                                                        rootViewController: gamesListVC,
+                                                        tapBarName: "Games",
+                                                        tapBarImage: "list.star")
 
         // MARK: Create games favorites controller
         let favoritesVC = FavoritesViewController()
-        favoritesVC.setupSettings()
-        let favoritesNavigationController = createNavigationController(rootViewController: favoritesVC)
+        favoritesVC.title = "Favorites"
+        let favoritesNavigationController = createNavigationController(
+                                                        rootViewController: favoritesVC,
+                                                        tapBarName: "Favs",
+                                                        tapBarImage: "star.fill")
 
         // MARK: Create games news controller
         let newsVC = NewsViewController()
-        newsVC.setupSettings()
-        let newsNavigationController = createNavigationController(rootViewController: newsVC)
+        newsVC.title = "News"
+        let newsNavigationController = createNavigationController(
+                                                        rootViewController: newsVC,
+                                                        tapBarName: "News",
+                                                        tapBarImage: "book.fill")
 
         let tapBarController = UITabBarController()
         tapBarController.viewControllers = [gamesListNavigationController,
@@ -63,11 +73,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return tapBarController
     }
 
-    private func createNavigationController(rootViewController: UIViewController) -> UINavigationController {
+    private func createNavigationController(rootViewController: UIViewController,
+                                            tapBarName: String,
+                                            tapBarImage: String) -> UINavigationController {
 
         let navigationController = UINavigationController(rootViewController: rootViewController)
         navigationController.navigationBar.barTintColor = Colors.navBarColor.getUIColor()
         navigationController.navigationBar.titleTextAttributes = [.foregroundColor: Colors.textColor.getUIColor()]
+        navigationController.tabBarItem = UITabBarItem(title: tapBarName,
+                                                       image: UIImage(systemName: tapBarImage), tag: 0)
         return navigationController
 
     }

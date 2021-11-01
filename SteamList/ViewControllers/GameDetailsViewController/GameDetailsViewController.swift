@@ -9,48 +9,45 @@ import UIKit
 
 class GameDetailsViewController: UIViewController {
 
-    var customView: GameDetailsView!
-    var gameModel: Game? {
-        didSet {
-            if let url = URL(string: gameModel?.gameID?.data.headerImageURLString ?? "") {
+    var gameID: Int?
+    private let customView = GameDetailsView()
+    private var networkManager: NetworkManager!
+
+    private var dataUpdateCompletion: ((Game) -> Void)?
+
+    // private var gameModel: Game?
+
+    override func loadView() {
+        view = customView
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupSettings()
+        fetchData()
+    }
+
+    private func setupSettings() {
+        networkManager = NetworkManagerImplementation()
+        dataUpdateCompletion = { game in
+            if let url = URL(string: game.gameID?.data.headerImageURLString ?? "") {
                 let data = try? Data(contentsOf: url)
                 DispatchQueue.main.async {
                     self.customView.headerImage.image = UIImage(data: data!)
                 }
             }
             DispatchQueue.main.async {
-                self.customView.nameLabel.text = self.gameModel?.gameID?.data.name
+                self.customView.nameLabel.text = game.gameID?.data.name
             }
         }
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupCustomView()
-        setGradientBackground()
-    }
-
-    private func setupCustomView() {
-        let customView = GameDetailsView(frame: view.bounds)
-        view.addSubview(customView)
-        customView.snp.makeConstraints { (constarints) in
-            constarints.top.equalTo(view.safeAreaLayoutGuide.snp.topMargin)
-            constarints.leading.equalToSuperview()
-            constarints.trailing.equalToSuperview()
-            constarints.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottomMargin)
+    private func fetchData() {
+        guard let gameID = gameID,
+              let completion = dataUpdateCompletion else {
+            return
         }
-        self.customView = customView
-    }
-    
-    private func setGradientBackground() {
-        let colorTop =  Colors.firstBackgroundColor.getUIColor().cgColor
-        let colorBottom = Colors.secondBackgroundColor.getUIColor().cgColor
-
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [colorTop, colorBottom]
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.frame = self.view.bounds
-
-        self.view.layer.insertSublayer(gradientLayer, at: 0)
+        networkManager.getDetailedGameInfo(gameID: String(gameID)) { game in
+            completion(game)
+        }
     }
 }

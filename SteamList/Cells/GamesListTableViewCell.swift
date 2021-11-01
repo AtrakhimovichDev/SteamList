@@ -19,7 +19,6 @@ class GamesListTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         backgroundColor = .clear
-        contentView.backgroundColor = .clear
         titleLabel = UILabel()
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0

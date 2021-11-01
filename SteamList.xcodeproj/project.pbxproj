@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		119F25CB9A6188CE3E56DDF2 /* Pods_SteamList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 447CF8B4656A34A4FB6FE2A3 /* Pods_SteamList.framework */; };
+		B028E55A272AEAF5003BFF68 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B028E559272AEAF5003BFF68 /* FavoritesView.swift */; };
+		B028E55C272AEB71003BFF68 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B028E55B272AEB71003BFF68 /* NewsView.swift */; };
+		B028E56127304580003BFF68 /* GameItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B028E55F27304580003BFF68 /* GameItem+CoreDataClass.swift */; };
+		B028E56227304580003BFF68 /* GameItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B028E56027304580003BFF68 /* GameItem+CoreDataProperties.swift */; };
+		B028E56527304619003BFF68 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B028E56427304619003BFF68 /* DataManager.swift */; };
+		B028E56727304650003BFF68 /* GamesListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B028E56627304650003BFF68 /* GamesListItem.swift */; };
+		B028E5692730468C003BFF68 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B028E5682730468C003BFF68 /* CoreDataManager.swift */; };
+		B028E56B27305084003BFF68 /* GamesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B028E56A27305084003BFF68 /* GamesListModel.swift */; };
+		B028E56D27308B30003BFF68 /* DataStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B028E56C27308B30003BFF68 /* DataStatus.swift */; };
 		B02EB8A42726B05B00F5DE4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8A32726B05B00F5DE4B /* AppDelegate.swift */; };
 		B02EB8A62726B05B00F5DE4B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8A52726B05B00F5DE4B /* SceneDelegate.swift */; };
 		B02EB8AD2726B05C00F5DE4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B02EB8AC2726B05C00F5DE4B /* Assets.xcassets */; };
@@ -33,6 +42,15 @@
 		15A788FBC90A0607C5F19007 /* Pods-SteamList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteamList.debug.xcconfig"; path = "Target Support Files/Pods-SteamList/Pods-SteamList.debug.xcconfig"; sourceTree = "<group>"; };
 		447CF8B4656A34A4FB6FE2A3 /* Pods_SteamList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SteamList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		491ED9F30B58DBBAB5FBD618 /* Pods-SteamList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteamList.release.xcconfig"; path = "Target Support Files/Pods-SteamList/Pods-SteamList.release.xcconfig"; sourceTree = "<group>"; };
+		B028E559272AEAF5003BFF68 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		B028E55B272AEB71003BFF68 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		B028E55F27304580003BFF68 /* GameItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B028E56027304580003BFF68 /* GameItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B028E56427304619003BFF68 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		B028E56627304650003BFF68 /* GamesListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListItem.swift; sourceTree = "<group>"; };
+		B028E5682730468C003BFF68 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		B028E56A27305084003BFF68 /* GamesListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListModel.swift; sourceTree = "<group>"; };
+		B028E56C27308B30003BFF68 /* DataStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStatus.swift; sourceTree = "<group>"; };
 		B02EB8A02726B05B00F5DE4B /* SteamList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SteamList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B02EB8A32726B05B00F5DE4B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B02EB8A52726B05B00F5DE4B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +112,15 @@
 			path = GameDetailsViewController;
 			sourceTree = "<group>";
 		};
+		B028E563273045F4003BFF68 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				B028E56427304619003BFF68 /* DataManager.swift */,
+				B028E5682730468C003BFF68 /* CoreDataManager.swift */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
 		B02EB8972726B05A00F5DE4B = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				B02EB8BF2726C14D00F5DE4B /* Colors.swift */,
+				B028E56C27308B30003BFF68 /* DataStatus.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -168,8 +196,11 @@
 		B02EB8CB2726EB5000F5DE4B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B028E55F27304580003BFF68 /* GameItem+CoreDataClass.swift */,
+				B028E56027304580003BFF68 /* GameItem+CoreDataProperties.swift */,
 				B02EB8CC2726EB6000F5DE4B /* GamesList.swift */,
 				B02EB8DF27274E1E00F5DE4B /* Game.swift */,
+				B028E56627304650003BFF68 /* GamesListItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -177,8 +208,9 @@
 		B02EB8D927274A1900F5DE4B /* GamesListViewController */ = {
 			isa = PBXGroup;
 			children = (
-				B02EB8CF2726ECF100F5DE4B /* GamesListView.swift */,
 				B02EB8B82726B2B800F5DE4B /* GamesListViewController.swift */,
+				B02EB8CF2726ECF100F5DE4B /* GamesListView.swift */,
+				B028E56A27305084003BFF68 /* GamesListModel.swift */,
 			);
 			path = GamesListViewController;
 			sourceTree = "<group>";
@@ -187,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				B02EB8BA2726BADF00F5DE4B /* FavoritesViewController.swift */,
+				B028E559272AEAF5003BFF68 /* FavoritesView.swift */,
 			);
 			path = FavoritesViewControllers;
 			sourceTree = "<group>";
@@ -195,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				B02EB8BC2726BB1400F5DE4B /* NewsViewController.swift */,
+				B028E55B272AEB71003BFF68 /* NewsView.swift */,
 			);
 			path = NewsViewControllers;
 			sourceTree = "<group>";
@@ -212,6 +246,7 @@
 		B02EB8DD27274A6B00F5DE4B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B028E563273045F4003BFF68 /* DataManager */,
 				B02EB8E327281BEC00F5DE4B /* Network */,
 			);
 			path = Helpers;
@@ -367,21 +402,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				B02EB8E22727553F00F5DE4B /* GameDetailsView.swift in Sources */,
+				B028E56227304580003BFF68 /* GameItem+CoreDataProperties.swift in Sources */,
 				B02EB8E827294EA400F5DE4B /* Games.xcdatamodeld in Sources */,
 				B02EB8D42727062F00F5DE4B /* NetworkManagerImplementation.swift in Sources */,
 				B02EB8C32726C3D600F5DE4B /* UIColor+hex.swift in Sources */,
 				B02EB8BB2726BADF00F5DE4B /* FavoritesViewController.swift in Sources */,
+				B028E5692730468C003BFF68 /* CoreDataManager.swift in Sources */,
 				B02EB8E527281C3100F5DE4B /* NetworkManager.swift in Sources */,
+				B028E56B27305084003BFF68 /* GamesListModel.swift in Sources */,
 				B02EB8D02726ECF100F5DE4B /* GamesListView.swift in Sources */,
 				B02EB8C02726C14D00F5DE4B /* Colors.swift in Sources */,
+				B028E55C272AEB71003BFF68 /* NewsView.swift in Sources */,
+				B028E55A272AEAF5003BFF68 /* FavoritesView.swift in Sources */,
 				B02EB8CD2726EB6000F5DE4B /* GamesList.swift in Sources */,
 				B02EB8C82726DF0400F5DE4B /* GamesListTableViewCell.swift in Sources */,
+				B028E56127304580003BFF68 /* GameItem+CoreDataClass.swift in Sources */,
 				B02EB8B92726B2B800F5DE4B /* GamesListViewController.swift in Sources */,
 				B02EB8A42726B05B00F5DE4B /* AppDelegate.swift in Sources */,
 				B02EB8E027274E1E00F5DE4B /* Game.swift in Sources */,
+				B028E56D27308B30003BFF68 /* DataStatus.swift in Sources */,
 				B02EB8BD2726BB1500F5DE4B /* NewsViewController.swift in Sources */,
 				B02EB8D22726F2DD00F5DE4B /* UIView+gradient.swift in Sources */,
+				B028E56527304619003BFF68 /* DataManager.swift in Sources */,
 				B02EB8A62726B05B00F5DE4B /* SceneDelegate.swift in Sources */,
+				B028E56727304650003BFF68 /* GamesListItem.swift in Sources */,
 				B02EB8D827274A1000F5DE4B /* GameDetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
