@@ -8,7 +8,9 @@
 import Foundation
 import CoreData
 
-class CoreDataManager: DataManager {
+class DataManagerImplementation: DataManager {
+
+    static var shared = DataManagerImplementation()
 
     private var context: NSManagedObjectContext
 
@@ -25,19 +27,21 @@ class CoreDataManager: DataManager {
         context = persistentContainer.newBackgroundContext()
     }
 
-    func getGamesList() -> [GamesListItem] {
+    func getGamesList() -> ([GamesListItem], DataStatus) {
         let fetchRequest: NSFetchRequest<GameItem> = GameItem.fetchRequest()
         do {
             let objects = try context.fetch(fetchRequest)
+            if objects.count == 0 {
+                return ([GamesListItem](), .empty)
+            }
             var list = [GamesListItem]()
             for item in objects {
                 let newItem = GamesListItem(gameID: Int(item.gameID), name: item.name)
                 list.append(newItem)
             }
-            return list
+            return (list, .success)
         } catch {
-            let nserror = error as NSError
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            return ([GamesListItem](), .error)
         }
     }
 

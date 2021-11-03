@@ -9,5 +9,5 @@ import Foundation
 
 protocol DataManager {
     func saveGamesList(gamesList: [GamesListItem])
-    func getGamesList() -> [GamesListItem]
+    func getGamesList() -> ([GamesListItem], DataStatus)
 }

@@ -33,7 +33,7 @@ class GameDetailsViewController: UIViewController {
             if let url = URL(string: game.gameID?.data.headerImageURLString ?? "") {
                 let data = try? Data(contentsOf: url)
                 DispatchQueue.main.async {
-                    self.customView.headerImage.image = UIImage(data: data!)
+                    self.customView.headerImageView.image = UIImage(data: data!)
                 }
             }
             DispatchQueue.main.async {
@@ -41,6 +41,7 @@ class GameDetailsViewController: UIViewController {
             }
         }
     }
+
     private func fetchData() {
         guard let gameID = gameID,
               let completion = dataUpdateCompletion else {

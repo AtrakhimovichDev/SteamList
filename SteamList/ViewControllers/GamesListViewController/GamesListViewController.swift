@@ -10,13 +10,15 @@ import SnapKit
 
 class GamesListViewController: UIViewController {
 
-    private let customView = GamesListView()
+    private let customView: GamesListView = {
+        return GamesListView()
+    }()
 
-    private var dataManager: DataManager?
-    private var networkManager: NetworkManager?
+    private var networkManager: NetworkManager = {
+        return NetworkManagerImplementation()
+    }()
 
     private var gamesListModel: GamesListModel?
-
     private var networkCompletion: (([GameShortInfo]) -> Void)?
 
     override func loadView() {
@@ -27,62 +29,27 @@ class GamesListViewController: UIViewController {
         super.viewDidLoad()
         startIndicator()
         setupCustomView()
-        setupNetworkSettings()
-        setupDataManager()
         loadData()
-        view.addGestureRecognizer(createOutOfSerchTap())
     }
 
     private func loadData() {
-        let needUpdate = true
-        if needUpdate {
-            if let networkManager = networkManager,
-               let networkCompletion = networkCompletion {
-                networkManager.getAllGames { games in
-                    networkCompletion(games)
-                }
-            }
-        } else {
-            guard let dataManager = dataManager else { return }
-            gamesListModel = GamesListModel(gamesList: dataManager.getGamesList())
-            self.stopIndicator()
-        }
-    }
-
-    private func setupNetworkSettings() {
-        networkManager = NetworkManagerImplementation()
-        networkCompletion = { [weak self] games in
-            self?.gamesListModel = GamesListModel(gamesList: games)
+        ModelsFactory.shared.createGamesListModel { [weak self] gamesListModel in
+            self?.gamesListModel = gamesListModel
+            // self?.gamesListModel?.dataStatus = .error
             DispatchQueue.main.async {
+                self?.customView.setupView(with: (self?.gamesListModel?.dataStatus)!)
                 self?.customView.gamesTableView.reloadData()
                 self?.stopIndicator()
-            }
-            if let gamesListModel = self?.gamesListModel {
-                self?.dataManager?.saveGamesList(gamesList: gamesListModel.gamesList)
+                self?.customView.scrollView.refreshControl?.endRefreshing()
             }
         }
-    }
-
-    private func setupDataManager() {
-        dataManager = CoreDataManager()
     }
 
     private func setupCustomView() {
         customView.gamesTableView.delegate = self
         customView.gamesTableView.dataSource = self
         customView.searchBar.delegate = self
-    }
-
-    private func createOutOfSerchTap() -> UITapGestureRecognizer {
-        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(singleTap))
-        singleTapGestureRecognizer.numberOfTapsRequired = 1
-        singleTapGestureRecognizer.isEnabled = true
-        singleTapGestureRecognizer.cancelsTouchesInView = false
-        return singleTapGestureRecognizer
-    }
-
-    @objc private func singleTap() {
-        self.customView.searchBar.endEditing(true)
+        customView.scrollView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
 
     private func startIndicator() {
@@ -93,6 +60,10 @@ class GamesListViewController: UIViewController {
     private func stopIndicator() {
         customView.indicatorView.stopAnimating()
         customView.indicatorView.isHidden = true
+    }
+
+    @objc private func refresh() {
+        self.loadData()
     }
 }
 
@@ -120,9 +91,10 @@ extension GamesListViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // print(filteredGames[indexPath.row].appid)
+        guard let gamesListModel = gamesListModel else { return }
         let gameDetailsViewController = GameDetailsViewController()
-        gameDetailsViewController.title = gamesListModel?.filteredGamesList[indexPath.row].name
-        gameDetailsViewController.gameID = gamesListModel?.filteredGamesList[indexPath.row].gameID
+        gameDetailsViewController.title = gamesListModel.filteredGamesList[indexPath.row].name
+        gameDetailsViewController.gameID = gamesListModel.filteredGamesList[indexPath.row].gameID
         navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.tintColor = .white
         navigationController?.pushViewController(gameDetailsViewController, animated: true)
@@ -140,16 +112,7 @@ extension GamesListViewController: UISearchBarDelegate {
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard var gamesListModel = gamesListModel else {
-            return
-        }
-        if searchText.isEmpty {
-            gamesListModel.filteredGamesList = gamesListModel.gamesList
-        } else {
-            gamesListModel.filteredGamesList = gamesListModel.gamesList.filter {
-                $0.name.lowercased().contains(searchText.lowercased()) }
-        }
-        self.gamesListModel = gamesListModel
+        gamesListModel?.filterGamesList(searchText: searchText)
         self.customView.gamesTableView.reloadData()
     }
 }

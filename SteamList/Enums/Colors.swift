@@ -12,6 +12,8 @@ enum Colors: String {
     case firstBackgroundColor = "#223C53"
     case secondBackgroundColor = "#1E293A"
     case textColor = "#ffffff"
+    case additionalTextColor = "#D2D6D9"
+    case discountPricaeColor = "#7DA934"
 
     func getUIColor() -> UIColor {
         return UIColor(hex: self.rawValue)

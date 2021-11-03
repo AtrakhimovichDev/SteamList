@@ -12,21 +12,22 @@ struct GamesListModel {
     var filteredGamesList: [GamesListItem]
     var dataStatus: DataStatus?
 
-    init(gamesList: [GameShortInfo]) {
-        var newGameList = [GamesListItem]()
-        for item in gamesList {
-            newGameList.append(GamesListItem(gameID: item.appid, name: item.name))
-        }
-        self.gamesList = newGameList
-        self.filteredGamesList = newGameList
-    }
-
-    init(gamesList: [GamesListItem]) {
+    init(gamesList: [GamesListItem], dataStatus: DataStatus) {
         var newGameList = [GamesListItem]()
         for item in gamesList {
             newGameList.append(GamesListItem(gameID: item.gameID, name: item.name))
         }
         self.gamesList = newGameList
         self.filteredGamesList = newGameList
+        self.dataStatus = dataStatus
+    }
+
+    mutating func filterGamesList(searchText: String) {
+        if searchText.isEmpty {
+            filteredGamesList = gamesList
+        } else {
+            filteredGamesList = gamesList.filter {
+                $0.name.lowercased().contains(searchText.lowercased()) }
+        }
     }
 }

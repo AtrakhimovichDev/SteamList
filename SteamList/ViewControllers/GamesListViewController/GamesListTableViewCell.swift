@@ -23,6 +23,7 @@ class GamesListTableViewCell: UITableViewCell {
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 0
         titleLabel.setContentHuggingPriority(UILayoutPriority.defaultLow, for: .horizontal)
+
         favButton = UIButton()
         favButton.setImage(UIImage(systemName: "star"), for: .normal)
         favButton.tintColor = .orange
@@ -31,11 +32,13 @@ class GamesListTableViewCell: UITableViewCell {
         contentView.addSubview(favButton)
 
         titleLabel.snp.makeConstraints { (constraints) in
-            constraints.centerY.equalTo(contentView)
-            constraints.leading.equalTo(contentView).offset(15)
+            constraints.top.equalToSuperview().offset(10)
+            constraints.centerY.equalToSuperview()
+            constraints.leading.equalToSuperview().offset(15)
         }
 
         favButton.snp.makeConstraints { (constraints) in
+            constraints.top.equalToSuperview().offset(10)
             constraints.centerY.equalTo(contentView)
             constraints.trailing.equalTo(contentView).offset(-15)
             constraints.leading.greaterThanOrEqualTo(titleLabel.snp.trailing).offset(10)

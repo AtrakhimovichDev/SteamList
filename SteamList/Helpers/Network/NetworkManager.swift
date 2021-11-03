@@ -8,6 +8,6 @@
 import Foundation
 
 protocol NetworkManager {
-    func getAllGames(completion: @escaping (([GameShortInfo]) -> Void))
+    func getAllGames(completion: @escaping (([GamesListItem], DataStatus) -> Void))
     func getDetailedGameInfo(gameID: String, completion: @escaping ((Game) -> Void))
 }

@@ -9,13 +9,14 @@ import Foundation
 
 class NetworkManagerImplementation: NetworkManager {
 
-    func getAllGames(completion: @escaping (([GameShortInfo]) -> Void)) {
+    func getAllGames(completion: @escaping (([GamesListItem], DataStatus) -> Void)) {
         guard let url = URL(string: "https://api.steampowered.com/ISteamApps/GetAppList/v2/") else { return }
 
         URLSession.shared.dataTask(with: url) { data, response, error in
 
             if let error = error {
                 print(error)
+                completion([GamesListItem](), .error)
                 return
             }
 
@@ -27,7 +28,16 @@ class NetworkManagerImplementation: NetworkManager {
             if let data = data {
                  do {
                     let res = try JSONDecoder().decode(GamesList.self, from: data)
-                    completion(res.applist.apps.filter { $0.name != "" })
+                    if res.applist.apps.count == 0 {
+                        completion([GamesListItem](), .empty)
+                        return
+                    }
+                    var listResult = [GamesListItem]()
+                    for item in res.applist.apps {
+                        let gameItem = GamesListItem(gameID: item.appid, name: item.name)
+                        listResult.append(gameItem)
+                    }
+                    completion(listResult.filter { $0.name != "" }, .success)
                  } catch let error {
                     print(error)
                  }

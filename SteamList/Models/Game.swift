@@ -49,10 +49,10 @@ struct GameData: Decodable {
     let name: String
     let shortDescription: String
     let headerImageURLString: String
-    let genres: [GenreItem]
+    let genres: [GenreItem]?
     let platforms: Platforms
     let releaseDate: ReleaseDate
-    let screenshots: [Screenshot]
+    let screenshots: [Screenshot]?
     let priceItem: PriceItem?
 
     enum CodingKeys: String, CodingKey {
