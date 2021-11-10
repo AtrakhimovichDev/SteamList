@@ -16,17 +16,28 @@ class ModelsFactory {
     }()
 
     func createGamesListModel(completion: @escaping ((GamesListModel) -> Void)) {
-        let needUpdate = false
+        let needUpdate = true
         if needUpdate {
-            getFromNetwork(completion: completion)
+            getListFromNetwork(completion: completion)
         } else {
-            let result = getFromDatabase()
+            let result = getListFromDatabase()
             let gamesListModel = GamesListModel(gamesList: result.0, dataStatus: result.1)
             completion(gamesListModel)
         }
     }
 
-    private func getFromNetwork(completion: @escaping ((GamesListModel) -> Void)) {
+    func createGameDetailsModel(gameID: String, completion: @escaping ((GameDetailsModel) -> Void)) {
+        let needUpdate = true
+        if needUpdate {
+            getDetailsFromNetwork(gameID: gameID, completion: completion)
+        } else {
+//            let result = getDetailsFromDatabase()
+//            let gamesListModel = GamesListModel(gamesList: result.0, dataStatus: result.1)
+//            completion(gamesListModel)
+        }
+    }
+
+    private func getListFromNetwork(completion: @escaping ((GamesListModel) -> Void)) {
         networkManager.getAllGames { (gamesList, dataStatus) in
             let gamesListModel = GamesListModel(gamesList: gamesList, dataStatus: dataStatus)
             completion(gamesListModel)
@@ -36,8 +47,18 @@ class ModelsFactory {
         }
     }
 
-    private func getFromDatabase() -> ([GamesListItem], DataStatus) {
+    private func getListFromDatabase() -> ([GamesListItem], DataStatus) {
         let result = DataManagerImplementation.shared.getGamesList()
         return result
+    }
+
+    private func getDetailsFromNetwork(gameID: String, completion: @escaping ((GameDetailsModel) -> Void)) {
+        networkManager.getDetailedGameInfo(gameID: gameID, completion: { (game, dataStatus) in
+            let gameDetailsModel = GameDetailsModel(gameID: gameID, game: game, dataStatus: dataStatus)
+            completion(gameDetailsModel)
+            if dataStatus == .success {
+                // write in database
+            }
+        })
     }
 }

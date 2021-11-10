@@ -15,7 +15,7 @@ extension GameItem {
         return NSFetchRequest<GameItem>(entityName: "GameItem")
     }
 
-    @NSManaged public var gameID: Int64
+    @NSManaged public var gameID: String
     @NSManaged public var name: String
 
 }

@@ -8,6 +8,6 @@
 import Foundation
 
 struct GamesListItem {
-    var gameID: Int
+    var gameID: String
     var name: String
 }

@@ -36,7 +36,7 @@ class DataManagerImplementation: DataManager {
             }
             var list = [GamesListItem]()
             for item in objects {
-                let newItem = GamesListItem(gameID: Int(item.gameID), name: item.name)
+                let newItem = GamesListItem(gameID: String(item.gameID), name: item.name)
                 list.append(newItem)
             }
             return (list, .success)
@@ -49,11 +49,29 @@ class DataManagerImplementation: DataManager {
         clearGamesList()
         for item in gamesList {
             let gameItem = GameItem(context: context)
-            gameItem.gameID = Int64(item.gameID)
+            gameItem.gameID = item.gameID
             gameItem.name = item.name
         }
         saveContext()
     }
+
+//    func getDetailedInfo(gameID: String) -> (GameDetailedInfo, DataStatus) {
+//        let fetchRequest: NSFetchRequest<GameItem> = GameItem.fetchRequest()
+//        do {
+//            let objects = try context.fetch(fetchRequest)
+//            if objects.count == 0 {
+//                return ([GamesListItem](), .empty)
+//            }
+//            var list = [GamesListItem]()
+//            for item in objects {
+//                let newItem = GamesListItem(gameID: Int(item.gameID), name: item.name)
+//                list.append(newItem)
+//            }
+//            return (list, .success)
+//        } catch {
+//            return ([GamesListItem](), .error)
+//        }
+//    }
 
     private func saveContext() {
         if context.hasChanges {

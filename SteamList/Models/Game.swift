@@ -48,7 +48,7 @@ struct GameInfo: Decodable {
 struct GameData: Decodable {
     let name: String
     let shortDescription: String
-    let headerImageURLString: String
+    let headerImageURLString: String?
     let genres: [GenreItem]?
     let platforms: Platforms
     let releaseDate: ReleaseDate
