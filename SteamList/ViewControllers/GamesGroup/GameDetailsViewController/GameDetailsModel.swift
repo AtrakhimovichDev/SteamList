@@ -9,42 +9,45 @@ import Foundation
 
 struct GameDetailsModel {
     var dataStatus: DataStatus
-    var game: GameDetailes?
+    var game: GameDetails?
 
     init(gameID: String, game: Game?, dataStatus: DataStatus) {
-        self.dataStatus = dataStatus
         if let game = game {
-            self.game = GameDetailes(gameID: gameID, game: game)
+            self.dataStatus = dataStatus
+            self.game = GameDetails(gameID: gameID, game: game)
+        } else {
+            self.dataStatus = .empty
         }
     }
 }
 
-struct GameDetailes {
-    var gameID: String
-    let name: String
-    let shortDescription: String
-    let headerImageURLString: String?
-    let isApple: Bool
-    let isWindows: Bool
-    let isLinux: Bool
-    let isComingSoon: Bool
+struct GameDetails {
+    var gameID: String = ""
+    var name: String = ""
+    var shortDescription: String = ""
+    var headerImageURLString: String?
+    var isApple: Bool = false
+    var isWindows: Bool = false
+    var isLinux: Bool = false
+    var isComingSoon: Bool = false
     var releaseDate: Date?
-    var isFree: Bool
-    let price: String?
-    let discont: Int?
+    var isFree: Bool = false
+    var price: String?
+    var discont: Int?
     var genres: [String]?
     var screenshotsURLs: [String]?
 
-    init(gameID: String, game: Game) {
+    init?(gameID: String, game: Game) {
+        guard let gameInfo = game.gameID else { return }
         self.gameID = gameID
-        self.name = game.gameID!.data.name
-        self.shortDescription = game.gameID!.data.shortDescription
-        self.headerImageURLString = game.gameID!.data.headerImageURLString
-        self.isApple = game.gameID!.data.platforms.mac
-        self.isLinux = game.gameID!.data.platforms.linux
-        self.isWindows = game.gameID!.data.platforms.windows
-        self.isComingSoon = game.gameID!.data.releaseDate.isComingSoon
-        if let priceItem = game.gameID!.data.priceItem {
+        self.name = gameInfo.data.name
+        self.shortDescription = gameInfo.data.shortDescription
+        self.headerImageURLString = gameInfo.data.headerImageURLString
+        self.isApple = gameInfo.data.platforms.mac
+        self.isLinux = gameInfo.data.platforms.linux
+        self.isWindows = gameInfo.data.platforms.windows
+        self.isComingSoon = gameInfo.data.releaseDate.isComingSoon
+        if let priceItem = gameInfo.data.priceItem {
             self.isFree = false
             self.price = priceItem.price
             self.discont = priceItem.discountPercent
@@ -54,9 +57,9 @@ struct GameDetailes {
             self.discont = nil
         }
         if !game.gameID!.data.releaseDate.isComingSoon {
-            self.releaseDate = getDateFromString(dateString: game.gameID!.data.releaseDate.date)
+            self.releaseDate = CustomDateFormater.shared.getDate(from: gameInfo.data.releaseDate.date)
         }
-        if let genres = game.gameID!.data.genres {
+        if let genres = gameInfo.data.genres {
             self.genres = [String]()
             for genre in genres {
                 self.genres?.append(genre.description)
@@ -68,14 +71,5 @@ struct GameDetailes {
                 self.screenshotsURLs?.append(screenshot.imagePath)
             }
         }
-    }
-
-    private func getDateFromString(dateString: String) -> Date {
-        let dateFormater = DateFormatter()
-        dateFormater.dateFormat = ""
-        if let date = dateFormater.date(from: dateString) {
-            return date
-        }
-        return Date()
     }
 }

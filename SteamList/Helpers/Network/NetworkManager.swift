@@ -8,6 +8,7 @@
 import Foundation
 
 protocol NetworkManager {
+    func downloadImage(url: String, completion: @escaping ((Data) -> Void))
     func getAllGames(completion: @escaping (([GamesListItem], DataStatus) -> Void))
     func getDetailedGameInfo(gameID: String, completion: @escaping ((Game?, DataStatus) -> Void))
 }

@@ -11,12 +11,21 @@ class GameDetailsView: UIView {
 
     var tappedScreenshotCompletion: ((UIImage) -> Void)!
 
+    var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.isScrollEnabled = true
+        return scrollView
+    }()
+
     var contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
         return contentView
     }()
 
+    var gameNameContainerView = UIView()
+    let additionalInfoContainer = UIView()
     var headerImageView = UIImageView()
 
     var imageViewActivityIndicator: UIActivityIndicatorView = {
@@ -92,11 +101,23 @@ class GameDetailsView: UIView {
         return imageView
     }()
 
+    var horizontalLine: UIView = {
+        let horizontalLine = UIView()
+        horizontalLine.backgroundColor = Colors.additionalTextColor.getUIColor()
+        return horizontalLine
+    }()
+
     var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textColor = Colors.additionalTextColor.getUIColor()
         return descriptionLabel
+    }()
+
+    private var errorLabel: UILabel = {
+        let errorLabel = UILabel()
+        errorLabel.textColor = .white
+        return errorLabel
     }()
 
     var screenshotsViews = [UIImageView]()
@@ -106,7 +127,7 @@ class GameDetailsView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupSubViews()
+        startSettings()
     }
 
     convenience init() {
@@ -115,29 +136,61 @@ class GameDetailsView: UIView {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupSubViews()
+        startSettings()
     }
-    // swiftlint:disable function_body_length
-    private func setupSubViews() {
+
+    func setupView(with dataStatus: DataStatus) {
+        switch dataStatus {
+        case .success:
+            setupSeccessView()
+        case .empty:
+            setupEmptyView()
+        case .error:
+            setupErrorView()
+        }
+    }
+    
+    private func setupSeccessView() {
+        setupScrollView()
+        setupContentView()
+        setupHeaderImageView()
+        setupGameNameContainer()
+        setupGenresLabel()
+        setupAdditionalInfoContainer()
+        setupHorizontalLine()
+        setupDescriptionLabel()
+    }
+
+    private func setupEmptyView() {
+        setupErrorLabel(text: "Oops... No data here")
+    }
+
+    private func setupErrorView() {
+        setupErrorLabel(text: "Oops... Something go wrong")
+    }
+
+    private func startSettings() {
         self.setGradientBackground(firstColor: Colors.firstBackgroundColor.getUIColor(),
                                    secondColor: Colors.secondBackgroundColor.getUIColor())
+    }
 
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.isScrollEnabled = true
-
+    private func setupScrollView() {
         self.addSubview(scrollView)
         scrollView.snp.makeConstraints { constraints in
             constraints.top.bottom.equalTo(safeAreaLayoutGuide)
             constraints.leading.trailing.equalToSuperview()
             constraints.width.equalToSuperview()
         }
+    }
 
+    private func setupContentView() {
         scrollView.addSubview(contentView)
         contentView.snp.makeConstraints { constraints in
             constraints.centerX.width.top.bottom.equalToSuperview()
         }
+    }
 
+    private func setupHeaderImageView() {
         contentView.addSubview(headerImageView)
         headerImageView.snp.makeConstraints { constraints in
             constraints.top.leading.trailing.equalToSuperview()
@@ -148,8 +201,9 @@ class GameDetailsView: UIView {
         imageViewActivityIndicator.snp.makeConstraints { constraints in
             constraints.center.equalToSuperview()
         }
+    }
 
-        let gameNameContainerView = UIView()
+    private func setupGameNameContainer() {
         contentView.addSubview(gameNameContainerView)
         gameNameContainerView.snp.makeConstraints { constraints in
             constraints.top.equalTo(headerImageView.snp.bottomMargin)
@@ -180,15 +234,18 @@ class GameDetailsView: UIView {
             constraints.width.greaterThanOrEqualTo(30)
             constraints.width.equalTo(emptyButton.snp.width).multipliedBy(1)
         }
+    }
 
+    private func setupGenresLabel() {
         contentView.addSubview(genresLabel)
         genresLabel.snp.makeConstraints { constraints in
             constraints.top.equalTo(gameNameContainerView.snp.bottom).offset(10)
             constraints.leading.equalToSuperview().offset(10)
             constraints.trailing.equalToSuperview().offset(-10)
         }
+    }
 
-        let additionalInfoContainer = UIView()
+    private func setupAdditionalInfoContainer() {
         contentView.addSubview(additionalInfoContainer)
         additionalInfoContainer.snp.makeConstraints { constraints in
             constraints.top.equalTo(genresLabel.snp.bottom)
@@ -260,9 +317,9 @@ class GameDetailsView: UIView {
             constraints.leading.equalToSuperview().offset(10)
             constraints.trailing.equalToSuperview().offset(-10)
         }
+    }
 
-        let horizontalLine = UIView()
-        horizontalLine.backgroundColor = Colors.additionalTextColor.getUIColor()
+    private func setupHorizontalLine() {
         contentView.addSubview(horizontalLine)
         horizontalLine.snp.makeConstraints { constraints in
             constraints.top.equalTo(discontLabel.snp.bottom).offset(30)
@@ -270,13 +327,23 @@ class GameDetailsView: UIView {
             constraints.trailing.equalToSuperview().offset(-10)
             constraints.height.equalTo(1)
         }
+    }
 
+    private func setupDescriptionLabel() {
         contentView.addSubview(descriptionLabel)
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.snp.makeConstraints { constraints in
             constraints.top.equalTo(horizontalLine.snp.bottom).offset(20)
             constraints.leading.equalToSuperview().offset(10)
             constraints.trailing.equalToSuperview().offset(-10)
+        }
+    }
+
+    private func setupErrorLabel(text: String) {
+        self.addSubview(errorLabel)
+        errorLabel.text = text
+        errorLabel.snp.makeConstraints { constraints in
+            constraints.center.equalToSuperview()
         }
     }
 

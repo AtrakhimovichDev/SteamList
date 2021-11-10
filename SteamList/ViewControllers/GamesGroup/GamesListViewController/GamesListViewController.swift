@@ -10,16 +10,10 @@ import SnapKit
 
 class GamesListViewController: UIViewController {
 
-    private let customView: GamesListView = {
-        return GamesListView()
-    }()
-
-    private var networkManager: NetworkManager = {
-        return NetworkManagerImplementation()
-    }()
-
+    private let customView = GamesListView()
     private var gamesListModel: GamesListModel!
-    private var networkCompletion: (([GameShortInfo]) -> Void)?
+
+    private var networkManager: NetworkManager = NetworkManagerImplementation()
 
     override func loadView() {
         view = customView
@@ -36,7 +30,8 @@ class GamesListViewController: UIViewController {
         ModelsFactory.shared.createGamesListModel { [weak self] gamesListModel in
             self?.gamesListModel = gamesListModel
             DispatchQueue.main.async {
-                self?.customView.setupView(with: (self?.gamesListModel?.dataStatus)!)
+                guard let status = self?.gamesListModel.dataStatus else { return }
+                self?.customView.setupView(with: status)
                 self?.customView.gamesTableView.reloadData()
                 self?.stopIndicator()
                 self?.customView.scrollView.refreshControl?.endRefreshing()
@@ -89,7 +84,7 @@ extension GamesListViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let gameDetailsViewController = ViewControllersFactory.shared.createDetailsGameViewController(
+        let gameDetailsViewController = ViewControllersFactory.shared.createDetailsGameVC(
             title: gamesListModel.filteredGamesList[indexPath.row].name,
             gameID: gamesListModel.filteredGamesList[indexPath.row].gameID)
         navigationItem.backButtonTitle = ""

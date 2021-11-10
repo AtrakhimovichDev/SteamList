@@ -9,13 +9,12 @@ import UIKit
 
 class GameDetailsViewController: UIViewController {
 
-    var gameID: String?
+    var gameID: String!
+
     private let customView = GameDetailsView()
-    private var networkManager: NetworkManager!
+    private var gameModel: GameDetailsModel!
 
-    private var dataUpdateCompletion: ((Game) -> Void)?
-
-    private var gameModel: GameDetailsModel?
+    private var networkManager: NetworkManager = NetworkManagerImplementation()
 
     override func loadView() {
         view = customView
@@ -23,55 +22,71 @@ class GameDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        customView.tappedScreenshotCompletion = { [weak self] image in
-            let screenshotController = ScreenshotViewController()
-            // screenshotController.modalPresentationStyle = .fullScreen
-            screenshotController.image = image
-            self?.navigationController?.pushViewController(screenshotController, animated: true)
-        }
         setupSettings()
-        fetchData()
+        loadData()
     }
 
     private func setupSettings() {
-        networkManager = NetworkManagerImplementation()
-        dataUpdateCompletion = { game in
-            if let url = URL(string: game.gameID?.data.headerImageURLString ?? "") {
-                let data = try? Data(contentsOf: url)
-                DispatchQueue.main.async {
-                    self.customView.headerImageView.image = UIImage(data: data!)
-                }
-            }
-            DispatchQueue.main.async {
-                self.customView.nameLabel.text = game.gameID?.data.name
-            }
+        customView.tappedScreenshotCompletion = { [weak self] image in
+            let screenshotController = ViewControllersFactory.shared.createScreenshotVC(image: image)
+            self?.navigationController?.pushViewController(screenshotController, animated: true)
         }
     }
 
-    private func fetchData() {
-        if let gameID = gameID {
-            ModelsFactory.shared.createGameDetailsModel(gameID: gameID) { [weak self] gameModel in
-                self?.gameModel = gameModel
-                // self?.gamesListModel?.dataStatus = .error
-                DispatchQueue.main.async {
-                    self?.updateView()
-                }
+    private func loadData() {
+        ModelsFactory.shared.createGameDetailsModel(gameID: gameID) { [weak self] gameModel in
+            self?.gameModel = gameModel
+            DispatchQueue.main.async {
+                guard let status = self?.gameModel.dataStatus else { return }
+                self?.customView.setupView(with: status)
+                self?.updateView()
             }
         }
     }
 
     private func updateView() {
-        guard let gameInfo = gameModel?.game else {
+        guard gameModel.dataStatus == .success,
+            let gameInfo = gameModel.game else {
             return
         }
-        downloadImage(from: gameInfo.headerImageURLString ?? "", to: customView.headerImageView)
+        fillHeaderImage(gameInfo: gameInfo)
+        fillName(gameInfo: gameInfo)
+        fillDescription(gameInfo: gameInfo)
+        fillReleaseDate(gameInfo: gameInfo)
+        fillGenres(gameInfo: gameInfo)
+        fillPrice(gameInfo: gameInfo)
+        fillPlatforms(gameInfo: gameInfo)
+        fillScreenshots(gameInfo: gameInfo)
+    }
+
+    private func fillHeaderImage(gameInfo: GameDetails) {
+        if let url = gameInfo.headerImageURLString {
+            customView.imageViewActivityIndicator.startAnimating()
+            downloadImage(from: url, to: customView.headerImageView)
+        } else {
+            setDefaultImage()
+        }
+    }
+
+    private func fillName(gameInfo: GameDetails) {
         customView.nameLabel.text = gameInfo.name
+    }
+
+    private func fillDescription(gameInfo: GameDetails) {
         customView.descriptionLabel.text = gameInfo.shortDescription
+    }
+
+    private func fillReleaseDate(gameInfo: GameDetails) {
         if gameInfo.isComingSoon {
             customView.releaseLabel.text = "Coming soon"
         } else {
-            customView.releaseLabel.text = getFormatedDate(date: gameInfo.releaseDate)
+            if let date = gameInfo.releaseDate {
+                customView.releaseLabel.text = CustomDateFormater.shared.getString(from: date)
+            }
         }
+    }
+
+    private func fillGenres(gameInfo: GameDetails) {
         if let genres = gameInfo.genres {
             var genresString = ""
             for genre in genres {
@@ -79,6 +94,9 @@ class GameDetailsViewController: UIViewController {
             }
             customView.genresLabel.text = genresString
         }
+    }
+
+    private func fillPrice(gameInfo: GameDetails) {
         if gameInfo.isFree {
             customView.priceLabel.text = "Free to play"
         } else {
@@ -88,6 +106,9 @@ class GameDetailsViewController: UIViewController {
                 customView.discontLabel.text = "-\(discont)%"
             }
         }
+    }
+
+    private func fillPlatforms(gameInfo: GameDetails) {
         if !gameInfo.isApple {
             customView.imageViewApple.isHidden = true
         }
@@ -97,6 +118,9 @@ class GameDetailsViewController: UIViewController {
         if !gameInfo.isWindows {
             customView.imageViewWindows.isHidden = true
         }
+    }
+
+    private func fillScreenshots(gameInfo: GameDetails) {
         if let screenshots = gameInfo.screenshotsURLs {
             customView.createScreenShotImageViews(numbers: screenshots.count)
             for (key, screenshot) in screenshots.enumerated() {
@@ -106,26 +130,16 @@ class GameDetailsViewController: UIViewController {
         }
     }
 
+    private func setDefaultImage() {
+        customView.headerImageView.image = UIImage(named: "default_game_image")
+    }
+
     func downloadImage(from url: String, to imageView: UIImageView) {
-        customView.imageViewActivityIndicator.startAnimating()
-        guard let url = URL(string: url) else { return }
-        getData(from: url) { data, response, error in
-            guard let data = data, error == nil else { return }
-            DispatchQueue.main.async() { [weak self] in
+        networkManager.downloadImage(url: url) { data in
+            DispatchQueue.main.async { [weak self] in
                 imageView.image = UIImage(data: data)
                 self?.customView.imageViewActivityIndicator.stopAnimating()
             }
         }
-    }
-
-    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
-    }
-
-    func getFormatedDate(date: Date?) -> String {
-        let dateFormater = DateFormatter()
-        dateFormater.dateFormat = "d MMM, yyyy"
-        let date = dateFormater.string(from: date!)
-        return date
     }
 }

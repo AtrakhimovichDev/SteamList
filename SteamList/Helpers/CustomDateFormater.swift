@@ -17,4 +17,14 @@ class CustomDateFormater {
         let date = dateFormater.string(from: date)
         return date
     }
+    
+    func getDate(from dateString: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+        dateFormatter.dateFormat = "d LLL. yyyy"
+        if let date = dateFormatter.date(from: dateString) {
+            return date
+        }
+        return Date()
+    }
 }

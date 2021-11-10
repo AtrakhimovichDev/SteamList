@@ -5,16 +5,22 @@
 //  Created by Andrei Atrakhimovich on 10.11.21.
 //
 
-import Foundation
+import UIKit
 
 class ViewControllersFactory {
     
     static var shared = ViewControllersFactory()
     
-    func createDetailsGameViewController(title: String, gameID: String) -> GameDetailsViewController {
+    func createDetailsGameVC(title: String, gameID: String) -> GameDetailsViewController {
         let gameDetailsViewController = GameDetailsViewController()
         gameDetailsViewController.title = title
         gameDetailsViewController.gameID = gameID
         return gameDetailsViewController
+    }
+
+    func createScreenshotVC(image: UIImage) -> ScreenshotViewController {
+        let screenshotController = ScreenshotViewController()
+        screenshotController.image = image
+        return screenshotController
     }
 }
