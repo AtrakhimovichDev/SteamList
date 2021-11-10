@@ -67,7 +67,21 @@ class ScreenshotView: UIScrollView, UIScrollViewDelegate {
         let minScale = min(xScale, yScale)
         // use minimum of these to allow the image to become fully visible
 
-        self.maximumZoomScale = 2
+        var maxScale: CGFloat = 1.0
+
+        if minScale < 0.1 {
+            maxScale = 0.3
+        }
+
+        if minScale >= 0.1 && minScale < 0.5 {
+            maxScale = 0.7
+        }
+
+        if minScale >= 0.5 {
+            maxScale = max(1.0, minScale)
+        }
+
+        self.maximumZoomScale = maxScale
         self.minimumZoomScale = minScale
     }
 
@@ -165,7 +179,7 @@ class ScreenshotView: UIScrollView, UIScrollViewDelegate {
         let minScale = self.minimumZoomScale
         let maxScale = self.maximumZoomScale
 
-        if (minScale == maxScale && minScale > 1) {
+        if minScale == maxScale && minScale > 1 {
             return
         }
 

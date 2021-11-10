@@ -22,13 +22,7 @@ class GamesListTableViewCell: UITableViewCell {
         return label
     }()
 
-    var favButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "star"), for: .normal)
-        button.tintColor = .orange
-        button.addTarget(self, action: #selector(favButtonTapped(handler:)), for: .touchUpInside)
-        return button
-    }()
+    var favButton: UIButton = FavoriteButton()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -58,13 +52,13 @@ class GamesListTableViewCell: UITableViewCell {
         }
     }
 
-    @objc private func favButtonTapped(handler: UIButton) {
-        isFavotite = !isFavotite
-        if isFavotite {
-            favButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-        } else {
-            favButton.setImage(UIImage(systemName: "star"), for: .normal)
+    func setup(gameItem: GamesListItem, index: Int) {
+        self.selectionStyle = .none
+        favButton.tag = index
+        if let button = favButton as? FavoriteButton {
+            button.setIcon(isFavorite: gameItem.isFavorite)
         }
+        titleLabel.text = gameItem.name
     }
 
     required init?(coder: NSCoder) {

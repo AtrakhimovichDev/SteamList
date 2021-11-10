@@ -11,7 +11,7 @@ class NetworkManagerImplementation: NetworkManager {
    
     func downloadImage(url: String, completion: @escaping ((Data) -> Void)) {
         guard let url = URL(string: url) else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
             guard let data = data,
                   error == nil else {
                 return

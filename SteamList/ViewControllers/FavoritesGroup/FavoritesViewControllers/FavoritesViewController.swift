@@ -11,7 +11,7 @@ class FavoritesViewController: UIViewController {
 
     private let customView = FavoritesView()
     private var favoritesModel: FavoritesModel?
-    
+
     override func loadView() {
         view = customView
     }
@@ -19,14 +19,14 @@ class FavoritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         var arr = [FavoritesItem]()
-        arr.append(FavoritesItem(title: "CS: GO", priceTitle: "$9.99", price: 9.99))
-        arr.append(FavoritesItem(title: "Dota 2", priceTitle: "Free to play", price: 0))
-        arr.append(FavoritesItem(title: "Civilazation VI", priceTitle: "$17.35 (-20%)", price: 17.35))
-        arr.append(FavoritesItem(title: "GTA V", priceTitle: "$33.99", price: 33.99))
-
-        favoritesModel = FavoritesModel(dataStatus: .success,
-                                        favoritesList: arr,
-                                        filteredFavoritesList: arr)
+//        arr.append(FavoritesItem(title: "CS: GO", priceTitle: "$9.99", price: 9.99))
+//        arr.append(FavoritesItem(title: "Dota 2", priceTitle: "Free to play", price: 0))
+//        arr.append(FavoritesItem(title: "Civilazation VI", priceTitle: "$17.35 (-20%)", price: 17.35))
+//        arr.append(FavoritesItem(title: "GTA V", priceTitle: "$33.99", price: 33.99))
+//
+//        favoritesModel = FavoritesModel(dataStatus: .success,
+//                                        favoritesList: arr,
+//                                        filteredFavoritesList: arr)
         customView.searchBar.delegate = self
         customView.favsTableView.delegate = self
         customView.favsTableView.dataSource = self
@@ -102,7 +102,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
     }
-    
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             favoritesModel?.filteredFavoritesList.remove(at: indexPath.row)

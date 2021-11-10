@@ -149,7 +149,7 @@ class GameDetailsView: UIView {
             setupErrorView()
         }
     }
-    
+
     private func setupSeccessView() {
         setupScrollView()
         setupContentView()

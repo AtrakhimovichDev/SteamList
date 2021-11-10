@@ -23,7 +23,9 @@ struct FavoritesModel {
 }
 
 struct FavoritesItem {
+    var gameID: String
     var title: String
     var priceTitle: String
     var price: Double
+    var discont: Int
 }

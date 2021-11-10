@@ -48,6 +48,9 @@
 		B0AC3508273C13620017FC18 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC3507273C13620017FC18 /* NewsTableViewCell.swift */; };
 		B0AC350A273C1A670017FC18 /* CustomDateFormater.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC3509273C1A670017FC18 /* CustomDateFormater.swift */; };
 		B0AC3510273C1CBC0017FC18 /* ViewControllersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC350F273C1CBC0017FC18 /* ViewControllersFactory.swift */; };
+		B0AC3513273C77180017FC18 /* FavoriteGame+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC3511273C77170017FC18 /* FavoriteGame+CoreDataClass.swift */; };
+		B0AC3514273C77180017FC18 /* FavoriteGame+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC3512273C77180017FC18 /* FavoriteGame+CoreDataProperties.swift */; };
+		B0AC3516273C877A0017FC18 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC3515273C877A0017FC18 /* FavoriteButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +100,9 @@
 		B0AC3507273C13620017FC18 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		B0AC3509273C1A670017FC18 /* CustomDateFormater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateFormater.swift; sourceTree = "<group>"; };
 		B0AC350F273C1CBC0017FC18 /* ViewControllersFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllersFactory.swift; sourceTree = "<group>"; };
+		B0AC3511273C77170017FC18 /* FavoriteGame+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteGame+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B0AC3512273C77180017FC18 /* FavoriteGame+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteGame+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B0AC3515273C877A0017FC18 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +218,8 @@
 		B02EB8CB2726EB5000F5DE4B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B0AC3511273C77170017FC18 /* FavoriteGame+CoreDataClass.swift */,
+				B0AC3512273C77180017FC18 /* FavoriteGame+CoreDataProperties.swift */,
 				B0AC34F527382FF00017FC18 /* GameDetailedInfo+CoreDataClass.swift */,
 				B0AC34F627382FF00017FC18 /* GameDetailedInfo+CoreDataProperties.swift */,
 				B028E55F27304580003BFF68 /* GameItem+CoreDataClass.swift */,
@@ -274,6 +282,7 @@
 				B028E56E27316042003BFF68 /* ModelsFactory.swift */,
 				B0AC3509273C1A670017FC18 /* CustomDateFormater.swift */,
 				B0AC350F273C1CBC0017FC18 /* ViewControllersFactory.swift */,
+				B0AC3515273C877A0017FC18 /* FavoriteButton.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -475,6 +484,7 @@
 				B02EB8E827294EA400F5DE4B /* Games.xcdatamodeld in Sources */,
 				B0AC3510273C1CBC0017FC18 /* ViewControllersFactory.swift in Sources */,
 				B02EB8D42727062F00F5DE4B /* NetworkManagerImplementation.swift in Sources */,
+				B0AC3514273C77180017FC18 /* FavoriteGame+CoreDataProperties.swift in Sources */,
 				B02EB8C32726C3D600F5DE4B /* UIColor+hex.swift in Sources */,
 				B02EB8BB2726BADF00F5DE4B /* FavoritesViewController.swift in Sources */,
 				B0AC34F727382FF00017FC18 /* GameDetailedInfo+CoreDataClass.swift in Sources */,
@@ -487,6 +497,7 @@
 				B028E55C272AEB71003BFF68 /* NewsView.swift in Sources */,
 				B0AC3506273C123D0017FC18 /* NewsModel.swift in Sources */,
 				B028E55A272AEAF5003BFF68 /* FavoritesView.swift in Sources */,
+				B0AC3516273C877A0017FC18 /* FavoriteButton.swift in Sources */,
 				B02EB8CD2726EB6000F5DE4B /* GamesList.swift in Sources */,
 				B02EB8C82726DF0400F5DE4B /* GamesListTableViewCell.swift in Sources */,
 				B0AC3504273ABE720017FC18 /* FavoritesModel.swift in Sources */,
@@ -505,6 +516,7 @@
 				B0AC34FE273AA0730017FC18 /* ScreenshotViewController.swift in Sources */,
 				B02EB8A62726B05B00F5DE4B /* SceneDelegate.swift in Sources */,
 				B028E56727304650003BFF68 /* GamesListItem.swift in Sources */,
+				B0AC3513273C77180017FC18 /* FavoriteGame+CoreDataClass.swift in Sources */,
 				B028E5712731A74F003BFF68 /* GameDetailsModel.swift in Sources */,
 				B0AC350A273C1A670017FC18 /* CustomDateFormater.swift in Sources */,
 				B02EB8D827274A1000F5DE4B /* GameDetailsViewController.swift in Sources */,

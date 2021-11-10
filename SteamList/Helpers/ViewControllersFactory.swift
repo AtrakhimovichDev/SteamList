@@ -8,9 +8,9 @@
 import UIKit
 
 class ViewControllersFactory {
-    
+
     static var shared = ViewControllersFactory()
-    
+
     func createDetailsGameVC(title: String, gameID: String) -> GameDetailsViewController {
         let gameDetailsViewController = GameDetailsViewController()
         gameDetailsViewController.title = title

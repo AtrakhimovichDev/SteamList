@@ -13,7 +13,7 @@ class GamesListViewController: UIViewController {
     private let customView = GamesListView()
     private var gamesListModel: GamesListModel!
 
-    private var networkManager: NetworkManager = NetworkManagerImplementation()
+    private let networkManager: NetworkManager = NetworkManagerImplementation()
 
     override func loadView() {
         view = customView
@@ -72,9 +72,30 @@ extension GamesListViewController: UITableViewDataSource {
                 for: indexPath) as? GamesListTableViewCell else {
             return UITableViewCell()
         }
-        cell.selectionStyle = .none
-        cell.titleLabel.text = gamesListModel?.filteredGamesList[indexPath.row].name ?? ""
+        guard let gameItem = gamesListModel?.filteredGamesList[indexPath.row] else {
+            return UITableViewCell()
+        }
+        cell.setup(gameItem: gameItem, index: indexPath.row)
+        cell.favButton.addTarget(self, action: #selector(favButtonTapped(handler:)), for: .touchUpInside)
         return cell
+    }
+
+    @objc private func favButtonTapped(handler: UIButton) {
+        let selectedGame = gamesListModel.filteredGamesList[handler.tag]
+        selectedGame.isFavorite.toggle()
+        if let button = handler as? FavoriteButton {
+            button.setIcon(isFavorite: selectedGame.isFavorite)
+        }
+        let favoritesItem = FavoritesItem(gameID: selectedGame.gameID,
+                                          title: selectedGame.name,
+                                          priceTitle: "",
+                                          price: 0,
+                                          discont: 0)
+        if selectedGame.isFavorite {
+            DataManagerImplementation.shared.saveFavoriteGame(game: favoritesItem)
+        } else {
+            DataManagerImplementation.shared.deleteFavoriteGame(game: favoritesItem)
+        }
     }
 }
 

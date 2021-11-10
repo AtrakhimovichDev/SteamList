@@ -7,7 +7,15 @@
 
 import Foundation
 
-struct GamesListItem {
+class GamesListItem {
+
     var gameID: String
     var name: String
+    var isFavorite: Bool
+
+    init(gameID: String, name: String, isFavorite: Bool = false) {
+        self.gameID = gameID
+        self.name = name
+        self.isFavorite = isFavorite
+    }
 }

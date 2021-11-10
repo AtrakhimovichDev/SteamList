@@ -14,7 +14,7 @@ class DataManagerImplementation: DataManager {
 
     private var context: NSManagedObjectContext
 
-    init() {
+    private init() {
         let persistentContainer: NSPersistentContainer = {
             let container = NSPersistentContainer(name: "Games")
             container.loadPersistentStores(completionHandler: { (_, error) in
@@ -72,6 +72,50 @@ class DataManagerImplementation: DataManager {
 //            return ([GamesListItem](), .error)
 //        }
 //    }
+
+    // MARK: - Favorites functions -
+    func saveFavoriteGame(game: FavoritesItem) {
+        let coreDataObject = findFavoriteGame(game: game)
+        if let coreDataObject = coreDataObject {
+            coreDataObject.name = game.title
+            coreDataObject.price = game.price
+            coreDataObject.priceTitle = game.priceTitle
+            coreDataObject.discont = Int16(game.discont)
+        } else {
+            let favoriteGame = FavoriteGame(context: context)
+            favoriteGame.gameID = game.gameID
+            favoriteGame.name = game.title
+            favoriteGame.price = game.price
+            favoriteGame.priceTitle = game.priceTitle
+            favoriteGame.discont = Int16(game.discont)
+        }
+        saveContext()
+    }
+
+    func deleteFavoriteGame(game: FavoritesItem) {
+        let coreDataObject = findFavoriteGame(game: game)
+        if let coreDataObject = coreDataObject {
+            context.delete(coreDataObject)
+        }
+    }
+
+    func getFavoritesGame() -> [FavoritesItem] {
+        return [FavoritesItem]()
+    }
+
+    private func findFavoriteGame(game: FavoritesItem) -> FavoriteGame? {
+        let fetchRequest: NSFetchRequest<FavoriteGame> = FavoriteGame.fetchRequest()
+
+        fetchRequest.predicate = NSPredicate(
+            format: "gameID LIKE %@", game.gameID
+        )
+        if let objects = try? context.fetch(fetchRequest) {
+            return objects.first
+        } else {
+            return nil
+        }
+    }
+    
 
     private func saveContext() {
         if context.hasChanges {

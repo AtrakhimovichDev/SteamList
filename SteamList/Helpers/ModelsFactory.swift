@@ -11,9 +11,7 @@ class ModelsFactory {
 
     static var shared = ModelsFactory()
 
-    private var networkManager: NetworkManager = {
-        return NetworkManagerImplementation()
-    }()
+    private var networkManager: NetworkManager = NetworkManagerImplementation()
 
     func createGamesListModel(completion: @escaping ((GamesListModel) -> Void)) {
         let needUpdate = true
