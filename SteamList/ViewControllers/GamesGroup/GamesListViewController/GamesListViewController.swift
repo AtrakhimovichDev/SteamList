@@ -18,7 +18,7 @@ class GamesListViewController: UIViewController {
         return NetworkManagerImplementation()
     }()
 
-    private var gamesListModel: GamesListModel?
+    private var gamesListModel: GamesListModel!
     private var networkCompletion: (([GameShortInfo]) -> Void)?
 
     override func loadView() {
@@ -35,7 +35,6 @@ class GamesListViewController: UIViewController {
     private func loadData() {
         ModelsFactory.shared.createGamesListModel { [weak self] gamesListModel in
             self?.gamesListModel = gamesListModel
-            // self?.gamesListModel?.dataStatus = .error
             DispatchQueue.main.async {
                 self?.customView.setupView(with: (self?.gamesListModel?.dataStatus)!)
                 self?.customView.gamesTableView.reloadData()
@@ -90,11 +89,9 @@ extension GamesListViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // print(filteredGames[indexPath.row].appid)
-        guard let gamesListModel = gamesListModel else { return }
-        let gameDetailsViewController = GameDetailsViewController()
-        gameDetailsViewController.title = gamesListModel.filteredGamesList[indexPath.row].name
-        gameDetailsViewController.gameID = gamesListModel.filteredGamesList[indexPath.row].gameID
+        let gameDetailsViewController = ViewControllersFactory.shared.createDetailsGameViewController(
+            title: gamesListModel.filteredGamesList[indexPath.row].name,
+            gameID: gamesListModel.filteredGamesList[indexPath.row].gameID)
         navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.tintColor = .white
         navigationController?.pushViewController(gameDetailsViewController, animated: true)

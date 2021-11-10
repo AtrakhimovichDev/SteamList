@@ -11,7 +11,7 @@ struct FavoritesModel {
     var dataStatus: DataStatus
     var favoritesList: [FavoritesItem]
     var filteredFavoritesList: [FavoritesItem]
-    
+
     mutating func filterFavoritesList(searchText: String) {
         if searchText.isEmpty {
             filteredFavoritesList = favoritesList
@@ -24,5 +24,6 @@ struct FavoritesModel {
 
 struct FavoritesItem {
     var title: String
-    var price: String
+    var priceTitle: String
+    var price: Double
 }

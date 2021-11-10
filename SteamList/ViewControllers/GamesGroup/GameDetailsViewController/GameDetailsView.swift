@@ -10,7 +10,7 @@ import UIKit
 class GameDetailsView: UIView {
 
     var tappedScreenshotCompletion: ((UIImage) -> Void)!
-    
+
     var contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false

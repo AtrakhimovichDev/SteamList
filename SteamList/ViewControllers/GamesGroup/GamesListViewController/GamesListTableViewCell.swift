@@ -12,31 +12,43 @@ class GamesListTableViewCell: UITableViewCell {
 
     static let identifier = "GamesListTableViewCell"
 
-    var titleLabel: UILabel!
-    var favButton: UIButton!
-    var isFavotite = false
+    private var isFavotite = false
+
+    var titleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .white
+        label.numberOfLines = 0
+        label.setContentHuggingPriority(UILayoutPriority.defaultLow, for: .horizontal)
+        return label
+    }()
+
+    var favButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "star"), for: .normal)
+        button.tintColor = .orange
+        button.addTarget(self, action: #selector(favButtonTapped(handler:)), for: .touchUpInside)
+        return button
+    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
         backgroundColor = .clear
-        titleLabel = UILabel()
-        titleLabel.textColor = .white
-        titleLabel.numberOfLines = 0
-        titleLabel.setContentHuggingPriority(UILayoutPriority.defaultLow, for: .horizontal)
+        setupTitleLabel()
+        setupFavButton()
+    }
 
-        favButton = UIButton()
-        favButton.setImage(UIImage(systemName: "star"), for: .normal)
-        favButton.tintColor = .orange
-        favButton.addTarget(self, action: #selector(favButtonTapped(handler:)), for: .touchUpInside)
+    private func setupTitleLabel() {
         contentView.addSubview(titleLabel)
-        contentView.addSubview(favButton)
-
         titleLabel.snp.makeConstraints { (constraints) in
             constraints.top.equalToSuperview().offset(10)
             constraints.centerY.equalToSuperview()
             constraints.leading.equalToSuperview().offset(15)
         }
+    }
 
+    private func setupFavButton() {
+        contentView.addSubview(favButton)
         favButton.snp.makeConstraints { (constraints) in
             constraints.top.equalToSuperview().offset(10)
             constraints.centerY.equalTo(contentView)

@@ -19,10 +19,10 @@ class FavoritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         var arr = [FavoritesItem]()
-        arr.append(FavoritesItem(title: "CS: GO", price: "$9.99"))
-        arr.append(FavoritesItem(title: "Dota 2", price: "Free to play"))
-        arr.append(FavoritesItem(title: "Civilazation VI", price: "$17.35 (-20%)"))
-        arr.append(FavoritesItem(title: "GTA V", price: "$33.99"))
+        arr.append(FavoritesItem(title: "CS: GO", priceTitle: "$9.99", price: 9.99))
+        arr.append(FavoritesItem(title: "Dota 2", priceTitle: "Free to play", price: 0))
+        arr.append(FavoritesItem(title: "Civilazation VI", priceTitle: "$17.35 (-20%)", price: 17.35))
+        arr.append(FavoritesItem(title: "GTA V", priceTitle: "$33.99", price: 33.99))
 
         favoritesModel = FavoritesModel(dataStatus: .success,
                                         favoritesList: arr,
@@ -32,8 +32,14 @@ class FavoritesViewController: UIViewController {
         customView.favsTableView.dataSource = self
         customView.favsTableView.reloadData()
 
-        let leftBarItem = UIBarButtonItem(title: "Sort", style: .plain, target: self, action: #selector(sortButtonPressed))
-        let rightBarItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonPressed))
+        let leftBarItem = UIBarButtonItem(title: "Sort",
+                                          style: .plain,
+                                          target: self,
+                                          action: #selector(sortButtonPressed))
+        let rightBarItem = UIBarButtonItem(title: "Edit",
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(editButtonPressed))
         leftBarItem.tintColor = .white
         rightBarItem.tintColor = .white
         navigationItem.leftBarButtonItem = leftBarItem
@@ -47,7 +53,32 @@ class FavoritesViewController: UIViewController {
 
     @objc
     private func sortButtonPressed() {
-        
+        let optionMenu = UIAlertController(title: nil, message: "Choose Sort", preferredStyle: .actionSheet)
+
+        let sortByNameAction = UIAlertAction(title: "Sort by name", style: .default) { _ in
+            self.sortByName()
+        }
+        let sortByPriceAction = UIAlertAction(title: "Sort by price", style: .default) { _ in
+            self.sortByPrice()
+        }
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+
+        optionMenu.addAction(sortByNameAction)
+        optionMenu.addAction(sortByPriceAction)
+        optionMenu.addAction(cancelAction)
+
+        self.present(optionMenu, animated: true, completion: nil)
+    }
+
+    private func sortByName() {
+        favoritesModel?.filteredFavoritesList.sort { $0.title.lowercased() < $1.title.lowercased() }
+        customView.favsTableView.reloadData()
+    }
+
+    private func sortByPrice() {
+        favoritesModel?.filteredFavoritesList.sort { $0.price < $1.price }
+        customView.favsTableView.reloadData()
     }
 }
 
@@ -64,7 +95,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         cell.selectionStyle = .none
         cell.titleLabel.text = favoritesModel?.filteredFavoritesList [indexPath.row].title
-        cell.priceLabel.text = favoritesModel?.filteredFavoritesList[indexPath.row].price
+        cell.priceLabel.text = favoritesModel?.filteredFavoritesList[indexPath.row].priceTitle
         return cell
     }
 
