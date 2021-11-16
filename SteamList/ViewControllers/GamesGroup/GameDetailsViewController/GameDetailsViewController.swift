@@ -31,6 +31,7 @@ class GameDetailsViewController: UIViewController {
             let screenshotController = ViewControllersFactory.shared.createScreenshotVC(image: image)
             self?.navigationController?.pushViewController(screenshotController, animated: true)
         }
+        customView.favButton.addTarget(self, action: #selector(favButtonTapped(handler:)), for: .touchUpInside)
     }
 
     private func loadData() {
@@ -57,6 +58,7 @@ class GameDetailsViewController: UIViewController {
         fillPrice(gameInfo: gameInfo)
         fillPlatforms(gameInfo: gameInfo)
         fillScreenshots(gameInfo: gameInfo)
+        setButtonIcon(button: customView.favButton)
     }
 
     private func fillHeaderImage(gameInfo: GameDetails) {
@@ -100,7 +102,7 @@ class GameDetailsViewController: UIViewController {
         if gameInfo.isFree {
             customView.priceLabel.text = "Free to play"
         } else {
-            customView.priceLabel.text = gameInfo.price
+            customView.priceLabel.text = gameInfo.priceTitle
             if let discont = gameInfo.discont,
                discont != 0 {
                 customView.discontLabel.text = "-\(discont)%"
@@ -140,6 +142,29 @@ class GameDetailsViewController: UIViewController {
                 imageView.image = UIImage(data: data)
                 self?.customView.imageViewActivityIndicator.stopAnimating()
             }
+        }
+    }
+
+    @objc private func favButtonTapped(handler: UIButton) {
+        gameModel.game!.isFavorite.toggle()
+        setButtonIcon(button: handler)
+        let favoritesItem = FavoritesItem(gameID: gameModel.game!.gameID,
+                                          title: gameModel.game!.name,
+                                          priceTitle: gameModel.game!.priceTitle,
+                                          price: gameModel.game!.price,
+                                          discont: gameModel.game!.discont)
+        if gameModel.game!.isFavorite {
+            DataManagerImplementation.shared.saveFavoriteGame(game: favoritesItem)
+        } else {
+            DataManagerImplementation.shared.deleteFavoriteGame(game: favoritesItem)
+        }
+    }
+
+    private func setButtonIcon(button: UIButton) {
+        if let button = button as? FavoriteButton {
+            let config = UIImage.SymbolConfiguration(
+                pointSize: 25, weight: .medium, scale: .default)
+            button.setIcon(isFavorite: gameModel.game!.isFavorite, config: config)
         }
     }
 }

@@ -18,20 +18,32 @@ class FavoritesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        var arr = [FavoritesItem]()
-//        arr.append(FavoritesItem(title: "CS: GO", priceTitle: "$9.99", price: 9.99))
-//        arr.append(FavoritesItem(title: "Dota 2", priceTitle: "Free to play", price: 0))
-//        arr.append(FavoritesItem(title: "Civilazation VI", priceTitle: "$17.35 (-20%)", price: 17.35))
-//        arr.append(FavoritesItem(title: "GTA V", priceTitle: "$33.99", price: 33.99))
-//
-//        favoritesModel = FavoritesModel(dataStatus: .success,
-//                                        favoritesList: arr,
-//                                        filteredFavoritesList: arr)
+        setupSettings()
+        setupNavBar()
+        loadData()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadData()
+    }
+    private func setupSettings() {
         customView.searchBar.delegate = self
         customView.favsTableView.delegate = self
         customView.favsTableView.dataSource = self
         customView.favsTableView.reloadData()
+    }
 
+    private func loadData() {
+        ModelsFactory.shared.createFavoriteModel { [weak self] favoritesModel in
+            self?.favoritesModel = favoritesModel
+            DispatchQueue.main.async {
+                self?.customView.favsTableView.reloadData()
+            }
+        }
+    }
+
+    private func setupNavBar() {
         let leftBarItem = UIBarButtonItem(title: "Sort",
                                           style: .plain,
                                           target: self,
@@ -77,7 +89,7 @@ class FavoritesViewController: UIViewController {
     }
 
     private func sortByPrice() {
-        favoritesModel?.filteredFavoritesList.sort { $0.price < $1.price }
+        favoritesModel?.filteredFavoritesList.sort { $0.price ?? 0 < $1.price ?? 0 }
         customView.favsTableView.reloadData()
     }
 }
@@ -94,8 +106,18 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         cell.selectionStyle = .none
-        cell.titleLabel.text = favoritesModel?.filteredFavoritesList [indexPath.row].title
-        cell.priceLabel.text = favoritesModel?.filteredFavoritesList[indexPath.row].priceTitle
+        cell.activityIndicator.startAnimating()
+        let game = favoritesModel?.filteredFavoritesList [indexPath.row]
+        cell.titleLabel.text = game?.title
+        cell.priceLabel.text = game?.priceTitle
+        if let title = game?.priceTitle,
+           !title.isEmpty {
+            cell.activityIndicator.stopAnimating()
+        }
+        if let discont = game?.discont,
+           discont != 0 {
+            cell.priceLabel.textColor = Colors.discountPricaeColor.getUIColor()
+        }
         return cell
     }
 
@@ -105,6 +127,7 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            DataManagerImplementation.shared.deleteFavoriteGame(game: favoritesModel!.filteredFavoritesList[indexPath.row])
             favoritesModel?.filteredFavoritesList.remove(at: indexPath.row)
             customView.favsTableView.deleteRows(at: [indexPath], with: .fade)
         }

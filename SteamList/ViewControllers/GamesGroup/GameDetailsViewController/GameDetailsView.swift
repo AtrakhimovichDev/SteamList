@@ -44,13 +44,11 @@ class GameDetailsView: UIView {
     }()
 
     var favButton: UIButton = {
-        let favButton = UIButton()
+        let favButton = FavoriteButton()
         let config = UIImage.SymbolConfiguration(
             pointSize: 25, weight: .medium, scale: .default)
         let image = UIImage(systemName: "star", withConfiguration: config)
         favButton.setImage(image, for: .normal)
-        favButton.tintColor = .orange
-        favButton.addTarget(self, action: #selector(favButtonTapped(handler:)), for: .touchUpInside)
         return favButton
     }()
 
@@ -377,19 +375,6 @@ class GameDetailsView: UIView {
         if let imageView = handler.view as? UIImageView,
            let image = imageView.image {
             tappedScreenshotCompletion(image)
-        }
-    }
-
-    @objc private func favButtonTapped(handler: UIButton) {
-        isFavotite = !isFavotite
-        let config = UIImage.SymbolConfiguration(
-            pointSize: 25, weight: .medium, scale: .default)
-        if isFavotite {
-            let image = UIImage(systemName: "star.fill", withConfiguration: config)
-            favButton.setImage(image, for: .normal)
-        } else {
-            let image = UIImage(systemName: "star", withConfiguration: config)
-            favButton.setImage(image, for: .normal)
         }
     }
 }

@@ -20,10 +20,17 @@ class FavoritesTableViewCell: UITableViewCell {
 
     var priceLabel: UILabel = {
         let priceLabel = UILabel()
+        priceLabel.font = UIFont.boldSystemFont(ofSize: 16.0)
         priceLabel.textAlignment = .right
         priceLabel.textColor = .white
         priceLabel.numberOfLines = 1
         return priceLabel
+    }()
+
+    var activityIndicator: UIActivityIndicatorView = {
+        let indicatorView = UIActivityIndicatorView()
+        indicatorView.color = .white
+        return indicatorView
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -32,6 +39,7 @@ class FavoritesTableViewCell: UITableViewCell {
 
         contentView.addSubview(titleLabel)
         contentView.addSubview(priceLabel)
+        priceLabel.addSubview(activityIndicator)
 
         titleLabel.snp.makeConstraints { (constraints) in
             constraints.top.equalToSuperview().offset(10)
@@ -46,6 +54,12 @@ class FavoritesTableViewCell: UITableViewCell {
             constraints.leading.equalTo(titleLabel.snp.trailing).offset(10)
             constraints.width.equalTo(titleLabel.snp.width).multipliedBy(0.75)
         }
+
+        activityIndicator.snp.makeConstraints { constraints in
+            constraints.top.equalToSuperview().offset(5)
+            constraints.bottom.equalToSuperview().offset(-5)
+            constraints.trailing.equalToSuperview().offset(-5)
+        }
     }
 
     required init?(coder: NSCoder) {
@@ -54,13 +68,10 @@ class FavoritesTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

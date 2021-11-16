@@ -11,7 +11,7 @@ import SnapKit
 class GamesListViewController: UIViewController {
 
     private let customView = GamesListView()
-    private var gamesListModel: GamesListModel!
+    private var gamesListModel: GamesListModel?
 
     private let networkManager: NetworkManager = NetworkManagerImplementation()
 
@@ -26,16 +26,29 @@ class GamesListViewController: UIViewController {
         loadData()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateData()
+    }
+
     private func loadData() {
         ModelsFactory.shared.createGamesListModel { [weak self] gamesListModel in
             self?.gamesListModel = gamesListModel
             DispatchQueue.main.async {
-                guard let status = self?.gamesListModel.dataStatus else { return }
+                guard let status = self?.gamesListModel?.dataStatus else { return }
                 self?.customView.setupView(with: status)
                 self?.customView.gamesTableView.reloadData()
                 self?.stopIndicator()
                 self?.customView.scrollView.refreshControl?.endRefreshing()
             }
+        }
+    }
+
+    private func updateData() {
+        if let gamesListModel = gamesListModel {
+            DataManagerImplementation.shared.updateFavoritesInfo(list: gamesListModel.filteredGamesList)
+            customView.gamesTableView.reloadData()
+            DataManagerImplementation.shared.updateFavoritesInfo(list: gamesListModel.gamesList)
         }
     }
 
@@ -81,6 +94,7 @@ extension GamesListViewController: UITableViewDataSource {
     }
 
     @objc private func favButtonTapped(handler: UIButton) {
+        guard let gamesListModel = gamesListModel else { return }
         let selectedGame = gamesListModel.filteredGamesList[handler.tag]
         selectedGame.isFavorite.toggle()
         if let button = handler as? FavoriteButton {
@@ -105,6 +119,7 @@ extension GamesListViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let gamesListModel = gamesListModel else { return }
         let gameDetailsViewController = ViewControllersFactory.shared.createDetailsGameVC(
             title: gamesListModel.filteredGamesList[indexPath.row].name,
             gameID: gamesListModel.filteredGamesList[indexPath.row].gameID)

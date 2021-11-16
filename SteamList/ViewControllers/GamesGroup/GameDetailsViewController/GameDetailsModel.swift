@@ -11,13 +11,9 @@ struct GameDetailsModel {
     var dataStatus: DataStatus
     var game: GameDetails?
 
-    init(gameID: String, game: Game?, dataStatus: DataStatus) {
-        if let game = game {
-            self.dataStatus = dataStatus
-            self.game = GameDetails(gameID: gameID, game: game)
-        } else {
-            self.dataStatus = .empty
-        }
+    init(gameID: String, game: GameDetails?, dataStatus: DataStatus) {
+        self.dataStatus = dataStatus
+        self.game = game
     }
 }
 
@@ -30,15 +26,17 @@ struct GameDetails {
     var isWindows: Bool = false
     var isLinux: Bool = false
     var isComingSoon: Bool = false
+    var isFavorite: Bool = false
     var releaseDate: Date?
     var isFree: Bool = false
-    var price: String?
+    var priceTitle: String?
+    var price: Float?
     var discont: Int?
     var genres: [String]?
     var screenshotsURLs: [String]?
 
-    init?(gameID: String, game: Game) {
-        guard let gameInfo = game.gameID else { return }
+    init?(gameID: String, game: Game?) {
+        guard let gameInfo = game?.gameID else { return }
         self.gameID = gameID
         self.name = gameInfo.data.name
         self.shortDescription = gameInfo.data.shortDescription
@@ -47,16 +45,16 @@ struct GameDetails {
         self.isLinux = gameInfo.data.platforms.linux
         self.isWindows = gameInfo.data.platforms.windows
         self.isComingSoon = gameInfo.data.releaseDate.isComingSoon
+        self.isFavorite = false
         if let priceItem = gameInfo.data.priceItem {
             self.isFree = false
-            self.price = priceItem.price
+            self.price = Float(priceItem.price) / 100
+            self.priceTitle = priceItem.priceTitle
             self.discont = priceItem.discountPercent
         } else {
             self.isFree = true
-            self.price = nil
-            self.discont = nil
         }
-        if !game.gameID!.data.releaseDate.isComingSoon {
+        if !gameInfo.data.releaseDate.isComingSoon {
             self.releaseDate = CustomDateFormater.shared.getDate(from: gameInfo.data.releaseDate.date)
         }
         if let genres = gameInfo.data.genres {
@@ -65,11 +63,30 @@ struct GameDetails {
                 self.genres?.append(genre.description)
             }
         }
-        if let screenshots = game.gameID!.data.screenshots {
+        if let screenshots = gameInfo.data.screenshots {
             self.screenshotsURLs = [String]()
             for screenshot in screenshots {
                 self.screenshotsURLs?.append(screenshot.imagePath)
             }
         }
+    }
+
+    init(gameID: String, game: GameDetailedInfo) {
+        self.gameID = gameID
+        self.name = game.name
+        self.shortDescription = game.gameDescription
+        self.headerImageURLString = game.headerImageURL
+        self.isApple = game.isApple
+        self.isLinux = game.isLinux
+        self.isWindows = game.isWindows
+        self.isComingSoon = game.isCoomingSoon
+        self.isFavorite = false
+        self.isFree = game.isFree
+        self.price = game.price
+        self.priceTitle = game.priceTitle
+        self.discont = Int(game.discont)
+        self.releaseDate = game.releaseDate
+        self.genres = game.genres
+        self.screenshotsURLs = game.screensotsURL
     }
 }

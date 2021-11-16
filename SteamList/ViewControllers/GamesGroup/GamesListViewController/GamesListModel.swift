@@ -15,8 +15,7 @@ struct GamesListModel {
     init(gamesList: [GamesListItem], dataStatus: DataStatus) {
         var newGameList = [GamesListItem]()
         for item in gamesList {
-            // isFavorite need update
-            newGameList.append(GamesListItem(gameID: item.gameID, name: item.name, isFavorite: false))
+            newGameList.append(GamesListItem(gameID: item.gameID, name: item.name, isFavorite: item.isFavorite))
         }
         self.gamesList = newGameList
         self.filteredGamesList = newGameList

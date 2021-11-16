@@ -13,30 +13,19 @@ class ModelsFactory {
 
     private var networkManager: NetworkManager = NetworkManagerImplementation()
 
+    // MARK: - List model -
     func createGamesListModel(completion: @escaping ((GamesListModel) -> Void)) {
         let needUpdate = true
         if needUpdate {
-            getListFromNetwork(completion: completion)
+            getListModelFromNetwork(completion: completion)
         } else {
-            let result = getListFromDatabase()
-            let gamesListModel = GamesListModel(gamesList: result.0, dataStatus: result.1)
-            completion(gamesListModel)
+            getListModelFromDatabase(completion: completion)
         }
     }
 
-    func createGameDetailsModel(gameID: String, completion: @escaping ((GameDetailsModel) -> Void)) {
-        let needUpdate = true
-        if needUpdate {
-            getDetailsFromNetwork(gameID: gameID, completion: completion)
-        } else {
-//            let result = getDetailsFromDatabase()
-//            let gamesListModel = GamesListModel(gamesList: result.0, dataStatus: result.1)
-//            completion(gamesListModel)
-        }
-    }
-
-    private func getListFromNetwork(completion: @escaping ((GamesListModel) -> Void)) {
+    private func getListModelFromNetwork(completion: @escaping ((GamesListModel) -> Void)) {
         networkManager.getAllGames { (gamesList, dataStatus) in
+            DataManagerImplementation.shared.addFavoriteFlag(list: gamesList)
             let gamesListModel = GamesListModel(gamesList: gamesList, dataStatus: dataStatus)
             completion(gamesListModel)
             if dataStatus == .success {
@@ -45,18 +34,106 @@ class ModelsFactory {
         }
     }
 
+    private func getListModelFromDatabase(completion: @escaping ((GamesListModel) -> Void)) {
+        let result = getListFromDatabase()
+        let gamesListModel = GamesListModel(gamesList: result.0, dataStatus: result.1)
+        completion(gamesListModel)
+    }
+
     private func getListFromDatabase() -> ([GamesListItem], DataStatus) {
         let result = DataManagerImplementation.shared.getGamesList()
         return result
     }
 
-    private func getDetailsFromNetwork(gameID: String, completion: @escaping ((GameDetailsModel) -> Void)) {
+    // MARK: - Details model -
+    func createGameDetailsModel(gameID: String, completion: @escaping ((GameDetailsModel) -> Void)) {
+        getDetailsModelFromDatabase(gameID: gameID, completion: completion)
+        getDetailsModelFromNetwork(gameID: gameID, completion: completion)
+    }
+
+    private func getDetailsModelFromNetwork(gameID: String, completion: @escaping ((GameDetailsModel) -> Void)) {
         networkManager.getDetailedGameInfo(gameID: gameID, completion: { (game, dataStatus) in
-            let gameDetailsModel = GameDetailsModel(gameID: gameID, game: game, dataStatus: dataStatus)
+            let gameDetails = GameDetails(gameID: gameID, game: game)
+            var gameDetailsModel = GameDetailsModel(gameID: gameID, game: gameDetails, dataStatus: dataStatus)
+            gameDetailsModel.game?.isFavorite = self.isFavorite(gameID: gameID)
             completion(gameDetailsModel)
-            if dataStatus == .success {
-                // write in database
+            if dataStatus == .success,
+               let gameDetails = gameDetails {
+                DataManagerImplementation.shared.saveDetailedInfo(game: gameDetails)
+                if self.isFavorite(gameID: gameID),
+                   let game = gameDetailsModel.game {
+                    let favoriteItem = FavoritesItem(gameID: game.gameID,
+                                                     title: game.name,
+                                                     priceTitle: game.priceTitle,
+                                                     price: game.price,
+                                                     discont: game.discont)
+                    DataManagerImplementation.shared.saveFavoriteGame(game: favoriteItem)
+                }
             }
         })
+    }
+
+    private func getDetailsModelFromDatabase(gameID: String, completion: @escaping ((GameDetailsModel) -> Void)) {
+        let gameDetails = getDetailsFromDatabase(gameID: gameID)
+        var gameDetailsModel = GameDetailsModel(gameID: gameID, game: gameDetails.0, dataStatus: gameDetails.1)
+        gameDetailsModel.game?.isFavorite = isFavorite(gameID: gameID)
+        if gameDetailsModel.dataStatus == .success {
+            completion(gameDetailsModel)
+        }
+    }
+
+    private func getDetailsFromDatabase(gameID: String) -> (GameDetails?, DataStatus) {
+        let result = DataManagerImplementation.shared.getDetailedInfo(gameID: gameID)
+        return result
+    }
+
+    // MARK: - Favorites model -
+    func createFavoriteModel(completion: @escaping ((FavoritesModel) -> Void)) {
+        let favoritesModel = getFavoritesModelFromDatabase(completion: completion)
+        updateFavoritesModelFromNetwork(model: favoritesModel, completion: completion)
+    }
+
+    private func getFavoritesModelFromDatabase(completion: @escaping ((FavoritesModel) -> Void)) -> FavoritesModel {
+        let favoritesGames = getFavoritesFromDatabase()
+        let favoritesModel = FavoritesModel(dataStatus: favoritesGames.1,
+                                              favoritesList: favoritesGames.0,
+                                              filteredFavoritesList: favoritesGames.0)
+        if favoritesModel.dataStatus == .success {
+            completion(favoritesModel)
+        }
+        return favoritesModel
+    }
+
+    private func updateFavoritesModelFromNetwork(model: FavoritesModel,
+                                                 completion: @escaping ((FavoritesModel) -> Void)) {
+        for favItem in model.favoritesList {
+            networkManager.getDetailedGameInfo(gameID: favItem.gameID) { (game, _) in
+                if let priceItem = game?.gameID?.data.priceItem {
+                    favItem.price = Float(priceItem.price) / 100
+                    favItem.discont = priceItem.discountPercent
+                    favItem.priceTitle = "$\(String(format: "%.2f", favItem.price!)) USD"
+                    if priceItem.discountPercent != 0 {
+                        favItem.priceTitle = "\(favItem.priceTitle!) (-\(priceItem.discountPercent)%)"
+                    }
+                } else {
+                    favItem.priceTitle = "Free"
+                }
+                completion(model)
+            }
+        }
+    }
+
+    private func getFavoritesFromDatabase() -> ([FavoritesItem], DataStatus) {
+        let result = DataManagerImplementation.shared.getFavoritesGame()
+        return result
+    }
+
+    // MARK: - Additional functions -
+    private func isFavorite(gameID: String) -> Bool {
+        if let _ = DataManagerImplementation.shared.findFavoriteGame(gameID: gameID) {
+            return true
+        } else {
+            return false
+        }
     }
 }

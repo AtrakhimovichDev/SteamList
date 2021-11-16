@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="FavoriteGame" representedClassName="FavoriteGame" syncable="YES">
-        <attribute name="discont" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="discont" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO"/>
         <attribute name="gameID" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
-        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="priceTitle" optional="YES" attributeType="String"/>
+        <attribute name="price" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="priceTitle" attributeType="String"/>
     </entity>
     <entity name="GameDetailedInfo" representedClassName="GameDetailedInfo" syncable="YES">
         <attribute name="attribute" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="discont" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO"/>
         <attribute name="gameDescription" attributeType="String"/>
         <attribute name="gameID" attributeType="String"/>
         <attribute name="genres" optional="YES" attributeType="Transformable" valueTransformerName=""/>
@@ -19,7 +20,8 @@
         <attribute name="isLinux" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isWindows" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
-        <attribute name="price" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="NO"/>
+        <attribute name="priceTitle" optional="YES" attributeType="String"/>
         <attribute name="releaseDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="screensotsURL" optional="YES" attributeType="Transformable" valueTransformerName=""/>
     </entity>
@@ -28,8 +30,8 @@
         <attribute name="name" attributeType="String"/>
     </entity>
     <elements>
-        <element name="GameDetailedInfo" positionX="-63" positionY="0" width="128" height="239"/>
-        <element name="GameItem" positionX="-63" positionY="-18" width="128" height="59"/>
         <element name="FavoriteGame" positionX="-54" positionY="108" width="128" height="104"/>
+        <element name="GameDetailedInfo" positionX="-63" positionY="0" width="128" height="269"/>
+        <element name="GameItem" positionX="-63" positionY="-18" width="128" height="59"/>
     </elements>
 </model>

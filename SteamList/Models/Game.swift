@@ -102,10 +102,12 @@ struct Screenshot: Decodable {
 
 struct PriceItem: Decodable {
     let discountPercent: Int
-    let price: String
+    let priceTitle: String
+    let price: Int
 
     enum CodingKeys: String, CodingKey {
         case discountPercent = "discount_percent"
-        case price = "final_formatted"
+        case priceTitle = "final_formatted"
+        case price = "final"
     }
 }

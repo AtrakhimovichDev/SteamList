@@ -19,11 +19,13 @@ class FavoriteButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setIcon(isFavorite: Bool) {
+    func setIcon(isFavorite: Bool, config: UIImage.SymbolConfiguration? = nil) {
         if isFavorite {
-            self.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            let image = UIImage(systemName: "star.fill", withConfiguration: config)
+            self.setImage(image, for: .normal)
         } else {
-            self.setImage(UIImage(systemName: "star"), for: .normal)
+            let image = UIImage(systemName: "star", withConfiguration: config)
+            self.setImage(image, for: .normal)
         }
     }
 }

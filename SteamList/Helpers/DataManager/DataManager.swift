@@ -9,8 +9,9 @@ import Foundation
 
 protocol DataManager {
     func saveFavoriteGame(game: FavoritesItem)
-    func deleteFavoriteGame(game: FavoritesItem)
-    func getFavoritesGame() -> [FavoritesItem]
+    func getFavoritesGame() -> ([FavoritesItem], DataStatus)
     func saveGamesList(gamesList: [GamesListItem])
     func getGamesList() -> ([GamesListItem], DataStatus)
+    func saveDetailedInfo(game: GameDetails)
+    func getDetailedInfo(gameID: String) -> (GameDetails?, DataStatus)
 }

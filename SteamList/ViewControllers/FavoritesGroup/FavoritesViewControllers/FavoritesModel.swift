@@ -22,10 +22,18 @@ struct FavoritesModel {
     }
 }
 
-struct FavoritesItem {
+class FavoritesItem {
+    init(gameID: String, title: String, priceTitle: String? = nil, price: Float? = nil, discont: Int? = nil) {
+        self.gameID = gameID
+        self.title = title
+        self.priceTitle = priceTitle
+        self.price = price
+        self.discont = discont
+    }
+    
     var gameID: String
     var title: String
-    var priceTitle: String
-    var price: Double
-    var discont: Int
+    var priceTitle: String?
+    var price: Float?
+    var discont: Int?
 }
