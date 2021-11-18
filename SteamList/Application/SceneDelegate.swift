@@ -37,6 +37,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
+        // (UIApplication.shared.delegate as? AppDelegate)?.scheduleBackgroundPokemonFetch()
     }
 
     private func createRootController() -> UIViewController {

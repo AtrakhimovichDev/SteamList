@@ -118,6 +118,7 @@ class ModelsFactory {
                 } else {
                     favItem.priceTitle = "Free"
                 }
+                DataManagerImplementation.shared.saveFavoriteGame(game: favItem)
                 completion(model)
             }
         }

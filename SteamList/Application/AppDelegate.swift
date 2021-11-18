@@ -7,48 +7,20 @@
 
 import UIKit
 import UserNotifications
+import BackgroundTasks
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    let notificationCenter = UNUserNotificationCenter.current()
+    let networkManager = NetworkManagerImplementation()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        UIApplication.shared.setMinimumBackgroundFetchInterval(
-          UIApplication.backgroundFetchIntervalMinimum)
-        
-        
-        
-        
-        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, _) in
-
-            guard granted else { return }
-            self.notificationCenter.getNotificationSettings { (settings) in
-                print(settings)
-                guard settings.authorizationStatus == .authorized else { return }
-            }
-        }
-
-        notificationCenter.delegate = self
-        sendNotifications()
+        LocalNotification.shared.notificationCenter.delegate = self
+        startUpdatingPrice()
         return true
     }
 
-    func sendNotifications() {
-        
-        let content = UNMutableNotificationContent()
-        content.title = "Civilazation VI"
-        content.body = "The price has dropped to $33!"
-        content.sound = UNNotificationSound.default
-
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-
-        let request = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
-        notificationCenter.add(request) { (error) in
-            print(error?.localizedDescription ?? "")
-        }
-    }
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication,
@@ -73,5 +45,41 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         print(#function)
+    }
+}
+
+extension AppDelegate {
+
+    private func startUpdatingPrice() {
+        Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { [weak self] _ in
+            let games = DataManagerImplementation.shared.getFavoritesGame()
+            for game in games.0 {
+                self?.checkPrice(game: game)
+            }
+        }
+    }
+
+    private func checkPrice(game: FavoritesItem) {
+        networkManager.getDetailedGameInfo(gameID: game.gameID) { gameInfo, status in
+            guard status == .success else { return }
+            guard let priceItem = gameInfo?.gameID?.data.priceItem else { return }
+
+            let currentPrice = Float(priceItem.price) / 100
+            if currentPrice < game.price ?? 0 {
+                LocalNotification.shared.sendNotification(
+                    name: game.title,
+                    price: currentPrice)
+                self.saveChanges(game: game, priceItem: priceItem)
+            }
+        }
+    }
+
+    private func saveChanges(game: FavoritesItem, priceItem: PriceItem) {
+        let favoriteItem = FavoritesItem(gameID: game.gameID,
+                                         title: game.title,
+                                         priceTitle: priceItem.priceTitle,
+                                         price: Float(priceItem.price) / 100,
+                                         discont: priceItem.discountPercent)
+        DataManagerImplementation.shared.saveFavoriteGame(game: favoriteItem)
     }
 }
