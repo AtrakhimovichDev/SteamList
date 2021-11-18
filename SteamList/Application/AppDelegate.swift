@@ -21,27 +21,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    private func startUpdatingPrice() {
-        Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
-            let games = DataManagerImplementation.shared.getFavoritesGame()
-            for game in games.0 {
-                self.networkManager.getDetailedGameInfo(gameID: game.gameID) { gameInfo, status in
-                    if status == .success,
-                       let gameInfo = gameInfo {
-                        if let price = gameInfo.gameID?.data.priceItem {
-                            if Float(price.price) / 100 < game.price ?? 0 {
-                                LocalNotification.shared.sendNotification(
-                                    name: game.title,
-                                    price: Float(price.price) / 100)
-                                // save new price
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication,
@@ -66,5 +45,41 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         print(#function)
+    }
+}
+
+extension AppDelegate {
+
+    private func startUpdatingPrice() {
+        Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { [weak self] _ in
+            let games = DataManagerImplementation.shared.getFavoritesGame()
+            for game in games.0 {
+                self?.checkPrice(game: game)
+            }
+        }
+    }
+
+    private func checkPrice(game: FavoritesItem) {
+        networkManager.getDetailedGameInfo(gameID: game.gameID) { gameInfo, status in
+            guard status == .success else { return }
+            guard let priceItem = gameInfo?.gameID?.data.priceItem else { return }
+
+            let currentPrice = Float(priceItem.price) / 100
+            if currentPrice < game.price ?? 0 {
+                LocalNotification.shared.sendNotification(
+                    name: game.title,
+                    price: currentPrice)
+                self.saveChanges(game: game, priceItem: priceItem)
+            }
+        }
+    }
+
+    private func saveChanges(game: FavoritesItem, priceItem: PriceItem) {
+        let favoriteItem = FavoritesItem(gameID: game.gameID,
+                                         title: game.title,
+                                         priceTitle: priceItem.priceTitle,
+                                         price: Float(priceItem.price) / 100,
+                                         discont: priceItem.discountPercent)
+        DataManagerImplementation.shared.saveFavoriteGame(game: favoriteItem)
     }
 }
