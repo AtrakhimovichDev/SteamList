@@ -7,48 +7,41 @@
 
 import UIKit
 import UserNotifications
+import BackgroundTasks
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    let notificationCenter = UNUserNotificationCenter.current()
+    let networkManager = NetworkManagerImplementation()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        UIApplication.shared.setMinimumBackgroundFetchInterval(
-          UIApplication.backgroundFetchIntervalMinimum)
-        
-        
-        
-        
-        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, _) in
-
-            guard granted else { return }
-            self.notificationCenter.getNotificationSettings { (settings) in
-                print(settings)
-                guard settings.authorizationStatus == .authorized else { return }
-            }
-        }
-
-        notificationCenter.delegate = self
-        sendNotifications()
+        LocalNotification.shared.notificationCenter.delegate = self
+        startUpdatingPrice()
         return true
     }
 
-    func sendNotifications() {
-        
-        let content = UNMutableNotificationContent()
-        content.title = "Civilazation VI"
-        content.body = "The price has dropped to $33!"
-        content.sound = UNNotificationSound.default
-
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-
-        let request = UNNotificationRequest(identifier: "notification", content: content, trigger: trigger)
-        notificationCenter.add(request) { (error) in
-            print(error?.localizedDescription ?? "")
+    private func startUpdatingPrice() {
+        Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
+            let games = DataManagerImplementation.shared.getFavoritesGame()
+            for game in games.0 {
+                self.networkManager.getDetailedGameInfo(gameID: game.gameID) { gameInfo, status in
+                    if status == .success,
+                       let gameInfo = gameInfo {
+                        if let price = gameInfo.gameID?.data.priceItem {
+                            if Float(price.price) / 100 < game.price ?? 0 {
+                                LocalNotification.shared.sendNotification(
+                                    name: game.title,
+                                    price: Float(price.price) / 100)
+                                // save new price
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
+
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication,

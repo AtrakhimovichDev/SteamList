@@ -51,7 +51,27 @@
 		B0AC3513273C77180017FC18 /* FavoriteGame+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC3511273C77170017FC18 /* FavoriteGame+CoreDataClass.swift */; };
 		B0AC3514273C77180017FC18 /* FavoriteGame+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC3512273C77180017FC18 /* FavoriteGame+CoreDataProperties.swift */; };
 		B0AC3516273C877A0017FC18 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AC3515273C877A0017FC18 /* FavoriteButton.swift */; };
+		B0CADAB227441D99009509AE /* SteamListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CADAB127441D99009509AE /* SteamListTests.swift */; };
+		B0CADAC02744F104009509AE /* SteamListSlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CADABF2744F104009509AE /* SteamListSlowTests.swift */; };
+		B0CADAC82745733A009509AE /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CADAC72745733A009509AE /* LocalNotification.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B0CADAB427441D99009509AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B02EB8982726B05A00F5DE4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B02EB89F2726B05A00F5DE4B;
+			remoteInfo = SteamList;
+		};
+		B0CADAC22744F104009509AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B02EB8982726B05A00F5DE4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B02EB89F2726B05A00F5DE4B;
+			remoteInfo = SteamList;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		15A788FBC90A0607C5F19007 /* Pods-SteamList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SteamList.debug.xcconfig"; path = "Target Support Files/Pods-SteamList/Pods-SteamList.debug.xcconfig"; sourceTree = "<group>"; };
@@ -103,6 +123,13 @@
 		B0AC3511273C77170017FC18 /* FavoriteGame+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteGame+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B0AC3512273C77180017FC18 /* FavoriteGame+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteGame+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B0AC3515273C877A0017FC18 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
+		B0CADAAF27441D99009509AE /* SteamListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SteamListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0CADAB127441D99009509AE /* SteamListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamListTests.swift; sourceTree = "<group>"; };
+		B0CADAB327441D99009509AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0CADABD2744F104009509AE /* SteamListSlowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SteamListSlowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0CADABF2744F104009509AE /* SteamListSlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamListSlowTests.swift; sourceTree = "<group>"; };
+		B0CADAC12744F104009509AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0CADAC72745733A009509AE /* LocalNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotification.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +138,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				119F25CB9A6188CE3E56DDF2 /* Pods_SteamList.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0CADAAC27441D99009509AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0CADABA2744F104009509AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				B02EB8A22726B05B00F5DE4B /* SteamList */,
+				B0CADAB027441D99009509AE /* SteamListTests */,
+				B0CADABE2744F104009509AE /* SteamListSlowTests */,
 				B02EB8A12726B05B00F5DE4B /* Products */,
 				42BB8D7F871E31AC978E6FD6 /* Pods */,
 				1A70EFB5E44F25BBBC40267C /* Frameworks */,
@@ -167,6 +210,8 @@
 			isa = PBXGroup;
 			children = (
 				B02EB8A02726B05B00F5DE4B /* SteamList.app */,
+				B0CADAAF27441D99009509AE /* SteamListTests.xctest */,
+				B0CADABD2744F104009509AE /* SteamListSlowTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -283,6 +328,7 @@
 				B0AC3509273C1A670017FC18 /* CustomDateFormater.swift */,
 				B0AC350F273C1CBC0017FC18 /* ViewControllersFactory.swift */,
 				B0AC3515273C877A0017FC18 /* FavoriteButton.swift */,
+				B0CADAC72745733A009509AE /* LocalNotification.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -347,6 +393,24 @@
 			path = GamesGroup;
 			sourceTree = "<group>";
 		};
+		B0CADAB027441D99009509AE /* SteamListTests */ = {
+			isa = PBXGroup;
+			children = (
+				B0CADAB127441D99009509AE /* SteamListTests.swift */,
+				B0CADAB327441D99009509AE /* Info.plist */,
+			);
+			path = SteamListTests;
+			sourceTree = "<group>";
+		};
+		B0CADABE2744F104009509AE /* SteamListSlowTests */ = {
+			isa = PBXGroup;
+			children = (
+				B0CADABF2744F104009509AE /* SteamListSlowTests.swift */,
+				B0CADAC12744F104009509AE /* Info.plist */,
+			);
+			path = SteamListSlowTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -370,6 +434,42 @@
 			productReference = B02EB8A02726B05B00F5DE4B /* SteamList.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B0CADAAE27441D99009509AE /* SteamListTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0CADAB627441D99009509AE /* Build configuration list for PBXNativeTarget "SteamListTests" */;
+			buildPhases = (
+				B0CADAAB27441D99009509AE /* Sources */,
+				B0CADAAC27441D99009509AE /* Frameworks */,
+				B0CADAAD27441D99009509AE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B0CADAB527441D99009509AE /* PBXTargetDependency */,
+			);
+			name = SteamListTests;
+			productName = SteamListTests;
+			productReference = B0CADAAF27441D99009509AE /* SteamListTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B0CADABC2744F104009509AE /* SteamListSlowTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B0CADAC42744F104009509AE /* Build configuration list for PBXNativeTarget "SteamListSlowTests" */;
+			buildPhases = (
+				B0CADAB92744F104009509AE /* Sources */,
+				B0CADABA2744F104009509AE /* Frameworks */,
+				B0CADABB2744F104009509AE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B0CADAC32744F104009509AE /* PBXTargetDependency */,
+			);
+			name = SteamListSlowTests;
+			productName = SteamListSlowTests;
+			productReference = B0CADABD2744F104009509AE /* SteamListSlowTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -381,6 +481,14 @@
 				TargetAttributes = {
 					B02EB89F2726B05A00F5DE4B = {
 						CreatedOnToolsVersion = 12.5.1;
+					};
+					B0CADAAE27441D99009509AE = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = B02EB89F2726B05A00F5DE4B;
+					};
+					B0CADABC2744F104009509AE = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = B02EB89F2726B05A00F5DE4B;
 					};
 				};
 			};
@@ -398,6 +506,8 @@
 			projectRoot = "";
 			targets = (
 				B02EB89F2726B05A00F5DE4B /* SteamList */,
+				B0CADAAE27441D99009509AE /* SteamListTests */,
+				B0CADABC2744F104009509AE /* SteamListSlowTests */,
 			);
 		};
 /* End PBXProject section */
@@ -409,6 +519,20 @@
 			files = (
 				B02EB8B02726B05C00F5DE4B /* LaunchScreen.storyboard in Resources */,
 				B02EB8AD2726B05C00F5DE4B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0CADAAD27441D99009509AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0CADABB2744F104009509AE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +635,7 @@
 				B0AC3508273C13620017FC18 /* NewsTableViewCell.swift in Sources */,
 				B02EB8D22726F2DD00F5DE4B /* UIView+gradient.swift in Sources */,
 				B028E56F27316042003BFF68 /* ModelsFactory.swift in Sources */,
+				B0CADAC82745733A009509AE /* LocalNotification.swift in Sources */,
 				B028E56527304619003BFF68 /* DataManager.swift in Sources */,
 				B0AC34F827382FF00017FC18 /* GameDetailedInfo+CoreDataProperties.swift in Sources */,
 				B0AC34FE273AA0730017FC18 /* ScreenshotViewController.swift in Sources */,
@@ -523,7 +648,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B0CADAAB27441D99009509AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0CADAB227441D99009509AE /* SteamListTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0CADAB92744F104009509AE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0CADAC02744F104009509AE /* SteamListSlowTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B0CADAB527441D99009509AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B02EB89F2726B05A00F5DE4B /* SteamList */;
+			targetProxy = B0CADAB427441D99009509AE /* PBXContainerItemProxy */;
+		};
+		B0CADAC32744F104009509AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B02EB89F2726B05A00F5DE4B /* SteamList */;
+			targetProxy = B0CADAC22744F104009509AE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B02EB8AE2726B05C00F5DE4B /* LaunchScreen.storyboard */ = {
@@ -693,6 +847,86 @@
 			};
 			name = Release;
 		};
+		B0CADAB727441D99009509AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SSDHB2CNTR;
+				INFOPLIST_FILE = SteamListTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.atrakhimovich.www.SteamListTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SteamList.app/SteamList";
+			};
+			name = Debug;
+		};
+		B0CADAB827441D99009509AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SSDHB2CNTR;
+				INFOPLIST_FILE = SteamListTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.atrakhimovich.www.SteamListTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SteamList.app/SteamList";
+			};
+			name = Release;
+		};
+		B0CADAC52744F104009509AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SSDHB2CNTR;
+				INFOPLIST_FILE = SteamListSlowTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.atrakhimovich.www.SteamListSlowTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SteamList.app/SteamList";
+			};
+			name = Debug;
+		};
+		B0CADAC62744F104009509AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SSDHB2CNTR;
+				INFOPLIST_FILE = SteamListSlowTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.atrakhimovich.www.SteamListSlowTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SteamList.app/SteamList";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -710,6 +944,24 @@
 			buildConfigurations = (
 				B02EB8B52726B05C00F5DE4B /* Debug */,
 				B02EB8B62726B05C00F5DE4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B0CADAB627441D99009509AE /* Build configuration list for PBXNativeTarget "SteamListTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0CADAB727441D99009509AE /* Debug */,
+				B0CADAB827441D99009509AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B0CADAC42744F104009509AE /* Build configuration list for PBXNativeTarget "SteamListSlowTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B0CADAC52744F104009509AE /* Debug */,
+				B0CADAC62744F104009509AE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
