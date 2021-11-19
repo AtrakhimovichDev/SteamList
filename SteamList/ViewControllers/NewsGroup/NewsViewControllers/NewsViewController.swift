@@ -47,11 +47,46 @@ class NewsViewController: UIViewController {
         customView.tableView.dataSource = self
 
         customView.tableView.reloadData()
+
+        customView.filterView.saveButton.addTarget(self, action: #selector(saveFilterSettings), for: .touchUpInside)
+    }
+
+    @objc
+    private func saveFilterSettings() {
+        navigationItem.rightBarButtonItem?.isEnabled = true
+        UIView.animate(withDuration: 0.5) {
+            self.customView.blurView.alpha = 0
+            self.customView.topFilterViewConstraint?.update(offset: self.customView.frame.height)
+            self.customView.layoutIfNeeded()
+        } completion: { _ in
+            self.customView.deleteBlur()
+            self.customView.filterView.removeFromSuperview()
+        }
+
     }
 
     @objc
     private func filterButtonPressed() {
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        customView.addBlur()
+        UIView.animate(withDuration: 0.5) {
+            self.customView.blurView.alpha = 1
+        }
+        customView.setupFilterView()
+        UIView.animate(withDuration: 0.5) {
+            let yPoint = self.customView.frame.height / 2 - self.customView.filterView.frame.height / 2
+            self.customView.topFilterViewConstraint?.update(offset: yPoint)
+            self.customView.layoutIfNeeded()
+        }
 
+//        let filterView = FilterView()
+//        filterView.layer.borderWidth = 1
+//        filterView.layer.borderColor = Colors.additionalTextColor.getUIColor().cgColor
+//        filterView.center = customView.center
+//        filterView.frame.size = CGSize(width: customView.frame.width * 0.6, height: customView.frame.height * 0.5)
+//        filterView.setGradientBackground(firstColor: Colors.firstBackgroundColor.getUIColor(),
+//                                                                            secondColor: Colors.secondBackgroundColor.getUIColor())
+//        customView.addSubview(filterView)
     }
 }
 

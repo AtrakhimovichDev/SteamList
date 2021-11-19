@@ -54,6 +54,8 @@
 		B0CADAB227441D99009509AE /* SteamListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CADAB127441D99009509AE /* SteamListTests.swift */; };
 		B0CADAC02744F104009509AE /* SteamListSlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CADABF2744F104009509AE /* SteamListSlowTests.swift */; };
 		B0CADAC82745733A009509AE /* LocalNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CADAC72745733A009509AE /* LocalNotification.swift */; };
+		B0CADACA2747078F009509AE /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CADAC92747078F009509AE /* FilterView.swift */; };
+		B0CADACC274707D0009509AE /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CADACB274707D0009509AE /* FilterTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +132,8 @@
 		B0CADABF2744F104009509AE /* SteamListSlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamListSlowTests.swift; sourceTree = "<group>"; };
 		B0CADAC12744F104009509AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0CADAC72745733A009509AE /* LocalNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotification.swift; sourceTree = "<group>"; };
+		B0CADAC92747078F009509AE /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		B0CADACB274707D0009509AE /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,6 +309,8 @@
 				B028E55B272AEB71003BFF68 /* NewsView.swift */,
 				B0AC3505273C123D0017FC18 /* NewsModel.swift */,
 				B0AC3507273C13620017FC18 /* NewsTableViewCell.swift */,
+				B0CADAC92747078F009509AE /* FilterView.swift */,
+				B0CADACB274707D0009509AE /* FilterTableViewCell.swift */,
 			);
 			path = NewsViewControllers;
 			sourceTree = "<group>";
@@ -640,9 +646,11 @@
 				B0AC34F827382FF00017FC18 /* GameDetailedInfo+CoreDataProperties.swift in Sources */,
 				B0AC34FE273AA0730017FC18 /* ScreenshotViewController.swift in Sources */,
 				B02EB8A62726B05B00F5DE4B /* SceneDelegate.swift in Sources */,
+				B0CADACA2747078F009509AE /* FilterView.swift in Sources */,
 				B028E56727304650003BFF68 /* GamesListItem.swift in Sources */,
 				B0AC3513273C77180017FC18 /* FavoriteGame+CoreDataClass.swift in Sources */,
 				B028E5712731A74F003BFF68 /* GameDetailsModel.swift in Sources */,
+				B0CADACC274707D0009509AE /* FilterTableViewCell.swift in Sources */,
 				B0AC350A273C1A670017FC18 /* CustomDateFormater.swift in Sources */,
 				B02EB8D827274A1000F5DE4B /* GameDetailsViewController.swift in Sources */,
 			);

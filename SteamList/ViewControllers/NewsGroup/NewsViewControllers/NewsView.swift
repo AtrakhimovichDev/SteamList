@@ -6,8 +6,23 @@
 //
 
 import UIKit
+import SnapKit
 
 class NewsView: UIView {
+
+    var topFilterViewConstraint: Constraint?
+
+    var filterView: FilterView = {
+        let filterView = FilterView()
+        return filterView
+    }()
+
+    var blurView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.alpha = 0
+        return blurView
+    }()
 
     var tableView: UITableView = {
         let tableView = UITableView()
@@ -38,5 +53,29 @@ class NewsView: UIView {
         tableView.snp.makeConstraints { (constraints) in
             constraints.edges.equalToSuperview()
         }
+    }
+
+    func setupFilterView() {
+        self.addSubview(filterView)
+
+        filterView.snp.makeConstraints { constraints in
+            topFilterViewConstraint = constraints.top.equalTo(self.bounds.height).constraint
+            constraints.centerX.equalToSuperview()
+            constraints.width.equalTo(self.frame.width * 0.65)
+            constraints.height.equalTo(self.frame.height * 0.4)
+        }
+        self.layoutIfNeeded()
+    }
+
+    func addBlur() {
+        self.addSubview(blurView)
+        blurView.snp.makeConstraints { constraints in
+            constraints.edges.equalToSuperview()
+        }
+        self.layoutIfNeeded()
+    }
+
+    func deleteBlur() {
+        blurView.removeFromSuperview()
     }
 }
