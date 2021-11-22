@@ -27,4 +27,8 @@ class CustomDateFormater {
         }
         return Date()
     }
+
+    func getDate(from timeInterval: Int) -> Date {
+        return Date(timeIntervalSince1970: Double(timeInterval))
+    }
 }

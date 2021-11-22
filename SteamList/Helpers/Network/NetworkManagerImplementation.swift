@@ -21,7 +21,7 @@ class NetworkManagerImplementation: NetworkManager {
     }
 
     func getAllGames(completion: @escaping (([GamesListItem], DataStatus) -> Void)) {
-        guard let url = URL(string: "https://api.steampowered.com/ISteamApps/GetAppList/v2/") else { return }
+        guard let url = URL(string: API.games.getURLString()) else { return }
 
         URLSession.shared.dataTask(with: url) { data, response, error in
 
@@ -57,7 +57,7 @@ class NetworkManagerImplementation: NetworkManager {
     }
 
     func getDetailedGameInfo(gameID: String, completion: @escaping ((Game?, DataStatus) -> Void)) {
-        guard let url = URL(string: "https://store.steampowered.com/api/appdetails?appids=\(gameID)") else { return }
+        guard let url = URL(string: API.detailedInfo.getURLString(gameID: gameID)) else { return }
 
         URLSession.shared.dataTask(with: url) { data, response, error in
 
@@ -88,5 +88,34 @@ class NetworkManagerImplementation: NetworkManager {
                  }
               }
         }.resume()
+    }
+
+    func getNews(games: [FavoritesItem], completion: @escaping (([(gameID: String, name: String, news: News)]?, DataStatus) -> Void)) {
+
+        var news = [(gameID: String, name: String, news: News)]()
+        let dispatchGroup = DispatchGroup()
+
+        for game in games {
+            dispatchGroup.enter()
+            guard let url = URL(string: API.news.getURLString(gameID: game.gameID)) else { return }
+            URLSession.shared.dataTask(with: url, completionHandler: { (data, _, error) in
+                guard let data = data,
+                    let subject = try? JSONDecoder().decode(News.self, from: data) else {
+                        dispatchGroup.leave()
+                        print(error?.localizedDescription ?? "")
+                        return
+                }
+                news.append((game.gameID, game.title, subject))
+                dispatchGroup.leave()
+            }).resume()
+        }
+
+        dispatchGroup.notify(queue: DispatchQueue.global()) {
+            if news.isEmpty {
+                completion(nil, .empty)
+            } else {
+                completion(news, .success)
+            }
+        }
     }
 }

@@ -129,6 +129,55 @@ class ModelsFactory {
         return result
     }
 
+    // MARK: - News model -
+    func createNewsModel(completion: @escaping ((NewsModel) -> Void)) {
+        // getDetailsModelFromDatabase(gameID: gameID, completion: completion)
+        getDetailsModelFromNetwork(completion: completion)
+    }
+
+    private func getDetailsModelFromNetwork(completion: @escaping ((NewsModel) -> Void)) {
+        let favoritesGames = DataManagerImplementation.shared.getFavoritesGame()
+        networkManager.getNews(games: favoritesGames.0) { news, dataStatus in
+            guard dataStatus == .success,
+                  let news = news else { return }
+            let newsItems = self.createNewsItems(news: news)
+            let filteredGames = self.createFilteredGames(favoritesGames: favoritesGames.0)
+            let newsModel = NewsModel(dataStatus: dataStatus,
+                                      news: newsItems,
+                                      filteredNews: newsItems,
+                                      filteredGames: filteredGames)
+            completion(newsModel)
+        }
+    }
+
+    private func createNewsItems(news: [(gameID: String, name: String, news: News)]) -> [NewsItem] {
+        var newsItems = [NewsItem]()
+        for item in news {
+            for element in item.news.appnews.newsitems {
+                let newsItem = NewsItem(gameID: item.gameID,
+                                        title: element.title,
+                                        gameName: item.name,
+                                        author: element.author,
+                                        date: CustomDateFormater.shared.getDate(from: element.date),
+                                        contents: element.contents)
+                newsItems.append(newsItem)
+            }
+        }
+        newsItems.sort { $0.date > $1.date }
+        return newsItems
+    }
+
+    private func createFilteredGames(favoritesGames: [FavoritesItem]) -> [FilterItem] {
+        var filterItems = [FilterItem]()
+        for item in favoritesGames {
+            let filterItem = FilterItem(gameID: item.gameID,
+                                        name: item.title,
+                                        isEnabled: true)
+            filterItems.append(filterItem)
+        }
+        return filterItems
+    }
+
     // MARK: - Additional functions -
     private func isFavorite(gameID: String) -> Bool {
         if let _ = DataManagerImplementation.shared.findFavoriteGame(gameID: gameID) {

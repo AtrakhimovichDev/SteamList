@@ -10,7 +10,8 @@ import UIKit
 class NewsViewController: UIViewController {
 
     private var customView = NewsView()
-    private var newsModel: NewsModel!
+    private var newsModel: NewsModel?
+    let networkManager = NetworkManagerImplementation()
 
     override func loadView() {
         view = customView
@@ -18,24 +19,11 @@ class NewsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupSettings()
+        loadData()
+    }
 
-        var newsArray = [NewsItem]()
-        newsArray.append(NewsItem(title: "Best PC games of 2020",
-                                  gameName: "CS: GO",
-                                  author: "Numantian games",
-                                  date: Date(),
-                                  contents: ""))
-        newsArray.append(NewsItem(title: "Tournament winner!",
-                                  gameName: "CS: GO",
-                                  author: "Allow games",
-                                  date: Date(),
-                                  contents: ""))
-        newsArray.append(NewsItem(title: "New antimage strategy",
-                                  gameName: "Dota 2",
-                                  author: "Valve",
-                                  date: Date(),
-                                  contents: ""))
-        newsModel = NewsModel(dataStatus: .success, news: newsArray)
+    private func setupSettings() {
         let rightBarItem = UIBarButtonItem(title: "Filter",
                                            style: .plain,
                                            target: self,
@@ -49,6 +37,15 @@ class NewsViewController: UIViewController {
         customView.tableView.reloadData()
 
         customView.filterView.saveButton.addTarget(self, action: #selector(saveFilterSettings), for: .touchUpInside)
+    }
+
+    private func loadData() {
+        ModelsFactory.shared.createNewsModel(completion: { [weak self] newsModel in
+            self?.newsModel = newsModel
+            DispatchQueue.main.async {
+                self?.customView.tableView.reloadData()
+            }
+        })
     }
 
     @objc
@@ -78,21 +75,12 @@ class NewsViewController: UIViewController {
             self.customView.topFilterViewConstraint?.update(offset: yPoint)
             self.customView.layoutIfNeeded()
         }
-
-//        let filterView = FilterView()
-//        filterView.layer.borderWidth = 1
-//        filterView.layer.borderColor = Colors.additionalTextColor.getUIColor().cgColor
-//        filterView.center = customView.center
-//        filterView.frame.size = CGSize(width: customView.frame.width * 0.6, height: customView.frame.height * 0.5)
-//        filterView.setGradientBackground(firstColor: Colors.firstBackgroundColor.getUIColor(),
-//                                                                            secondColor: Colors.secondBackgroundColor.getUIColor())
-//        customView.addSubview(filterView)
     }
 }
 
 extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newsModel.news.count
+        return newsModel?.filteredNews.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -102,10 +90,8 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         cell.selectionStyle = .none
-        cell.titleLabel.text = newsModel.news[indexPath.row].title
-        cell.authorLabel.text = "by \(newsModel.news[indexPath.row].author)"
-        cell.gameNameLabel.text = newsModel.news[indexPath.row].gameName
-        cell.dateLabel.text = CustomDateFormater.shared.getString(from: newsModel.news[indexPath.row].date)
+        guard let newsModel = newsModel else { return cell }
+        cell.fillInfo(info: newsModel.news[indexPath.row])
         return cell
     }
 
