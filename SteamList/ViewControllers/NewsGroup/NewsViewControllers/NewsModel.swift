@@ -7,24 +7,47 @@
 
 import Foundation
 
-struct NewsModel {
+class NewsModel {
     var dataStatus: DataStatus
     var news: [NewsItem]
     var filteredNews: [NewsItem]
     var filteredGames: [FilterItem]
+
+    init(dataStatus: DataStatus, news: [NewsItem], filteredNews: [NewsItem], filteredGames: [FilterItem]) {
+        self.dataStatus = dataStatus
+        self.news = news
+        self.filteredNews = filteredNews
+        self.filteredGames = filteredGames
+    }
 }
 
-struct NewsItem {
+class NewsItem {
     var gameID: String
     var title: String
     var gameName: String
     var author: String
     var date: Date
     var contents: String
+
+    init(gameID: String, title: String, gameName: String, author: String, date: Date, contents: String) {
+        self.gameID = gameID
+        self.title = title
+        self.gameName = gameName
+        self.author = author
+        self.date = date
+        self.contents = contents
+    }
+    
 }
 
-struct FilterItem {
+class FilterItem {
     var gameID: String
     var name: String
     var isEnabled: Bool
+
+    init(gameID: String, name: String, isEnabled: Bool) {
+        self.gameID = gameID
+        self.name = name
+        self.isEnabled = isEnabled
+    }
 }

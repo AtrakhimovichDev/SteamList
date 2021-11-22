@@ -9,6 +9,7 @@ import UIKit
 
 class NewsViewController: UIViewController {
 
+    private let filterTableViewController = FilterTableViewController()
     private var customView = NewsView()
     private var newsModel: NewsModel?
     let networkManager = NetworkManagerImplementation()
@@ -34,6 +35,9 @@ class NewsViewController: UIViewController {
         customView.tableView.delegate = self
         customView.tableView.dataSource = self
 
+        customView.filterView.tableView.delegate = filterTableViewController
+        customView.filterView.tableView.dataSource = filterTableViewController
+
         customView.tableView.reloadData()
 
         customView.filterView.saveButton.addTarget(self, action: #selector(saveFilterSettings), for: .touchUpInside)
@@ -42,8 +46,10 @@ class NewsViewController: UIViewController {
     private func loadData() {
         ModelsFactory.shared.createNewsModel(completion: { [weak self] newsModel in
             self?.newsModel = newsModel
+            self?.filterTableViewController.newsModel = newsModel
             DispatchQueue.main.async {
                 self?.customView.tableView.reloadData()
+                self?.customView.filterView.tableView.reloadData()
             }
         })
     }
@@ -59,7 +65,15 @@ class NewsViewController: UIViewController {
             self.customView.deleteBlur()
             self.customView.filterView.removeFromSuperview()
         }
-
+        guard let newsModel = newsModel else { return }
+        var gamesID = [String]()
+        for game in newsModel.filteredGames {
+            if game.isEnabled {
+                gamesID.append(game.gameID)
+            }
+        }
+        newsModel.filteredNews = newsModel.news.filter { gamesID.contains($0.gameID) }
+        customView.tableView.reloadData()
     }
 
     @objc
@@ -91,7 +105,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         }
         cell.selectionStyle = .none
         guard let newsModel = newsModel else { return cell }
-        cell.fillInfo(info: newsModel.news[indexPath.row])
+        cell.fillInfo(info: newsModel.filteredNews[indexPath.row])
         return cell
     }
 

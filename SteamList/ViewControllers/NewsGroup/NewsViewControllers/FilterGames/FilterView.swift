@@ -13,6 +13,7 @@ class FilterView: UIView {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
         tableView.separatorColor = .lightGray
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.register(FilterTableViewCell.self, forCellReuseIdentifier: FilterTableViewCell.identifier)
         return tableView
     }()

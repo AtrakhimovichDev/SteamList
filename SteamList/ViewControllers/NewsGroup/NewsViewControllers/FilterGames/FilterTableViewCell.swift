@@ -20,6 +20,7 @@ class FilterTableViewCell: UITableViewCell {
 
     var checkmarkImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "checkmark")
         return imageView
     }()
 
@@ -35,10 +36,11 @@ class FilterTableViewCell: UITableViewCell {
             constraints.leading.equalToSuperview().offset(15)
             constraints.bottom.equalToSuperview().offset(-10)
         }
-        
+
         checkmarkImageView.snp.makeConstraints { constraints in
-            constraints.top.equalToSuperview().offset(10)
-            constraints.bottom.equalToSuperview().offset(-10)
+            constraints.width.equalTo(titleLabel.snp.width).multipliedBy(0.1)
+            constraints.height.equalTo(checkmarkImageView.snp.width).multipliedBy(0.8)
+            constraints.centerY.equalToSuperview()
             constraints.trailing.equalToSuperview().offset(-10)
             constraints.leading.equalTo(titleLabel.snp.trailing).offset(10)
         }
