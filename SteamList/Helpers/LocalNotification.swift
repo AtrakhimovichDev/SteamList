@@ -9,10 +9,10 @@ import Foundation
 import UserNotifications
 
 class LocalNotification {
-    
+
     static let shared = LocalNotification()
     let notificationCenter = UNUserNotificationCenter.current()
-    
+
     private init() {
         notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { (granted, _) in
 
@@ -22,7 +22,7 @@ class LocalNotification {
             }
         }
     }
-    
+
     func sendNotification(name: String, price: Float) {
         let content = UNMutableNotificationContent()
         content.title = name

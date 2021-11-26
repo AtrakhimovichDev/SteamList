@@ -14,7 +14,7 @@ class NewsTableViewCell: UITableViewCell {
     var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 20.0)
+        label.font = UIFont.boldSystemFont(ofSize: 18.0)
         label.numberOfLines = 0
         return label
     }()
@@ -93,6 +93,14 @@ class NewsTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    func fillInfo(info: NewsItem) {
+        self.titleLabel.text = info.title
+        self.authorLabel.text = "by \(info.author.isEmpty ? "Unknown" : info.author)"
+        self.gameNameLabel.text = info.gameName
+        self.dateLabel.text = CustomDateFormater.shared.getString(from: info.date)
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

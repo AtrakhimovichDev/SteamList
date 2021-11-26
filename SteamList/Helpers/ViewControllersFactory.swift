@@ -23,4 +23,10 @@ class ViewControllersFactory {
         screenshotController.image = image
         return screenshotController
     }
+
+    func createDetailedNewsVS(newsID: String) -> DetailedNewsViewController {
+        let newsController = DetailedNewsViewController()
+        newsController.newsID = newsID
+        return newsController
+    }
 }

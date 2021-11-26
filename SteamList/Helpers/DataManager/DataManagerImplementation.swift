@@ -222,6 +222,58 @@ class DataManagerImplementation: DataManager {
         saveContext()
     }
 
+    // MARK: - News functions -
+    func saveNews(newsList: [NewsItem]) {
+        clearNews()
+        for item in newsList {
+            let newsItem = NewsDetailedInfo(context: context)
+            newsItem.newsID = item.id
+            newsItem.gameID = item.gameID
+            newsItem.title = item.title
+            newsItem.gameName = item.gameName
+            newsItem.date = item.date
+            newsItem.author = item.author
+            newsItem.contents = item.contents
+        }
+        saveContext()
+    }
+
+    func getNews(newsID: String) -> (NewsItem?, DataStatus) {
+        let fetchRequest: NSFetchRequest<NewsDetailedInfo> = NewsDetailedInfo.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "newsID LIKE %@", newsID)
+        do {
+            let object = try context.fetch(fetchRequest)
+            if let news = object.first {
+                let newsDetailedInfo = NewsItem(id: news.newsID,
+                                                gameID: news.gameID,
+                                                title: news.title,
+                                                gameName: news.gameName,
+                                                author: news.author,
+                                                date: news.date,
+                                                contents: news.contents)
+                return (newsDetailedInfo, .success)
+            } else {
+                return (nil, .empty)
+            }
+        } catch {
+            return (nil, .error)
+        }
+    }
+
+    private func clearNews() {
+        let fetchRequest: NSFetchRequest<NewsDetailedInfo> = NewsDetailedInfo.fetchRequest()
+        do {
+            let objects = try context.fetch(fetchRequest)
+            for item in objects {
+                context.delete(item)
+            }
+            saveContext()
+        } catch {
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+    }
+
     // MARK: - Common functions -
     private func saveContext() {
         if context.hasChanges {

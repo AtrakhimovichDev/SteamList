@@ -125,9 +125,12 @@ extension FavoritesViewController: UITableViewDelegate, UITableViewDataSource {
         return UIView()
     }
 
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            DataManagerImplementation.shared.deleteFavoriteGame(game: favoritesModel!.filteredFavoritesList[indexPath.row])
+            let game = favoritesModel!.filteredFavoritesList[indexPath.row]
+            DataManagerImplementation.shared.deleteFavoriteGame(game: game)
             favoritesModel?.filteredFavoritesList.remove(at: indexPath.row)
             customView.favsTableView.deleteRows(at: [indexPath], with: .fade)
         }
