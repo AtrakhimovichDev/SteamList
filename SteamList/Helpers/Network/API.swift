@@ -11,7 +11,7 @@ enum API: String {
     case games = "https://api.steampowered.com/ISteamApps/GetAppList/v2/"
     case detailedInfo = "https://store.steampowered.com/api/appdetails"
     case news = "https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/"
-    
+
     func getURLString(gameID: String = "") -> String {
         switch self {
         case .games:

@@ -26,10 +26,32 @@ class NewsView: UIView {
 
     var tableView: UITableView = {
         let tableView = UITableView()
+        let refreshControl = UIRefreshControl()
+        tableView.refreshControl = refreshControl
         tableView.backgroundColor = .clear
         tableView.separatorColor = .lightGray
         tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.identifier)
         return tableView
+    }()
+
+    var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .white
+        scrollView.refreshControl = refreshControl
+        return scrollView
+    }()
+
+    private var errorLabel: UILabel = {
+        let errorLabel = UILabel()
+        errorLabel.textColor = .white
+        return errorLabel
+    }()
+
+    var indicatorView: UIActivityIndicatorView = {
+        let indicatorView = UIActivityIndicatorView(style: .large)
+        indicatorView.color = .white
+        return indicatorView
     }()
 
     override init(frame: CGRect) {
@@ -46,12 +68,54 @@ class NewsView: UIView {
         createSubViews()
     }
 
+    func setupView(with dataStatus: DataStatus) {
+        switch dataStatus {
+        case .success:
+            setupTableView()
+        case .empty:
+            setupScrollView()
+            setupErrorLabel(text: "Oops... No data here")
+        case .error:
+            setupScrollView()
+            setupErrorLabel(text: "Oops... Something go wrong")
+        }
+    }
+
     private func createSubViews() {
         self.setGradientBackground(firstColor: Colors.firstBackgroundColor.getUIColor(),
                                    secondColor: Colors.secondBackgroundColor.getUIColor())
+        setupActivityIndicator()
+    }
+
+    private func setupTableView() {
         self.addSubview(tableView)
         tableView.snp.makeConstraints { (constraints) in
             constraints.edges.equalToSuperview()
+        }
+    }
+
+    private func setupScrollView() {
+        self.addSubview(scrollView)
+        scrollView.snp.makeConstraints { constraints in
+            constraints.top.equalTo(safeAreaLayoutGuide.snp.top)
+            constraints.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
+            constraints.leading.equalToSuperview()
+            constraints.trailing.equalToSuperview()
+        }
+    }
+
+    private func setupErrorLabel(text: String) {
+        scrollView.addSubview(errorLabel)
+        errorLabel.text = text
+        errorLabel.snp.makeConstraints { constraints in
+            constraints.center.equalToSuperview()
+        }
+    }
+
+    private func setupActivityIndicator() {
+        self.addSubview(indicatorView)
+        indicatorView.snp.makeConstraints { constraints in
+            constraints.center.equalToSuperview()
         }
     }
 

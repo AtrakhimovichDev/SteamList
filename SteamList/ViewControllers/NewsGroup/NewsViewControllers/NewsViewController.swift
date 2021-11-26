@@ -20,6 +20,7 @@ class NewsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        startIndicator()
         setupSettings()
         loadData()
     }
@@ -34,7 +35,7 @@ class NewsViewController: UIViewController {
 
         customView.tableView.delegate = self
         customView.tableView.dataSource = self
-
+        customView.tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
         customView.filterView.tableView.delegate = filterTableViewController
         customView.filterView.tableView.dataSource = filterTableViewController
 
@@ -48,10 +49,28 @@ class NewsViewController: UIViewController {
             self?.newsModel = newsModel
             self?.filterTableViewController.newsModel = newsModel
             DispatchQueue.main.async {
+                self?.customView.setupView(with: newsModel.dataStatus)
                 self?.customView.tableView.reloadData()
                 self?.customView.filterView.tableView.reloadData()
+                self?.customView.tableView.refreshControl?.endRefreshing()
+                self?.stopIndicator()
             }
         })
+    }
+
+    private func startIndicator() {
+        customView.indicatorView.isHidden = false
+        customView.indicatorView.startAnimating()
+    }
+
+    private func stopIndicator() {
+        customView.indicatorView.stopAnimating()
+        customView.indicatorView.isHidden = true
+    }
+
+    @objc
+    private func refresh() {
+        self.loadData()
     }
 
     @objc
@@ -67,10 +86,8 @@ class NewsViewController: UIViewController {
         }
         guard let newsModel = newsModel else { return }
         var gamesID = [String]()
-        for game in newsModel.filteredGames {
-            if game.isEnabled {
-                gamesID.append(game.gameID)
-            }
+        for game in newsModel.filteredGames where game.isEnabled {
+            gamesID.append(game.gameID)
         }
         newsModel.filteredNews = newsModel.news.filter { gamesID.contains($0.gameID) }
         customView.tableView.reloadData()
@@ -107,6 +124,15 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         guard let newsModel = newsModel else { return cell }
         cell.fillInfo(info: newsModel.filteredNews[indexPath.row])
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let newsModel = newsModel else { return }
+        let newsDetailedVC = ViewControllersFactory.shared.createDetailedNewsVS(
+            newsID: newsModel.filteredNews[indexPath.row].id)
+        navigationItem.backButtonTitle = ""
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.pushViewController(newsDetailedVC, animated: true)
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

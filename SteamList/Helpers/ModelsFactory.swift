@@ -129,13 +129,25 @@ class ModelsFactory {
         return result
     }
 
+    
+    private func createFilteredGames(favoritesGames: [FavoritesItem]) -> [FilterItem] {
+        var filterItems = [FilterItem]()
+        for item in favoritesGames {
+            let filterItem = FilterItem(gameID: item.gameID,
+                                        name: item.title,
+                                        isEnabled: true)
+            filterItems.append(filterItem)
+        }
+        return filterItems
+    }
+
     // MARK: - News model -
     func createNewsModel(completion: @escaping ((NewsModel) -> Void)) {
         // getDetailsModelFromDatabase(gameID: gameID, completion: completion)
-        getDetailsModelFromNetwork(completion: completion)
+        getNewsModelFromNetwork(completion: completion)
     }
 
-    private func getDetailsModelFromNetwork(completion: @escaping ((NewsModel) -> Void)) {
+    private func getNewsModelFromNetwork(completion: @escaping ((NewsModel) -> Void)) {
         let favoritesGames = DataManagerImplementation.shared.getFavoritesGame()
         networkManager.getNews(games: favoritesGames.0) { news, dataStatus in
             guard dataStatus == .success,
@@ -147,6 +159,7 @@ class ModelsFactory {
                                       filteredNews: newsItems,
                                       filteredGames: filteredGames)
             completion(newsModel)
+            DataManagerImplementation.shared.saveNews(newsList: newsItems)
         }
     }
 
@@ -154,7 +167,8 @@ class ModelsFactory {
         var newsItems = [NewsItem]()
         for item in news {
             for element in item.news.appnews.newsitems {
-                let newsItem = NewsItem(gameID: item.gameID,
+                let newsItem = NewsItem(id: element.gid,
+                                        gameID: item.gameID,
                                         title: element.title,
                                         gameName: item.name,
                                         author: element.author,
@@ -167,15 +181,22 @@ class ModelsFactory {
         return newsItems
     }
 
-    private func createFilteredGames(favoritesGames: [FavoritesItem]) -> [FilterItem] {
-        var filterItems = [FilterItem]()
-        for item in favoritesGames {
-            let filterItem = FilterItem(gameID: item.gameID,
-                                        name: item.title,
-                                        isEnabled: true)
-            filterItems.append(filterItem)
+    // MARK: - Detailed news functions -
+    func createDetailedNewsModel(newsID: String, completion: @escaping ((DetailedNewsModel) -> Void)) {
+        getDetailsNewsModelFromDatabase(newsID: newsID, completion: completion)
+    }
+
+    private func getDetailsNewsModelFromDatabase(newsID: String, completion: @escaping ((DetailedNewsModel) -> Void)) {
+        let newsDetails = getDetailsNewsFromDatabase(newsID: newsID)
+        let newsDetailsModel = DetailedNewsModel(dataStatus: newsDetails.1, news: newsDetails.0)
+        if newsDetailsModel.dataStatus == .success {
+            completion(newsDetailsModel)
         }
-        return filterItems
+    }
+
+    private func getDetailsNewsFromDatabase(newsID: String) -> (NewsItem?, DataStatus) {
+        let result = DataManagerImplementation.shared.getNews(newsID: newsID)
+        return result
     }
 
     // MARK: - Additional functions -

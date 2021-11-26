@@ -16,6 +16,7 @@ struct NewsInfo: Decodable {
 }
 
 struct NewsObject: Decodable {
+    var gid: String
     var title: String
     var contents: String
     var author: String

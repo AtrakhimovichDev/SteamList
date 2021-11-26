@@ -8,7 +8,7 @@
 import UIKit
 
 class FilterView: UIView {
-    
+
     var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear

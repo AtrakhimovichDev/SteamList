@@ -14,7 +14,7 @@ class NewsTableViewCell: UITableViewCell {
     var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 20.0)
+        label.font = UIFont.boldSystemFont(ofSize: 18.0)
         label.numberOfLines = 0
         return label
     }()

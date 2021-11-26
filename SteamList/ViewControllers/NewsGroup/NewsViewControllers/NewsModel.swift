@@ -22,6 +22,7 @@ class NewsModel {
 }
 
 class NewsItem {
+    var id: String
     var gameID: String
     var title: String
     var gameName: String
@@ -29,7 +30,8 @@ class NewsItem {
     var date: Date
     var contents: String
 
-    init(gameID: String, title: String, gameName: String, author: String, date: Date, contents: String) {
+    init(id: String, gameID: String, title: String, gameName: String, author: String, date: Date, contents: String) {
+        self.id = id
         self.gameID = gameID
         self.title = title
         self.gameName = gameName
@@ -37,7 +39,6 @@ class NewsItem {
         self.date = date
         self.contents = contents
     }
-    
 }
 
 class FilterItem {
