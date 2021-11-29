@@ -26,22 +26,8 @@ class NewsViewController: UIViewController {
     }
 
     private func setupSettings() {
-        let rightBarItem = UIBarButtonItem(title: "Filter",
-                                           style: .plain,
-                                           target: self,
-                                           action: #selector(filterButtonPressed))
-        rightBarItem.tintColor = .white
-        navigationItem.rightBarButtonItem = rightBarItem
-
-        customView.tableView.delegate = self
-        customView.tableView.dataSource = self
-        customView.tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        customView.filterView.tableView.delegate = filterTableViewController
-        customView.filterView.tableView.dataSource = filterTableViewController
-
-        customView.tableView.reloadData()
-
-        customView.filterView.saveButton.addTarget(self, action: #selector(saveFilterSettings), for: .touchUpInside)
+        setupNavBar()
+        setupCustomView()
     }
 
     private func loadData() {
@@ -58,6 +44,26 @@ class NewsViewController: UIViewController {
         })
     }
 
+    private func setupNavBar() {
+        let rightBarItem = UIBarButtonItem(title: "Filter",
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(filterButtonPressed))
+        rightBarItem.tintColor = .white
+        navigationItem.rightBarButtonItem = rightBarItem
+    }
+
+    private func setupCustomView() {
+        customView.tableView.delegate = self
+        customView.tableView.dataSource = self
+        customView.tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+
+        customView.filterView.tableView.delegate = filterTableViewController
+        customView.filterView.tableView.dataSource = filterTableViewController
+        customView.filterView.saveButton.addTarget(self, action: #selector(saveFilterSettings), for: .touchUpInside)
+        customView.tableView.reloadData()
+    }
+    
     private func startIndicator() {
         customView.indicatorView.isHidden = false
         customView.indicatorView.startAnimating()
