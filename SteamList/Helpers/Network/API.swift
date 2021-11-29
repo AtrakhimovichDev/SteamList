@@ -19,7 +19,7 @@ enum API: String {
         case .detailedInfo:
             return "\(self.rawValue)?appids=\(gameID)"
         case .news:
-            return "\(self.rawValue)?appid=\(gameID)&count=10"
+            return "\(self.rawValue)?appid=\(gameID)&count=30"
         }
     }
 }

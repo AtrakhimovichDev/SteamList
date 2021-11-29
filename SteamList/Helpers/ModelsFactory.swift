@@ -166,7 +166,7 @@ class ModelsFactory {
     private func createNewsItems(news: [(gameID: String, name: String, news: News)]) -> [NewsItem] {
         var newsItems = [NewsItem]()
         for item in news {
-            for element in item.news.appnews.newsitems {
+            for element in item.news.appnews.newsitems where element.feedType == 0 {
                 let newsItem = NewsItem(id: element.gid,
                                         gameID: item.gameID,
                                         title: element.title,
