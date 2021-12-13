@@ -15,8 +15,10 @@ enum Colors: String {
     case additionalTextColor = "#D2D6D9"
     case discountPricaeColor = "#7DA934"
     case linkColor = "#7584B6"
+    case buttonColor = "#2A5788"
 
     func getUIColor() -> UIColor {
+        #colorLiteral(red: 0.1647058824, green: 0.3411764706, blue: 0.5333333333, alpha: 1)
         return UIColor(hex: self.rawValue)
     }
 }

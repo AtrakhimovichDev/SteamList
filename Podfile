@@ -7,7 +7,9 @@ target 'SteamList' do
   pod 'SnapKit', '~> 5.0.0'
 
   pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'Firebase/Database'
 
 end
