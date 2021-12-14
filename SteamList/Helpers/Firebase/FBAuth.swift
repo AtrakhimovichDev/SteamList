@@ -8,5 +8,6 @@
 import Foundation
 
 protocol FBAuth {
-    func createUser(email: String, password: String, completion: @escaping ((_ success: Bool) -> Void))
+    func createUser(email: String, password: String, completion: @escaping ((_ error: String?) -> Void))
+    func signIn(email: String, password: String, completionBlock: @escaping (_ error: String?) -> Void)
 }

@@ -47,6 +47,7 @@ class SignUpView: UIView {
 
     var passTextField: UITextField = {
         let textField = UITextField()
+        textField.autocorrectionType = .no
         textField.isSecureTextEntry = true
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: textField.frame.height))
         textField.leftViewMode = .always
@@ -57,7 +58,7 @@ class SignUpView: UIView {
 
     var signUpButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Sign Up", for: .normal)
+        button.setTitle("Create account", for: .normal)
         button.backgroundColor = Colors.buttonColor.getUIColor()
         return button
     }()
@@ -136,4 +137,3 @@ class SignUpView: UIView {
         passTextField.layer.cornerRadius = passTextField.frame.height / 2
     }
 }
-
