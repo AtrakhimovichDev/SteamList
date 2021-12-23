@@ -22,7 +22,7 @@ struct FavoritesModel {
     }
 }
 
-class FavoritesItem {
+class FavoritesItem: Decodable {
     init(gameID: String, title: String, priceTitle: String? = nil, price: Float? = nil, discont: Int? = nil) {
         self.gameID = gameID
         self.title = title
@@ -30,7 +30,7 @@ class FavoritesItem {
         self.price = price
         self.discont = discont
     }
-    
+
     var gameID: String
     var title: String
     var priceTitle: String?

@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import FirebaseDatabase
 
 class DataManagerImplementation: DataManager {
 
@@ -183,6 +184,9 @@ class DataManagerImplementation: DataManager {
             favoriteGame.discont = Int16(game.discont ?? 0)
         }
         saveContext()
+        let ref = Database.database(url: "https://steam-list-default-rtdb.europe-west1.firebasedatabase.app").reference(withPath: "favorite-games")
+        let groceryItemRef = ref.child(game.gameID.lowercased())
+        groceryItemRef.setValue(["title": game.title])
     }
 
     func findFavoriteGame(gameID: String) -> FavoriteGame? {

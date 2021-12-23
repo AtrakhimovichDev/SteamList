@@ -38,10 +38,20 @@
 		B02EB8E22727553F00F5DE4B /* GameDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8E12727553F00F5DE4B /* GameDetailsView.swift */; };
 		B02EB8E527281C3100F5DE4B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8E427281C3100F5DE4B /* NetworkManager.swift */; };
 		B02EB8E827294EA400F5DE4B /* Games.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B02EB8E627294EA400F5DE4B /* Games.xcdatamodeld */; };
+		B05B902627629DC200CD99DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B05B902527629DC200CD99DE /* GoogleService-Info.plist */; };
 		B062AEB3274E979F008B66B2 /* DetailedNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B062AEB2274E979F008B66B2 /* DetailedNewsViewController.swift */; };
 		B062AEB5274E97B8008B66B2 /* DetailedNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B062AEB4274E97B8008B66B2 /* DetailedNewsView.swift */; };
 		B062AEB7274E97C9008B66B2 /* DetailedNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B062AEB6274E97C9008B66B2 /* DetailedNewsModel.swift */; };
 		B062AEB9274ECA86008B66B2 /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = B062AEB8274ECA86008B66B2 /* String+HTML.swift */; };
+		B06C286E2762AEC400BAF0AC /* RealtimeDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06C286D2762AEC400BAF0AC /* RealtimeDatabaseManager.swift */; };
+		B091CDBC2767A060001A253A /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B091CDBB2767A060001A253A /* FirebaseAuthManager.swift */; };
+		B091CDBE2767A08A001A253A /* FBAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B091CDBD2767A08A001A253A /* FBAuth.swift */; };
+		B091CDC42767A237001A253A /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B091CDC32767A237001A253A /* StartViewController.swift */; };
+		B091CDC62767A24E001A253A /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B091CDC52767A24E001A253A /* StartView.swift */; };
+		B091CDC82767E0D8001A253A /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B091CDC72767E0D8001A253A /* LogInView.swift */; };
+		B091CDCA2767E0E6001A253A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B091CDC92767E0E6001A253A /* SignUpView.swift */; };
+		B091CDCC2767E0F8001A253A /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B091CDCB2767E0F8001A253A /* LogInViewController.swift */; };
+		B091CDCE2767E3BB001A253A /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B091CDCD2767E3BA001A253A /* SignUpViewController.swift */; };
 		B062AEBC2757A73B008B66B2 /* JSONEmpty.json in Resources */ = {isa = PBXBuildFile; fileRef = B062AEBB2757A73B008B66B2 /* JSONEmpty.json */; };
 		B062AEBE2757A779008B66B2 /* JSONSuccessGamesList.json in Resources */ = {isa = PBXBuildFile; fileRef = B062AEBD2757A779008B66B2 /* JSONSuccessGamesList.json */; };
 		B062AEC02757A817008B66B2 /* JSONRandom.json in Resources */ = {isa = PBXBuildFile; fileRef = B062AEBF2757A817008B66B2 /* JSONRandom.json */; };
@@ -125,10 +135,20 @@
 		B02EB8E12727553F00F5DE4B /* GameDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDetailsView.swift; sourceTree = "<group>"; };
 		B02EB8E427281C3100F5DE4B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		B02EB8E727294EA400F5DE4B /* Games.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Games.xcdatamodel; sourceTree = "<group>"; };
+		B05B902527629DC200CD99DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B062AEB2274E979F008B66B2 /* DetailedNewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedNewsViewController.swift; sourceTree = "<group>"; };
 		B062AEB4274E97B8008B66B2 /* DetailedNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedNewsView.swift; sourceTree = "<group>"; };
 		B062AEB6274E97C9008B66B2 /* DetailedNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedNewsModel.swift; sourceTree = "<group>"; };
 		B062AEB8274ECA86008B66B2 /* String+HTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+HTML.swift"; sourceTree = "<group>"; };
+		B06C286D2762AEC400BAF0AC /* RealtimeDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeDatabaseManager.swift; sourceTree = "<group>"; };
+		B091CDBB2767A060001A253A /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
+		B091CDBD2767A08A001A253A /* FBAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAuth.swift; sourceTree = "<group>"; };
+		B091CDC32767A237001A253A /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		B091CDC52767A24E001A253A /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		B091CDC72767E0D8001A253A /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
+		B091CDC92767E0E6001A253A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		B091CDCB2767E0F8001A253A /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		B091CDCD2767E3BA001A253A /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B062AEBB2757A73B008B66B2 /* JSONEmpty.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONEmpty.json; sourceTree = "<group>"; };
 		B062AEBD2757A779008B66B2 /* JSONSuccessGamesList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONSuccessGamesList.json; sourceTree = "<group>"; };
 		B062AEBF2757A817008B66B2 /* JSONRandom.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = JSONRandom.json; sourceTree = "<group>"; };
@@ -251,6 +271,7 @@
 		B02EB8A22726B05B00F5DE4B /* SteamList */ = {
 			isa = PBXGroup;
 			children = (
+				B05B902527629DC200CD99DE /* GoogleService-Info.plist */,
 				B062AEBA2757A713008B66B2 /* Tests */,
 				B02EB8DC27274A4E00F5DE4B /* Application */,
 				B02EB8BE2726C13800F5DE4B /* Enums */,
@@ -268,6 +289,7 @@
 		B02EB8B72726B27600F5DE4B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B091CDBF2767A1D1001A253A /* AuthGroup */,
 				B0AC350E273C1BFF0017FC18 /* GamesGroup */,
 				B0AC350D273C1BF40017FC18 /* FavoritesGroup */,
 				B0AC350C273C1BE40017FC18 /* NewsGroup */,
@@ -350,9 +372,9 @@
 		B02EB8DC27274A4E00F5DE4B /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				B02EB8B12726B05C00F5DE4B /* Info.plist */,
 				B02EB8A32726B05B00F5DE4B /* AppDelegate.swift */,
 				B02EB8A52726B05B00F5DE4B /* SceneDelegate.swift */,
-				B02EB8B12726B05C00F5DE4B /* Info.plist */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -360,6 +382,7 @@
 		B02EB8DD27274A6B00F5DE4B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B091CDBA2767A041001A253A /* Firebase */,
 				B028E563273045F4003BFF68 /* DataManager */,
 				B02EB8E327281BEC00F5DE4B /* Network */,
 				B028E56E27316042003BFF68 /* ModelsFactory.swift */,
@@ -389,6 +412,51 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		B091CDBA2767A041001A253A /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				B06C286D2762AEC400BAF0AC /* RealtimeDatabaseManager.swift */,
+				B091CDBB2767A060001A253A /* FirebaseAuthManager.swift */,
+				B091CDBD2767A08A001A253A /* FBAuth.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		B091CDBF2767A1D1001A253A /* AuthGroup */ = {
+			isa = PBXGroup;
+			children = (
+				B091CDC02767A1DD001A253A /* StartViewController */,
+				B091CDC12767A204001A253A /* LogInViewController */,
+				B091CDC22767A218001A253A /* SignUpViewController */,
+			);
+			path = AuthGroup;
+			sourceTree = "<group>";
+		};
+		B091CDC02767A1DD001A253A /* StartViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B091CDC32767A237001A253A /* StartViewController.swift */,
+				B091CDC52767A24E001A253A /* StartView.swift */,
+			);
+			path = StartViewController;
+			sourceTree = "<group>";
+		};
+		B091CDC12767A204001A253A /* LogInViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B091CDCB2767E0F8001A253A /* LogInViewController.swift */,
+				B091CDC72767E0D8001A253A /* LogInView.swift */,
+			);
+			path = LogInViewController;
+			sourceTree = "<group>";
+		};
+		B091CDC22767A218001A253A /* SignUpViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B091CDCD2767E3BA001A253A /* SignUpViewController.swift */,
+				B091CDC92767E0E6001A253A /* SignUpView.swift */,
+			);
+			path = SignUpViewController;
 		B062AEBA2757A713008B66B2 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -488,6 +556,7 @@
 				B02EB89D2726B05A00F5DE4B /* Frameworks */,
 				B02EB89E2726B05A00F5DE4B /* Resources */,
 				6D3CD2B9982ED4E68B0F6750 /* [CP] Embed Pods Frameworks */,
+				B06C286F27633E3C00BAF0AC /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -586,6 +655,7 @@
 				B062AEBC2757A73B008B66B2 /* JSONEmpty.json in Resources */,
 				B062AEBE2757A779008B66B2 /* JSONSuccessGamesList.json in Resources */,
 				B02EB8AD2726B05C00F5DE4B /* Assets.xcassets in Resources */,
+				B05B902627629DC200CD99DE /* GoogleService-Info.plist in Resources */,
 				B0F9959F2758185B00D7D696 /* JSONSuccessGame.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -664,6 +734,26 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
+		B06C286F27633E3C00BAF0AC /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = Crashlytics;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -685,7 +775,10 @@
 				B0AC34F727382FF00017FC18 /* GameDetailedInfo+CoreDataClass.swift in Sources */,
 				B028E5692730468C003BFF68 /* DataManagerImplementation.swift in Sources */,
 				B0AC3500273AA08C0017FC18 /* ScreenshotView.swift in Sources */,
+				B091CDC42767A237001A253A /* StartViewController.swift in Sources */,
 				B02EB8E527281C3100F5DE4B /* NetworkManager.swift in Sources */,
+				B091CDCE2767E3BB001A253A /* SignUpViewController.swift in Sources */,
+				B091CDCA2767E0E6001A253A /* SignUpView.swift in Sources */,
 				B028E56B27305084003BFF68 /* GamesListModel.swift in Sources */,
 				B02EB8D02726ECF100F5DE4B /* GamesListView.swift in Sources */,
 				B02EB8C02726C14D00F5DE4B /* Colors.swift in Sources */,
@@ -694,22 +787,27 @@
 				B028E55A272AEAF5003BFF68 /* FavoritesView.swift in Sources */,
 				B0AC3516273C877A0017FC18 /* FavoriteButton.swift in Sources */,
 				B02EB8CD2726EB6000F5DE4B /* GamesList.swift in Sources */,
+				B06C286E2762AEC400BAF0AC /* RealtimeDatabaseManager.swift in Sources */,
 				B02EB8C82726DF0400F5DE4B /* GamesListTableViewCell.swift in Sources */,
 				B0AC3504273ABE720017FC18 /* FavoritesModel.swift in Sources */,
 				B028E56127304580003BFF68 /* GameItem+CoreDataClass.swift in Sources */,
 				B02EB8B92726B2B800F5DE4B /* GamesListViewController.swift in Sources */,
 				B02EB8A42726B05B00F5DE4B /* AppDelegate.swift in Sources */,
+				B091CDBC2767A060001A253A /* FirebaseAuthManager.swift in Sources */,
 				B02EB8E027274E1E00F5DE4B /* Game.swift in Sources */,
 				B028E56D27308B30003BFF68 /* DataStatus.swift in Sources */,
 				B0AC3502273ABCBF0017FC18 /* FavoritesTableViewCell.swift in Sources */,
+				B091CDBE2767A08A001A253A /* FBAuth.swift in Sources */,
 				B02EB8BD2726BB1500F5DE4B /* NewsViewController.swift in Sources */,
 				B0AC3508273C13620017FC18 /* NewsTableViewCell.swift in Sources */,
 				B02EB8D22726F2DD00F5DE4B /* UIView+gradient.swift in Sources */,
 				B028E56F27316042003BFF68 /* ModelsFactory.swift in Sources */,
+				B091CDC82767E0D8001A253A /* LogInView.swift in Sources */,
 				B0CADAC82745733A009509AE /* LocalNotification.swift in Sources */,
 				B028E56527304619003BFF68 /* DataManager.swift in Sources */,
 				B062AEB5274E97B8008B66B2 /* DetailedNewsView.swift in Sources */,
 				B0AC34F827382FF00017FC18 /* GameDetailedInfo+CoreDataProperties.swift in Sources */,
+				B091CDC62767A24E001A253A /* StartView.swift in Sources */,
 				B0AC34FE273AA0730017FC18 /* ScreenshotViewController.swift in Sources */,
 				B02EB8A62726B05B00F5DE4B /* SceneDelegate.swift in Sources */,
 				B0980723274B882F00B23CFB /* API.swift in Sources */,
@@ -718,6 +816,7 @@
 				B028E56727304650003BFF68 /* GamesListItem.swift in Sources */,
 				B062AEB7274E97C9008B66B2 /* DetailedNewsModel.swift in Sources */,
 				B0AC3513273C77180017FC18 /* FavoriteGame+CoreDataClass.swift in Sources */,
+				B091CDCC2767E0F8001A253A /* LogInViewController.swift in Sources */,
 				B0980725274C31E000B23CFB /* FilterTableViewController.swift in Sources */,
 				B028E5712731A74F003BFF68 /* GameDetailsModel.swift in Sources */,
 				B0CADACC274707D0009509AE /* FilterTableViewCell.swift in Sources */,
@@ -894,13 +993,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SSDHB2CNTR;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 5ACJXA9F63;
 				INFOPLIST_FILE = SteamList/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.atrakhimovich.www.SteamList;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atrakhimovich.steamlist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -914,13 +1014,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SSDHB2CNTR;
+				DEVELOPMENT_TEAM = 5ACJXA9F63;
 				INFOPLIST_FILE = SteamList/Application/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.atrakhimovich.www.SteamList;
+				PRODUCT_BUNDLE_IDENTIFIER = com.atrakhimovich.steamlist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

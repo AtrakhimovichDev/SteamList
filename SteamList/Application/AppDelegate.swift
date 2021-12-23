@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 import UserNotifications
 import BackgroundTasks
 
@@ -18,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         LocalNotification.shared.notificationCenter.delegate = self
         startUpdatingPrice()
+        FirebaseApp.configure()
         return true
     }
 
