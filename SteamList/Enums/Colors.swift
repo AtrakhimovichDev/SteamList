@@ -18,7 +18,6 @@ enum Colors: String {
     case buttonColor = "#2A5788"
 
     func getUIColor() -> UIColor {
-        #colorLiteral(red: 0.1647058824, green: 0.3411764706, blue: 0.5333333333, alpha: 1)
         return UIColor(hex: self.rawValue)
     }
 }

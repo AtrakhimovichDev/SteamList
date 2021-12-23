@@ -9,6 +9,5 @@ import Foundation
 import FirebaseDatabase
 
 class RealtimeDatabaseManager {
-    
     var ref = Database.database().reference(withPath: "grocery-items")
 }

@@ -15,12 +15,12 @@ class ModelsFactory {
 
     // MARK: - List model -
     func createGamesListModel(completion: @escaping ((GamesListModel) -> Void)) {
-        let needUpdate = true
-        if needUpdate {
+        // let needUpdate = true
+        // if needUpdate {
             getListModelFromNetwork(completion: completion)
-        } else {
-            getListModelFromDatabase(completion: completion)
-        }
+        // } else {
+        //    getListModelFromDatabase(completion: completion)
+        // }
     }
 
     private func getListModelFromNetwork(completion: @escaping ((GamesListModel) -> Void)) {
@@ -129,7 +129,6 @@ class ModelsFactory {
         return result
     }
 
-    
     private func createFilteredGames(favoritesGames: [FavoritesItem]) -> [FilterItem] {
         var filterItems = [FilterItem]()
         for item in favoritesGames {

@@ -38,7 +38,6 @@ class SignUpViewController: UIViewController {
                 message = "There was an error."
             }
             self.showErrorAlert(message: message)
-            
         }
     }
 

@@ -63,7 +63,7 @@ class NewsViewController: UIViewController {
         customView.filterView.saveButton.addTarget(self, action: #selector(saveFilterSettings), for: .touchUpInside)
         customView.tableView.reloadData()
     }
-    
+
     private func startIndicator() {
         customView.indicatorView.isHidden = false
         customView.indicatorView.startAnimating()

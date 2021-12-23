@@ -23,5 +23,5 @@ extension FavoriteGame {
 
 }
 
-extension FavoriteGame : Identifiable {
+extension FavoriteGame: Identifiable {
 }

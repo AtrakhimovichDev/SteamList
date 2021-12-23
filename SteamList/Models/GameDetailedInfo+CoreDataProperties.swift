@@ -34,5 +34,5 @@ extension GameDetailedInfo {
 
 }
 
-extension GameDetailedInfo : Identifiable {
+extension GameDetailedInfo: Identifiable {
 }

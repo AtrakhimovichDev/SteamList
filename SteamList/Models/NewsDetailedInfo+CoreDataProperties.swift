@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension NewsDetailedInfo {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<NewsDetailedInfo> {
@@ -26,6 +25,6 @@ extension NewsDetailedInfo {
 
 }
 
-extension NewsDetailedInfo : Identifiable {
+extension NewsDetailedInfo: Identifiable {
 
 }

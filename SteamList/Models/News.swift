@@ -22,7 +22,7 @@ struct NewsObject: Decodable {
     var author: String
     var date: Int
     var feedType: Int
-    
+
     enum CodingKeys: String, CodingKey {
            case gid, title, contents, author, date
            case feedType = "feed_type"
