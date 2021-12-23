@@ -19,7 +19,7 @@ protocol DataManager {
     // MARK: - Favorites games -
     func saveFavoriteGame(game: FavoritesItem)
     func getFavoritesGame() -> ([FavoritesItem], DataStatus)
-    
+
     // MARK: - News -
     func saveNews(newsList: [NewsItem])
     func getNews(newsID: String) -> (NewsItem?, DataStatus)

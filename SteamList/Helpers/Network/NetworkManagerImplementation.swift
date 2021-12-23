@@ -86,7 +86,7 @@ class NetworkManagerImplementation: NetworkManager {
                     print(error)
                     completion(nil, .error)
                  }
-              }
+            }
         }.resume()
     }
 

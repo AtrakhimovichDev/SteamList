@@ -1,0 +1,234 @@
+/* 
+  JSONRandom.strings
+  SteamList
+
+  Created by Andrei Atrakhimovich on 1.12.21.
+  
+*/
+[
+  {
+    "_id": "61a7707a20768f6bde52a15c",
+    "index": 0,
+    "guid": "323953fe-0d23-40af-93af-df928d19925d",
+    "isActive": 1,
+    "balance": "$2,527.04",
+    "picture": "http://placehold.it/32x32",
+    "age": 27,
+    "eyeColor": "blue",
+    "name": "Norma Montgomery",
+    "gender": "female",
+    "company": "MAINELAND",
+    "email": "normamontgomery@maineland.com",
+    "phone": "+1 (888) 572-3558",
+    "address": "599 Clark Street, Gardiner, Guam, 4062",
+    "about": "Eiusmod sit magna sit qui mollit esse ex deserunt consequat eu sint. Voluptate labore aliqua reprehenderit nulla cillum qui id occaecat. Sit adipisicing consectetur voluptate deserunt. Voluptate dolor nostrud exercitation eiusmod qui culpa aute laborum labore. Pariatur incididunt nisi consequat aliqua commodo ut qui reprehenderit tempor exercitation nisi sint. Consectetur ut deserunt dolore esse est ea amet. Magna qui nostrud aliquip nostrud ad adipisicing in sunt.\r\n",
+    "registered": "2021-08-20T02:17:59 -03:00",
+    "latitude": 55.696957,
+    "longitude": -56.158994,
+    "tags": [
+      "excepteur",
+      "pariatur",
+      "occaecat",
+      "commodo",
+      "tempor",
+      "est",
+      "consequat"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Gabrielle Mitchell"
+      },
+      {
+        "id": 1,
+        "name": "York Evans"
+      },
+      {
+        "id": 2,
+        "name": "Lorie Morgan"
+      }
+    ],
+    "greeting": "Hello, Norma Montgomery! You have 8 unread messages.",
+    "favoriteFruit": "apple"
+  },
+  {
+    "_id": "61a7707a8738534bdce54f77",
+    "index": 1,
+    "guid": "f96df55a-d337-434e-9770-b1966a2a36fd",
+    "isActive": 1,
+    "balance": "$2,943.23",
+    "picture": "http://placehold.it/32x32",
+    "age": 24,
+    "eyeColor": "green",
+    "name": "Luisa Torres",
+    "gender": "female",
+    "company": "RETRACK",
+    "email": "luisatorres@retrack.com",
+    "phone": "+1 (866) 501-3186",
+    "address": "203 Bradford Street, Shaft, North Carolina, 9410",
+    "about": "Nisi pariatur laboris aute consequat elit. Nisi Lorem laborum aliqua quis minim ad id fugiat in elit quis amet est. Et eiusmod ad et aute adipisicing reprehenderit commodo consequat nostrud eu officia. Eiusmod elit cillum consectetur pariatur sit consequat Lorem aute dolore sit laboris laboris occaecat do. Aliqua veniam dolore pariatur magna. Magna sit irure qui commodo. Nisi esse elit aliqua ad cillum.\r\n",
+    "registered": "2017-11-01T05:24:23 -03:00",
+    "latitude": -59.495201,
+    "longitude": -130.19658,
+    "tags": [
+      "cillum",
+      "proident",
+      "duis",
+      "reprehenderit",
+      "sunt",
+      "dolore",
+      "esse"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Serrano Bender"
+      },
+      {
+        "id": 1,
+        "name": "House Gomez"
+      },
+      {
+        "id": 2,
+        "name": "Finch Hull"
+      }
+    ],
+    "greeting": "Hello, Luisa Torres! You have 7 unread messages.",
+    "favoriteFruit": "banana"
+  },
+  {
+    "_id": "61a7707a54cf326e698c2dbe",
+    "index": 2,
+    "guid": "9c02127d-ca50-4b6a-b88d-07f1209962ae",
+    "isActive": 0,
+    "balance": "$1,838.22",
+    "picture": "http://placehold.it/32x32",
+    "age": 37,
+    "eyeColor": "green",
+    "name": "Stokes Shepherd",
+    "gender": "male",
+    "company": "QIAO",
+    "email": "stokesshepherd@qiao.com",
+    "phone": "+1 (924) 505-3476",
+    "address": "330 Garden Street, Konterra, Nebraska, 2847",
+    "about": "Velit ipsum non adipisicing velit ex dolore id est elit fugiat sit nostrud nulla. Labore occaecat tempor consequat aliqua aliquip laboris officia pariatur pariatur proident non cillum incididunt in. Nostrud voluptate ea velit eu pariatur nulla do.\r\n",
+    "registered": "2014-06-29T02:42:02 -03:00",
+    "latitude": -59.32651,
+    "longitude": 79.252186,
+    "tags": [
+      "consectetur",
+      "deserunt",
+      "esse",
+      "ullamco",
+      "et",
+      "laboris",
+      "elit"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Richardson Martin"
+      },
+      {
+        "id": 1,
+        "name": "Lizzie Bradshaw"
+      },
+      {
+        "id": 2,
+        "name": "Jackson Estes"
+      }
+    ],
+    "greeting": "Hello, Stokes Shepherd! You have 1 unread messages.",
+    "favoriteFruit": "strawberry"
+  },
+  {
+    "_id": "61a7707a8a556197ec639950",
+    "index": 3,
+    "guid": "234a574a-560f-4c91-9f77-763a9d1527b8",
+    "isActive": 1,
+    "balance": "$3,110.83",
+    "picture": "http://placehold.it/32x32",
+    "age": 20,
+    "eyeColor": "blue",
+    "name": "Terry Cobb",
+    "gender": "female",
+    "company": "PYRAMIA",
+    "email": "terrycobb@pyramia.com",
+    "phone": "+1 (938) 558-3171",
+    "address": "144 McKibbin Street, Bethany, Ohio, 2589",
+    "about": "Culpa est dolor sint id duis eu minim proident anim pariatur fugiat cillum ad dolore. Minim dolore reprehenderit eiusmod labore excepteur aute magna et enim. In minim ut sint dolor cupidatat. Culpa Lorem dolor mollit nulla nulla est officia. Incididunt sunt labore commodo velit cillum ex aliquip et. Et anim sint voluptate dolor cillum voluptate tempor commodo aliquip proident.\r\n",
+    "registered": "2019-09-12T06:49:34 -03:00",
+    "latitude": -23.380603,
+    "longitude": -106.209016,
+    "tags": [
+      "laboris",
+      "reprehenderit",
+      "sit",
+      "minim",
+      "mollit",
+      "aute",
+      "enim"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Wiley Dunn"
+      },
+      {
+        "id": 1,
+        "name": "Viola Maddox"
+      },
+      {
+        "id": 2,
+        "name": "Ashley Vance"
+      }
+    ],
+    "greeting": "Hello, Terry Cobb! You have 2 unread messages.",
+    "favoriteFruit": "banana"
+  },
+  {
+    "_id": "61a7707a0eab4e595907b549",
+    "index": 4,
+    "guid": "35322e3b-81c2-4f9e-9dff-daf4f06b1837",
+    "isActive": 1,
+    "balance": "$3,727.75",
+    "picture": "http://placehold.it/32x32",
+    "age": 39,
+    "eyeColor": "blue",
+    "name": "Reilly Randall",
+    "gender": "male",
+    "company": "KOOGLE",
+    "email": "reillyrandall@koogle.com",
+    "phone": "+1 (825) 523-2840",
+    "address": "415 Driggs Avenue, Dola, Pennsylvania, 553",
+    "about": "Laboris dolor ex fugiat mollit ipsum. Eiusmod elit exercitation tempor tempor mollit ex qui. Irure officia id est consequat commodo sunt ea ea. Ea enim occaecat dolore occaecat dolor reprehenderit officia irure culpa. Aliqua amet est id tempor et in sunt laboris elit elit culpa.\r\n",
+    "registered": "2015-04-08T07:17:12 -03:00",
+    "latitude": 34.414104,
+    "longitude": -132.7156,
+    "tags": [
+      "magna",
+      "labore",
+      "et",
+      "qui",
+      "ullamco",
+      "elit",
+      "consectetur"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Carver Koch"
+      },
+      {
+        "id": 1,
+        "name": "Strickland Wilkinson"
+      },
+      {
+        "id": 2,
+        "name": "Earlene Winters"
+      }
+    ],
+    "greeting": "Hello, Reilly Randall! You have 7 unread messages.",
+    "favoriteFruit": "banana"
+  }
+]
